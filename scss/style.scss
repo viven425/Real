@@ -1,0 +1,244 @@
+@use "var-font" as vf;
+@use "reset";
+
+// =========================
+// 🌸 變數區
+// =========================
+$main-bg: #fff6f6;
+$primary: #a44b4b;
+$accent: #ffe5e5;
+$text-dark: #3e2f2f;
+$font-main: "Noto Sans TC", sans-serif;
+
+// =========================
+// 🌸 基本設定
+// =========================
+body {
+  font-family: $font-main;
+  background-color: $main-bg;
+  color: $text-dark;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// =========================
+// 🌸 導覽列
+// =========================
+header, nav {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 0;
+
+    li {
+      font-size: 18px;
+      cursor: pointer;
+    }
+  }
+}
+
+// =========================
+// 🌸 Hero 區塊
+// =========================
+.hero {
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+
+  img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+
+// =========================
+// 🌸 問題區塊
+// =========================
+.question-block {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: $accent;
+
+  img {
+    width: 100px;
+    margin: 20px auto;
+  }
+
+  .button-start {
+    background-color: $primary;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+
+    &:hover {
+      background-color: darken($primary, 15%);
+    }
+  }
+}
+
+// =========================
+// 🌸 選校指南區塊
+// =========================
+.guide-section {
+  background-color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .guide-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+
+    .guide-card {
+      background: #fffdfd;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      text-align: left;
+      padding-bottom: 20px;
+
+      img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      p {
+        padding: 15px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// =========================
+// 🌸 最新消息滑動區
+// =========================
+.carousel-section {
+  background: #fde6e6;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 100px 100px 0 0;
+
+  .carousel-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .card-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+
+    .card-item {
+      min-width: 220px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      position: relative;
+
+      img {
+        width: 100%;
+        border-radius: 8px;
+      }
+
+      .heart {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+      }
+    }
+  }
+}
+
+// =========================
+// 🌸 關於我們
+// =========================
+.about-section {
+  background: url("your-bg.jpg") no-repeat center/cover;
+  color: white;
+  padding: 60px 20px;
+  position: relative;
+
+  .about-content {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 600px;
+    margin: auto;
+  }
+}
+
+// =========================
+// 🌸 頁尾
+// =========================
+footer {
+  background-color: #3b1f1f;
+  color: white;
+  padding: 40px 20px;
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    a {
+      color: white;
+      font-size: 14px;
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+  }
+}
