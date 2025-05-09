@@ -1,0 +1,41 @@
+$font-main: "Noto Sans TC", sans-serif;
+
+
+// font-family
+$font-en: "Sakitu Baelah", cursive;
+$font-tc: "Noto Sans TC", sans-serif;
+$font-title: "LXGW WenKai Mono TC", monospace;
+
+// font-size
+$font-size: ( // map-get($font-size, * )
+    xs: .85rem,
+    s: 1rem,
+    m: 1.2rem,
+    l: 1.5rem,
+    xl: 1.8rem,
+    xxl: 2rem,
+    xxxl: 2.4rem,
+    xxxxl: 3rem
+);
+
+// 行高
+$line-h-s: 1;
+$line-h-m: 1.2;
+$line-h-l: 1.5;
+
+//字重
+$normal: 400;
+$bold: 600;
+$bolder: 700;
+$lighter: 100;
+
+//字距
+// $letter-s:;
+
+$font-size: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+$font-size-xxxl: 32px;
+$font-size-xxxxl: 40px;

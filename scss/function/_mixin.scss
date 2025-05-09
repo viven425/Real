@@ -1,0 +1,35 @@
+@use "../variable" as *;
+// 混用mixin (需調用)
+// RWD樣式不同時使用mixin
+@mixin title-l {
+    font-size: map-get($font-size, xxl);
+    font-weight: $bolder;
+}
+
+@mixin title-m {
+    font-size: map-get($font-size, l);
+    font-weight: $bold;
+}
+
+@mixin title-s {
+    font-size: map-get($font-size, m);
+    font-weight: $bold;
+}
+
+@mixin bordered ($color:$color-deep, $width:1px) {
+    border: $width solid $color;
+}
+
+@mixin bg ( $img , $attachment:scroll, $color: $color-lesser3, $repeat:no-repeat) {
+    background: $img $attachment $color $repeat center;
+}
+
+@mixin glassmorphism {
+    background-color: $alpha-w20;
+    backdrop-filter: blur(25px);
+    //filter: drop-shadow(5px 5px 5px rgba(0,0,0,.5)); //套用在整個所有元素上
+    box-shadow: 2px 2px 2px $alpha-b15,//套用元素框外顯示設定範圍
+                inset 2px 2px 5px $alpha-w30; //套用元素框內顯示設定範圍
+    border: 2px solid $alpha-w50;
+    border-radius: $radius-ex;
+}

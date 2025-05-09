@@ -1,0 +1,23 @@
+//RWD斷點
+$media-lg: "max-width: 1024px";
+$media-md: "max-width: 820px";
+$media-sm: "max-width: 640px";
+
+// 邊框border
+$border-s: 1px solid;
+$border-m: 2px solid;
+$border-l: 3px solid;
+
+// 圓角border-radius
+$radius-ex: 99px; //膠囊型
+$radius-s: 3px;
+$radius-m: 8px;
+$radius-l: 16px;
+
+// 速率
+$speed-fast: 0.35s;
+$speed-slow: 0.55s;
+
+// 排序z-index
+$z-bg: -1;
+$z-ex: 999;
