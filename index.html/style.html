@@ -5,82 +5,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>初心網站</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.min.css">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li>留學策略</li>
-                <li>最新消息</li>
-                <li>關於我們</li>
-                <li>會員登錄</li>
+
+    <!-- nav  -->
+    <header class="nav-wrapper">
+        <nav class="nav-bar">
+            <ul class="menu">
+                <li class="menu-item">
+                    <div class="frame"><a href="#news">留學攻略</a></div>
+
+                </li>
+                <li class="menu-item">
+                    <div class="frame"><a href="#service">最新消息</a></div>
+                </li>
+                <li class="menu-item">
+                    <div class="frame"><a href="#about">關於我們</a></div>
+                </li>
+                <li class="menu-item">
+                    <div class="frame"><a href="#contact">會員登錄</a></div>
+                </li>
             </ul>
         </nav>
     </header>
 
-    <section id="Debut">Debut Reve</section>
-    <section class="banner1">想来台湾留学的你，讓我們陪你走每一步?在這裡你可以找到最全面的資訊，安心展開你的新旅程。</section>
+    <!-- logo區 -->
+    <section class="logo-wrapper">
+        <div id="debut">Debut Reve</div>
+        <section class="banner1">
+            <p>想来台湾留学的你，讓我們陪你走每一步</p>
+            <p>在這裡你可以找到最全面的資訊，安心展開你的新旅程。</p>
+        </section>
+    </section>
 
-
+    <!-- 圖片輪播區 vedio 不能在SCss 裏面只能在HTML -->
     <section class="vedio">
-        <img src="圖片路徑" alt="">
-        <div class="vedio-text">你的夢想值得擁有更好的起點</div>
+        <div class="carousel">
+            <div class="carousel-item active">
+                <img src="/img/vedio.1.png" alt="圖片1">
+                <div class="vedio-text">你的夢想值得擁有更好的起點</div>
+            </div>
+            <div class="carousel-item">
+                <img src="/img/vedio.1.png" alt="圖片2">
+                <div class="vedio-text">讓我們一起開啟全新旅程</div>
+            </div>
+            <div class="carousel-item">
+                <img src="/img/vedio.1.png" alt="圖片3">
+                <div class="vedio-text">發現世界，超越自我</div>
+            </div>
+        </div>
     </section>
 
+    <!-- banner2  -->
     <section class="banner2">
-        <h2>還不知道選什麼科系？</h2>
-        <div class="banner2-text">先從「你喜歡什麼」開始找起！?探索興趣、了解性格，找出最適合你的方向</div>
-
-        <a href="" class="buttom1">給幾分鐘認識真正的你</a>
-
-        <div><img class="photo還可以是動態" src="圖片路徑" alt=""></div>
-    </section>
-
-    <section class="banner3">
+        <div class="small-banner2">
+            <h2>還不知道選什麼科系？</h2>
+            <div class="banner2-text">
+                <p>先從「你喜歡什麼」開始找起！</p>
+                <p>探索興趣、了解性格，找出最適合你的方向</p>
+            </div>
+            <a href="" class="button1">給幾分鐘認識真正的你</a>
+        </div>
+        <!-- 圖片 -->
         <div>
-            <div class="banner3image" style="background-image: url('圖片路徑');"></div>
-            <div class="written">選擇你喜歡的科系，讓學習變成你生活熱愛的動力</div>
-            <a href="" class="buttom1">選擇科目</a>
+            <img class="photo2" src="/img/vedio.1.png" alt="">
+        </div>
         </div>
     </section>
 
-    <section class="banner4">
-        <header class="header4">
-            <div class="iconphoto"><img src="圖片路徑" alt=""></div>
-            <h3>選擇學校的時候你在意的問題</h3>
-        </header>
+    <!-- 書本飄逸-->
+    <!-- 書本區塊 -->
+    <section class="banner3">
+        <div class="banner3-container">
+            <!-- 書本主體 -->
+            <div class="floating-book">
+                <img class="book-image" src="/img/book (1) 1.png" alt="書本">
+                <div class="written">
+                    <p>選擇你喜歡的科系，讓學習變成</p>
+                    <p>你生活熱愛的動力</p>
+                </div>
 
-        <div class="banner4-text1">
-            <h3>學校氛圍</h3>
-            <p>在意校園整體氛圍是否自由開放、師生關係是否良好</p>
-
-            <img src="圖片路徑" alt="">
-        </div>
-
-        <div class="banner4-text2">
-            <h3>校園環境與地理位置</h3>
-            <p>學校的地點交通是否方便、環境是否安全舒適，還有生活 機能好不好</p>
-            <img src="圖片路徑" alt="">
-
-            <img src="圖片路徑" alt="">
-        </div>
-
-        <div class="banner4-text3">
-            <h3>科系選擇與興趣方向</h3>
-            <p>選擇一所有自己感興趣、且未來有發展潛力的科系，這能幫助你在學習上更有動力。</p>
-            <img src="圖片路徑" alt="">
-            <img src="圖片路徑" alt="">
-        </div>
-
-        <div class="banner4-text4">
-            <h3>學校的學術聲譽與</h3>
-            <p>會重視學校的整體評價，特別是想要的科系是否具有專業師資與優良教學資源</p>
-            <img src="圖片路徑" alt="">
-            <img src="圖片路徑" alt="">
-        </div>
+                <!-- 獨立按鈕 (放在書本下方) -->
+                <div class="button-container">
+                    <a href="" class="button1">選擇科目</a>
+                </div>
+            </div>
     </section>
+
+<!-- <section class="banner4"> -->
+  <!-- 頂部區 -->
+  <section class="banner4">
+  <!-- 頂部標題區 -->
+  <header class="header4">
+    <img class="down-arrow" src="/img/arrow down.svg" alt="向下箭頭" aria-hidden="true">
+    <h3>選擇學校的時候你在意的問題</h3>
+  </header>
+
+  <!-- 第1區塊：圖片(左) → 箭頭(中) → 文字(右) -->
+  <div class="content-block">
+    <img class="content-image" src="/img//banner4.1.jpg" alt="學校氛圍示意圖">
+    <img class="middle-arrow" src="/img/Frame 244 right.svg" alt="向右箭頭" aria-hidden="true">
+    <div class="text-content">
+      <h3>學校氛圍</h3>
+      <p>在意校園整體氛圍是否自由開放、師生關係是否良好</p>
+    </div>
+  </div>
+
+  <!-- 第2區塊：文字(左) → 箭頭(中) → 圖片(右) -->
+  <div class="content-block reversed">
+    <div class="text-content">
+      <h3>校園環境與地理位置</h3>
+      <p>學校的地點交通是否方便、環境是否安全舒適</p>
+    </div>
+    <img class="middle-arrow" src="/img/Frame 245.svg" alt="向左箭頭" aria-hidden="true">
+    <img class="content-image" src="/img/banner4.2.jpg" alt="校園環境示意圖">
+  </div>
+
+  <!-- 第3區塊：同第1區塊 -->
+  <div class="content-block">
+    <img class="content-image" src="/img/baner4.3.jpg" alt="科系選擇示意圖">
+    <img class="middle-arrow" src="/img/Frame 244 right.svg" alt="向右箭頭" aria-hidden="true">
+    <div class="text-content">
+      <h3>科系選擇與興趣方向</h3>
+      <p>選擇有發展潛力的科系能幫助學習更有動力</p>
+    </div>
+  </div>
+
+  <!-- 第4區塊：同第2區塊 -->
+  <div class="content-block reversed">
+    <div class="text-content">
+      <h3>學校的學術聲譽</h3>
+      <p>重視科系是否具有專業師資與優良教學資源</p>
+    </div>
+    <img class="middle-arrow" src="/img/Frame 245.svg" alt="向左箭頭" aria-hidden="true">
+    <img class="content-image" src="/img/banner4.4.jpg" alt="學術資源示意圖">
+  </div>
+</section>
 
     <section class="banner5"><img src="圖片路徑" alt="" class="banner5-photo">
         <div class="smallphoto11">
@@ -194,6 +256,8 @@
             </div>
         </div>
     </footer>
+    <!-- 自訂的js (一定放在最下面) -->
+    <script src="/js/newFile.js"></script>
 </body>
 
 </html>
