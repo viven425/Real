@@ -4,6 +4,8 @@
 @use "./icon";
 @use "./keyframe";
 
+@import url("https://fonts.googleapis.com/css2?family=Emblema+One&family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap");
+
 // 把整個 navbar 放中間
 // 將外層的 header 使用 nav-outer-wrapper 樣式，將整個 navbar 置中
 .nav-wrapper {
@@ -117,7 +119,7 @@ a {
   margin: 0 auto; // 整個區塊水平置中
   justify-content: center; // 水平置中
   gap: 60px; // 自訂間距，比 space-between 更可控
-  padding: 166px 190px;
+  padding: 200px 190px;
   ;
 }
 
@@ -277,21 +279,31 @@ a {
 // 這是整個4樣式
 /* 主容器設定 */
 .banner4 {
-  width: 100%;
+  // width: 100%;
   padding: 60px 20px;
-  background: #f8f9fa;
   font-family: "ZCOOL KuaiLe", sans-serif;
   text-align: center;
+
+  // 第二阶段框架
+  .banner4photo{
+     padding: 0 120px;
+  }
 
   /* 頂部標題區 */
   .header4 {
     margin-bottom: 50px;
+    
 
     .down-arrow {
       width: 40px;
       margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
       animation: bounce 2s infinite ease-in-out;
       filter: drop-shadow(0 2px 4px rgba(121, 46, 46, 0.3));
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h3 {
@@ -315,21 +327,17 @@ a {
   /* 內容區塊通用樣式 */
   .content-block {
     display: flex;
-    width: 700px;
-    height: 340px;
-    padding: 10px 0;
     align-items: center;
     border-radius: 20px;
-    background: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     margin: 0 auto 40px;
     position: relative;
     overflow: hidden;
+    justify-content: center;
 
     /* 圖片區域 */
     .content-image {
-      width: 250px;
-      height: 180px;
+      width: 740px;
+      height: 310px;
       object-fit: cover;
       border-radius: 8px;
       flex-shrink: 0;
