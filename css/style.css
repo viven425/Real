@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Emblema+One&family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap");
 a {
   color: #792E2E;
-  font-family: "LXGW WenKai Mono TC";
+  font-family: "LXGW WenKai Mono TC", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -67,6 +67,41 @@ a {
   letter-spacing: -0.528px;
   height: 43px;
   flex-shrink: 0;
+}
+
+.small-banner2 h2, .banner5 .smallheader5 h3 {
+  color: #792E2E;
+  text-align: center;
+  font-family: "LXGW WenKai Mono TC ", cursive;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 6.6px;
+  /* 讓內容自然延展 */
+  max-width: 100%;
+}
+
+.small-banner2 .button1 {
+  display: inline-flex;
+  padding: 10.5px 36.5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 31px;
+  background: #965050;
+  box-shadow: 2px 4px 11.8px -4px rgba(0, 0, 0, 0.25);
+  color: #FFF;
+  font-family: "LXGW WenKai Mono TC", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.528px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.small-banner2 .button1:hover {
+  background: #7a403f;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -155,7 +190,7 @@ a {
   transform: translate(-50%, -50%);
   font-size: 32px;
   font-weight: bold;
-  font-family: #fff;
+  font-family: "LXGW WenKai Mono TC", sans-serif;
   color: #f1f1f1;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   pointer-events: none;
@@ -182,18 +217,7 @@ a {
 }
 .small-banner2 .banner2-text {
   width: 529px;
-}
-.small-banner2 .banner2-text h2 {
-  width: 529px;
-  height: 44px;
-  flex-shrink: 0;
-  color: #792E2E;
-  font-family: "LXGW WenKai Mono TC", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 184%;
-  letter-spacing: 15px;
+  padding: 20px 0 50px 0;
 }
 .small-banner2 .banner2-text p {
   width: 529px;
@@ -207,25 +231,7 @@ a {
   margin-bottom: 15px;
 }
 .small-banner2 .button1 {
-  display: inline-flex;
-  padding: 10.5px 36.5px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 31px;
-  background: #965050;
-  box-shadow: 2px 4px 11.8px -4px rgba(0, 0, 0, 0.25);
-  color: #FFF;
-  font-family: "LXGW WenKai Mono TC", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.528px;
-  text-decoration: none;
-  cursor: pointer;
-}
-.small-banner2 .button1:hover {
-  background: #7a403f;
+  margin: 0 auto;
 }
 
 .photo2 {
@@ -255,7 +261,8 @@ a {
 }
 .banner3 .floating-book {
   position: relative;
-  width: 800px; /* 放大後的尺寸 */
+  width: 800px;
+  /* 放大後的尺寸 */
   height: 500px;
   margin: 0 auto;
   animation: float 3s ease-in-out infinite;
@@ -285,7 +292,8 @@ a {
 }
 .banner3 .floating-book .button-container {
   position: absolute;
-  bottom: -80px; /* 按鈕放在書本下方 */
+  bottom: -80px;
+  /* 按鈕放在書本下方 */
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -481,4 +489,101 @@ a {
     left: 50% !important;
     transform: translateX(-50%);
   }
+}
+
+.banner5 {
+  width: 100%;
+  max-width: 1442px;
+  height: 959px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.banner5 .svg-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.banner5 .svg-bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.banner5 .smallheader5 {
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+  text-align: center;
+}
+.banner5 .smallheader5 h3 {
+  margin: 0 auto 10px;
+}
+.banner5 .smallheader5 p {
+  color: #5A5A5A;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 4px 0;
+}
+.banner5 .smallphoto11 {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding: 0 40px;
+}
+.banner5 .smallphoto11 .smallphoto {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 260px;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px;
+}
+.banner5 .smallphoto11 .smallphoto .background-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.banner5 .smallphoto11 .smallphoto .love {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+}
+.banner5 .smallphoto11 .smallphoto .banner5-text1 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+.banner5 .smallphoto11 .smallphoto .banner5-text2,
+.banner5 .smallphoto11 .smallphoto .banner5-text3 {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+.banner5 .smallphoto11 .smallphoto .buttom2 {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 16px;
+  border: 1px solid #792E2E;
+  color: #792E2E;
+  border-radius: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.banner5 .smallphoto11 .smallphoto .buttom2:hover {
+  background-color: #792E2E;
+  color: #fff;
 }

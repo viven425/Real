@@ -2,10 +2,10 @@
 @use "../function/mixin" as *;
 
 
-//這個是navbar 的樣式
+//這個是navbar 专用文字款式
 %nav-text-style {
     color: $primary; // 文字顏色設為深紅色
-    font-family: "LXGW WenKai Mono TC"; // 字型使用指定的字型
+    font-family: "LXGW WenKai Mono TC", sans-serif;
     font-size: 18px; // 字體大小 18px
     font-style: normal; // 設定為正常字體
     font-weight: 400; // 設定字重為 400，為常規字重
@@ -24,13 +24,13 @@
     cursor: pointer; // 當鼠標懸停時顯示指針形狀
 }
 
-//資中所有人都能套用
+//資中所有人都能套用自己
 %menu-item-style {
     display: flex; // 使用 flexbox 排版
     align-items: center; // 讓內部元素垂直置中
 }
 
-//垂直志中 所有人用
+//垂直志中 所有人用自己
 %menu-item-style-v {
     display: flex;             // 使用 flex 佈局
     flex-direction: column;    // 讓元素垂直排列
@@ -39,7 +39,7 @@
   
 }
 
-// ▍ul.menu 整體樣式
+// ▍ul.menu 整體樣式v 标题框架用
 %menu-wrapper {
     display: flex; // 使用 flexbox 排版
     gap: 32px; // 每個項目之間的間隙為 32px
@@ -49,7 +49,7 @@
     margin: 0; // 移除預設的外邊距
   }
   
-  // ▍nav-bar 外層樣式（控制寬度）
+  // ▍nav-bar 外層樣式（控制寬度标题）
   %nav-bar-wrapper {
     width: 100%; // 寬度為 100%，填滿容器
     max-width: 1200px; // 設定最大寬度為 1200px
@@ -57,7 +57,7 @@
     justify-content: center; // 讓內容水平置中
   }
   
-  // ▍最外層 header：置中
+  // ▍最外層navbar置中标题 可以用在想要之中的所有地方
   %nav-outer-wrapper {
     display: flex; // 使用 flexbox 排版
     justify-content: center; // 水平置中整個 nav
@@ -67,7 +67,7 @@
   }
 
   //這個是logo的樣式
- //logo-text-style：Debut Reve 文字樣式
+ //logo-text-style：Debut Reve 文字樣式 
 %logo-text-style {
     color: #792E2E;                        // 深紅色文字
     text-align: center;                   // 文字置中
@@ -82,4 +82,64 @@
     flex-shrink: 0;            // 不允許縮小（維持固定尺寸）
   }
 
-// 圖片輪播區
+//这个是banner5的hearder 区
+//背景和H3 的标题used
+// %h3-title {
+//   width: 167.009px;
+//   height: 48.812px;
+//   flex-shrink: 0;
+
+//   color: #792E2E;
+//   text-align: center;
+
+//   font-family: "ZCOOL KuaiLe", cursive;
+//   font-size: 30px;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 150%; // 45px
+//   letter-spacing: 6.6px;
+// }
+
+//通用标题文字
+%heading-style {
+  color: #792E2E;
+  text-align: center;
+
+  font-family: "LXGW WenKai Mono TC ", cursive;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; // 約 45px
+  letter-spacing: 6.6px;
+
+  /* 讓內容自然延展 */
+  max-width: 100%; // 或 max-width: 600px; 視區塊寬度
+  // margin: 0 auto; // 若要水平置中   看表格如歌有要用的地方自己写在SCSS上面 如果不想写的话我还在space里面有 
+}
+
+// 我的按钮样式（我的通用按钮）
+%button-base {
+  display: inline-flex; // 使按鈕內的文字和內容水平排列
+  padding: 10.5px 36.5px; // 設置內邊距，讓按鈕有足夠的寬度與高度
+  justify-content: center; // 水平置中文字
+  align-items: center; // 垂直置中文字
+
+  border-radius: 31px; // 設置按鈕圓角，讓按鈕呈現圓形效果
+  background: #965050; // 設定按鈕的背景顏色
+  box-shadow: 2px 4px 11.8px -4px rgba(0, 0, 0, 0.25); // 加入陰影效果，使按鈕看起來有立體感
+
+  color: #FFF; // 設置文字顏色為白色
+  font-family: "LXGW WenKai Mono TC", sans-serif; // 設置字體樣式
+  font-size: 24px; // 設定字體大小
+  font-style: normal; // 設置字體風格為正常
+  font-weight: 400; // 設置字體粗細為 400（常規）
+  line-height: 150%; // 設置行高，讓文字有適當的垂直間距
+  letter-spacing: -0.528px; // 設置字母間距，讓字母更加緊湊
+  text-decoration: none; // 去除超鏈接的下劃線（如果有）
+  cursor: pointer; // 當鼠標懸停在按鈕上時顯示為手型游標，表示可點擊
+
+  // 當按鈕被懸停時改變背景顏色
+  &:hover {
+    background: #7a403f; // 改變懸停時背景顏色
+  }
+}

@@ -96,7 +96,7 @@ a {
         transform: translate(-50%, -50%);
         font-size: $font-size-xxxl;
         font-weight: bold;
-        font-family: $text-dark;
+         font-family: "LXGW WenKai Mono TC", sans-serif;
         color: $color-light; // 文字顏色
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); // 文字陰影增加可讀性
         pointer-events: none; // 文字不要阻擋點擊事件
@@ -129,21 +129,16 @@ a {
   align-items: flex-start; // 左對齊
   justify-content: center; // 使內容在其容器內垂直居中
 
+  h2 {
+    @extend %heading-style ;
+    
+  }
+
   .banner2-text {
     width: 529px;
+    padding: $space-xyxy;
 
-    h2 {
-      width: 529px;
-      height: 44px;
-      flex-shrink: 0; // 防止縮小
-      color: #792E2E;
-      font-family: "LXGW WenKai Mono TC", sans-serif;
-      font-size: $font-size-xxl;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 184%; // 約 44.16px
-      letter-spacing: 15px;
-    }
+
 
     p {
       width: 529px;
@@ -158,29 +153,11 @@ a {
     }
   }
 
+  // 我的按钮区域
   .button1 {
-    display: inline-flex; // 水平排列文字與內邊距
-    padding: 10.5px 36.5px; // 內邊距設置
-    justify-content: center; // 文字置中
-    align-items: center; // 垂直居中
 
-    border-radius: 31px; // 圓角設置
-    background: #965050; // 背景顏色
-    box-shadow: 2px 4px 11.8px -4px rgba(0, 0, 0, 0.25); // 陰影效果
-
-    color: #FFF; // 文字顏色
-    font-family: "LXGW WenKai Mono TC", sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; // 約 36px
-    letter-spacing: -0.528px; // 字母間距
-    text-decoration: none; // 去除超鏈接的下劃線
-    cursor: pointer; // 手型游標顯示
-
-    &:hover {
-      background: #7a403f; // 當按鈕被懸停時顏色變化
-    }
+    @extend %button-base;
+    margin: $space-x-a;
   }
 }
 
@@ -214,7 +191,8 @@ a {
 
   .floating-book {
     position: relative;
-    width: 800px;  /* 放大後的尺寸 */
+    width: 800px;
+    /* 放大後的尺寸 */
     height: 500px;
     margin: 0 auto;
     animation: float 3s ease-in-out infinite;
@@ -223,7 +201,7 @@ a {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
     }
 
     .written {
@@ -237,7 +215,7 @@ a {
       font-family: "LXGW WenKai Mono TC", sans-serif;
       font-size: 28px;
       line-height: 1.5;
-      text-shadow: 
+      text-shadow:
         2px 2px 4px rgba(14, 11, 11, 0.8),
         -1px -1px 0 rgba(2, 2, 2, 0.3);
 
@@ -249,7 +227,8 @@ a {
 
     .button-container {
       position: absolute;
-      bottom: -80px;  /* 按鈕放在書本下方 */
+      bottom: -80px;
+      /* 按鈕放在書本下方 */
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -263,13 +242,13 @@ a {
         border-radius: 50px;
         text-decoration: none;
         transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 
 
         &:hover {
           background: #FF5252;
           transform: translateY(-3px);
-          box-shadow: 0 6px 20px rgba(255,107,107,0.5);
+          box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
         }
       }
     }
@@ -285,14 +264,14 @@ a {
   text-align: center;
 
   // 第二阶段框架
-  .banner4photo{
-     padding: 0 120px;
+  .banner4photo {
+    padding: 0 120px;
   }
 
   /* 頂部標題區 */
   .header4 {
     margin-bottom: 50px;
-    
+
 
     .down-arrow {
       width: 40px;
@@ -324,6 +303,7 @@ a {
     }
   }
 
+  //banner4的响应式文案
   /* 內容區塊通用樣式 */
   .content-block {
     display: flex;
@@ -342,7 +322,7 @@ a {
       border-radius: 8px;
       flex-shrink: 0;
       margin: 0 30px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
 
     /* 中間箭頭 */
@@ -404,18 +384,43 @@ a {
 
   /* 動畫定義 */
   @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(10px);
+    }
   }
 
   @keyframes pulse {
-    0%, 100% { transform: translateX(0); opacity: 0.9; }
-    50% { transform: translateX(10px); opacity: 1; }
+
+    0%,
+    100% {
+      transform: translateX(0);
+      opacity: 0.9;
+    }
+
+    50% {
+      transform: translateX(10px);
+      opacity: 1;
+    }
   }
 
   @keyframes pulseReverse {
-    0%, 100% { transform: translateX(0); opacity: 0.9; }
-    50% { transform: translateX(-10px); opacity: 1; }
+
+    0%,
+    100% {
+      transform: translateX(0);
+      opacity: 0.9;
+    }
+
+    50% {
+      transform: translateX(-10px);
+      opacity: 1;
+    }
   }
 
   /* 響應式設計 */
@@ -461,6 +466,118 @@ a {
         h3::after {
           left: 50% !important;
           transform: translateX(-50%);
+        }
+      }
+    }
+  }
+}
+
+//这里是整体5样式
+.banner5 {
+  width: 100%;
+  max-width: 1442px;
+  height: 959px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  .svg-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  .smallheader5 {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+    text-align: center;
+
+    h3 {
+      @extend %heading-style;
+      margin: 0 auto 10px;
+    }
+
+    p {
+      color: #5A5A5A;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 4px 0;
+    }
+  }
+
+  .smallphoto11 {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding: 0 40px;
+
+    .smallphoto {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 260px;
+      height: 320px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+
+      .background-image {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .love {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .banner5-text1 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 12px;
+      }
+
+      .banner5-text2,
+      .banner5-text3 {
+        font-size: 14px;
+        color: #666;
+        margin-top: 4px;
+      }
+
+      .buttom2 {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 6px 16px;
+        border: 1px solid #792E2E;
+        color: #792E2E;
+        border-radius: 20px;
+        font-size: 14px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #792E2E;
+          color: #fff;
         }
       }
     }
