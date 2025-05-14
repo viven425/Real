@@ -96,7 +96,7 @@ a {
         transform: translate(-50%, -50%);
         font-size: $font-size-xxxl;
         font-weight: bold;
-         font-family: "LXGW WenKai Mono TC", sans-serif;
+        font-family: "LXGW WenKai Mono TC", sans-serif;
         color: $color-light; // 文字顏色
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); // 文字陰影增加可讀性
         pointer-events: none; // 文字不要阻擋點擊事件
@@ -130,8 +130,8 @@ a {
   justify-content: center; // 使內容在其容器內垂直居中
 
   h2 {
-    @extend %heading-style ;
-    
+    @extend %heading-style;
+
   }
 
   .banner2-text {
@@ -473,113 +473,141 @@ a {
 }
 
 //这里是整体5样式
+//背景
 .banner5 {
   width: 100%;
-  max-width: 1442px;
-  height: 959px;
-  margin: 0 auto;
+  min-height: 959px;
   position: relative;
   overflow: hidden;
+  padding-bottom: 60px;
+}
 
-  .svg-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+//SVG装饰样式
+.svg-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+
+  svg {
     width: 100%;
     height: 100%;
-    z-index: 0;
+    display: block;
+  }
+}
 
-    svg {
-      width: 100%;
-      height: 100%;
-      display: block;
+.smallheader5 {
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+  text-align: center;
+
+
+  h3 {
+    @extend %heading-style;
+    margin: 0 auto 70px;
+  }
+}
+
+.smallheader5p {
+  display: flex;
+  width: 820px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto; // 讓它置中
+  gap: 20px; // p 和按鈕間距
+
+
+
+  .pp {
+    @extend %menu-item-style-v;
+    @extend %simplewrite;
+
+    p.left {
+      text-align: left;
+    }
+
+    p.right {
+      text-align: right
     }
   }
 
-  .smallheader5 {
-    position: relative;
-    z-index: 1;
-    padding-top: 60px;
-    text-align: center;
+  .banner5button {
+    @extend %button-base;
+  }
+}
 
-    h3 {
-      @extend %heading-style;
-      margin: 0 auto 10px;
-    }
+//卡片区
+.smallphoto11 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; // 卡片居中排布
+}
 
-    p {
-      color: #5A5A5A;
-      font-size: 16px;
-      line-height: 1.6;
-      margin: 4px 0;
-    }
+//图片大小
+.smallphoto {
+   width: 280px;
+  height: 240px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
-  .smallphoto11 {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 40px;
-    padding: 0 40px;
+  .love {
+   position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+  }
 
-    .smallphoto {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 260px;
-      height: 320px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding: 20px;
+  .banner5-text1 {
+     position: absolute;
+    bottom: 60px;
+    left: 16px;
+    font-family: 'Newsreader', serif;
+    font-size: 20px;
+    color: #792E2E;
+    background: #fff;
+    padding: 4px 8px;
+    border-radius: 12px;
+  }
 
-      .background-image {
-        width: 100%;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 8px;
-      }
+  .banner5-text2,
+  .banner5-text3 {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+  }
 
-      .love {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        width: 24px;
-        height: 24px;
-      }
+  .buttom2 {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 16px;
+    border: 1px solid #792E2E;
+    color: #792E2E;
+    border-radius: 20px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s;
 
-      .banner5-text1 {
-        font-size: 18px;
-        font-weight: bold;
-        margin-top: 12px;
-      }
-
-      .banner5-text2,
-      .banner5-text3 {
-        font-size: 14px;
-        color: #666;
-        margin-top: 4px;
-      }
-
-      .buttom2 {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 6px 16px;
-        border: 1px solid #792E2E;
-        color: #792E2E;
-        border-radius: 20px;
-        font-size: 14px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-
-        &:hover {
-          background-color: #792E2E;
-          color: #fff;
-        }
-      }
+    &:hover {
+      background-color: #792E2E;
+      color: #fff;
     }
   }
 }

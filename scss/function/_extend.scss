@@ -71,7 +71,7 @@
 %logo-text-style {
     color: #792E2E;                        // 深紅色文字
     text-align: center;                   // 文字置中
-    font-family: "Akaya Kanadaka", cursive; // 使用特殊字型（LOGO 字體）
+     font-family: "LXGW WenKai Mono TC", sans-serif;
     font-size: 24px;                      // 字體大小
     font-style: normal;                   // 標準字型樣式
     font-weight: 400;                     // 字重 400
@@ -142,4 +142,18 @@
   &:hover {
     background: #7a403f; // 改變懸停時背景顏色
   }
+}
+
+
+//普通文字
+%simplewrite{
+     width: 529px;
+      color: #000;
+      font-family: "LXGW WenKai Mono TC", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 228%; // 約 45.6px
+      letter-spacing: 5px;
+      margin-bottom: 15px; // 下邊距
 }

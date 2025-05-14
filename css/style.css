@@ -25,7 +25,7 @@ a {
   align-items: center;
 }
 
-.logo-wrapper, .banner1 {
+.logo-wrapper, .banner1, .smallheader5p .pp {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +59,7 @@ a {
 #debut {
   color: #792E2E;
   text-align: center;
-  font-family: "Akaya Kanadaka", cursive;
+  font-family: "LXGW WenKai Mono TC", sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -69,7 +69,7 @@ a {
   flex-shrink: 0;
 }
 
-.small-banner2 h2, .banner5 .smallheader5 h3 {
+.small-banner2 h2, .smallheader5 h3 {
   color: #792E2E;
   text-align: center;
   font-family: "LXGW WenKai Mono TC ", cursive;
@@ -82,7 +82,7 @@ a {
   max-width: 100%;
 }
 
-.small-banner2 .button1 {
+.small-banner2 .button1, .smallheader5p .banner5button {
   display: inline-flex;
   padding: 10.5px 36.5px;
   justify-content: center;
@@ -100,8 +100,20 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
-.small-banner2 .button1:hover {
+.small-banner2 .button1:hover, .smallheader5p .banner5button:hover {
   background: #7a403f;
+}
+
+.smallheader5p .pp {
+  width: 529px;
+  color: #000;
+  font-family: "LXGW WenKai Mono TC", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 228%;
+  letter-spacing: 5px;
+  margin-bottom: 15px;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -493,51 +505,59 @@ a {
 
 .banner5 {
   width: 100%;
-  max-width: 1442px;
-  height: 959px;
-  margin: 0 auto;
+  min-height: 959px;
   position: relative;
   overflow: hidden;
+  padding-bottom: 60px;
 }
-.banner5 .svg-bg {
+
+.svg-bg {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: 100vw;
   height: 100%;
+  transform: translateX(-50%);
   z-index: 0;
+  pointer-events: none;
 }
-.banner5 .svg-bg svg {
+.svg-bg svg {
   width: 100%;
   height: 100%;
   display: block;
 }
-.banner5 .smallheader5 {
+
+.smallheader5 {
   position: relative;
   z-index: 1;
   padding-top: 60px;
   text-align: center;
 }
-.banner5 .smallheader5 h3 {
-  margin: 0 auto 10px;
+.smallheader5 h3 {
+  margin: 0 auto 70px;
 }
-.banner5 .smallheader5 p {
-  color: #5A5A5A;
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 4px 0;
-}
-.banner5 .smallphoto11 {
-  position: relative;
-  z-index: 1;
+
+.smallheader5p {
   display: flex;
+  width: 820px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  gap: 20px;
+}
+.smallheader5p .pp p.left {
+  text-align: left;
+}
+.smallheader5p .pp p.right {
+  text-align: right;
+}
+.smallphoto11 {
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 40px;
-  padding: 0 40px;
 }
-.banner5 .smallphoto11 .smallphoto {
+.smallphoto11 .smallphoto {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -548,31 +568,31 @@ a {
   text-align: center;
   padding: 20px;
 }
-.banner5 .smallphoto11 .smallphoto .background-image {
+.smallphoto11 .smallphoto .background-image {
   width: 100%;
   height: 140px;
   object-fit: cover;
   border-radius: 8px;
 }
-.banner5 .smallphoto11 .smallphoto .love {
+.smallphoto11 .smallphoto .love {
   position: absolute;
   top: 16px;
   right: 16px;
   width: 24px;
   height: 24px;
 }
-.banner5 .smallphoto11 .smallphoto .banner5-text1 {
+.smallphoto11 .smallphoto .banner5-text1 {
   font-size: 18px;
   font-weight: bold;
   margin-top: 12px;
 }
-.banner5 .smallphoto11 .smallphoto .banner5-text2,
-.banner5 .smallphoto11 .smallphoto .banner5-text3 {
+.smallphoto11 .smallphoto .banner5-text2,
+.smallphoto11 .smallphoto .banner5-text3 {
   font-size: 14px;
   color: #666;
   margin-top: 4px;
 }
-.banner5 .smallphoto11 .smallphoto .buttom2 {
+.smallphoto11 .smallphoto .buttom2 {
   display: inline-block;
   margin-top: 12px;
   padding: 6px 16px;
@@ -583,7 +603,7 @@ a {
   text-decoration: none;
   transition: background-color 0.3s;
 }
-.banner5 .smallphoto11 .smallphoto .buttom2:hover {
+.smallphoto11 .smallphoto .buttom2:hover {
   background-color: #792E2E;
   color: #fff;
 }
