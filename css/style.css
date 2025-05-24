@@ -61,7 +61,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 200%;
-  letter-spacing: 0.8px;
+  letter-spacing: 5.8px;
 }
 
 .menu-link-item {
@@ -507,11 +507,11 @@ body.menu-open .overlay {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-weight: bold;
   color: #f1f1f1;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   width: 90%;
   pointer-events: none;
+  font-size: 30px;
 }
 .vedio .carousel .carousel-item.active {
   opacity: 1;
@@ -521,6 +521,7 @@ body.menu-open .overlay {
 @media (max-width: 1024px) {
   .vedio {
     padding: 40px;
+    font-size: 24px;
   }
 }
 @media (max-width: 768px) {
@@ -530,5 +531,6 @@ body.menu-open .overlay {
   .vedio .carousel {
     padding-bottom: 56.25%;
     border-radius: 12px;
+    font-size: 20px;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -429,11 +429,11 @@ body.menu-open {
                 left: 50%;
                 transform: translate(-50%, -50%);
               @extend %article-text-style;
-                font-weight: bold;
                 color: $color-light;
-                text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+                text-shadow: 0 0 10px rgba(10, 0, 0, 0.5);
                 width: 90%; // 防止文字過長
                 pointer-events: none;
+                font-size: 30px;
             }
 
             &.active {
@@ -448,16 +448,19 @@ body.menu-open {
 @media (max-width: 1024px) {
     .vedio {
         padding: 40px; // 平板設備調整間距
+        font-size: 24px;
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .vedio {
         padding: 20px; // 手機設備調整間距
         
         .carousel {
             padding-bottom: 56.25%; // 改為 16:9 比例
             border-radius: 12px;
+            font-size: 20px; // 手機版字體大小
         }
     }
 }
+
