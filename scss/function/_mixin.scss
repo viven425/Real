@@ -1,6 +1,20 @@
 @use "../variable" as *;
 // 混用mixin (需調用)
 // RWD樣式不同時使用mixin
+
+@mixin media-md {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin media-lg {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
+
 @mixin title-l {
     font-size: map-get($font-size, xxl);
     font-weight: $bolder;
@@ -32,4 +46,50 @@
                 inset 2px 2px 5px $alpha-w30; //套用元素框內顯示設定範圍
     border: 2px solid $alpha-w50;
     border-radius: $radius-ex;
+}
+
+/* 響應式設計調整 是最後關於我們的樣式 */
+@media (max-width: 1200px) {
+  .letter1 {
+    padding-right: 50px;
+    padding-left: 500px;
+  }
+}
+
+@media (max-width: 992px) {
+  .letter1 {
+    padding-left: 400px;
+  }
+  .about1 {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .letter1 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+  }
+  .about1 {
+    width: 95%;
+    padding: 20px;
+  }
+  .about1-text {
+    font-size: 24px;
+  }
+  .about1-text2 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .letter1 {
+    padding-left: 20px;
+  }
+  .about1 {
+    width: 100%;
+  }
 }
