@@ -11,309 +11,377 @@
 
 // 也供那些不需要 Sass 函數處理的佔位符使用
 :root {
-    --primary: #{$primary};
-    --secondary-bg: #{$secondary-bg};
-    --text-light-grey: #{$text-light-grey};
-    --text-dark-grey: #{$text-dark-grey};
-    --white-color: #{$white-color};
-    --grey-border: #{$grey-border};
-    --category-bg: #{$category-bg};
-    --category-text: #{$category-text};
-    --font-logo: #{$font-logo};
-    --font-body: #{$font-body};
+  --primary: #{$primary};
+  --secondary-bg: #{$secondary-bg};
+  --text-light-grey: #{$text-light-grey};
+  --text-dark-grey: #{$text-dark-grey};
+  --white-color: #{$white-color};
+  --grey-border: #{$grey-border};
+  --category-bg: #{$category-bg};
+  --category-text: #{$category-text};
+  --font-logo: #{$font-logo};
+  --font-body: #{$font-body};
 }
-  body {
-    font-family: var(--font-body); // 使用 CSS 變數
-    color: var(--text-dark-grey); // 使用 CSS 變數
-    line-height: 1.6;
-    background-color: var(--white-color); // 使用 CSS 變數
-  }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+body {
+  font-family: var(--font-body); // 使用 CSS 變數
+  color: var(--text-dark-grey); // 使用 CSS 變數
+  line-height: 1.6;
+  background-color: var(--white-color); // 使用 CSS 變數
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 
-  // nav 相關樣式
+// nav 相關樣式
 .nav-wrapper {
-    @extend %nav-outer-wrapper;
+  @extend %nav-outer-wrapper;
+  height: 60px;
+  background-color: var(--white-color);
+
+  // 桌面版/平板版預設：nav-wrapper 內容居中 (包含 nav-bar 和裡面的菜單)
+  justify-content: center;
+
+  // --- 平板版樣式 (min-width: 768px) ---
+  @include media-md {
     height: 60px;
-    background-color: var(--white-color);
-
-     // 桌面版/平板版預設：nav-wrapper 內容居中 (包含 nav-bar 和裡面的菜單)
+    // 在平板版，nav-wrapper 應該繼續讓內容居中，因為漢堡按鈕是隱藏的
     justify-content: center;
+  }
 
-    // --- 平板版樣式 (min-width: 768px) ---
-    @include media-md {
-        height: 60px;
-        // 在平板版，nav-wrapper 應該繼續讓內容居中，因為漢堡按鈕是隱藏的
-        justify-content: center; // *** 新增或確保此行 ***
-    }
-
-    // --- 手機版樣式 (max-width: 767px) ---
-    @include media-sm {
-        height: 50px;
-        padding: 0 20px;
-        // 在手機版，nav-wrapper 應該讓內容 (即 nav-bar) 靠右，以便漢堡按鈕對齊右側
-        justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
-    }
+  // --- 手機版樣式 (max-width: 767px) ---
+  @include media-sm {
+    height: 50px;
+    padding: 0 20px;
+    // 在手機版，nav-wrapper 應該讓內容 (即 nav-bar) 靠右，以便漢堡按鈕對齊右側
+    justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
+  }
 }
 
 .nav-bar {
-    @extend %nav-bar-wrapper;
-    // 桌面版預設樣式
-    justify-content: center; 
-    align-items: center; // 垂直居中
+  @extend %nav-bar-wrapper;
+  // 桌面版預設樣式
+  justify-content: center;
+  align-items: center; // 垂直居中
 
-    // --- 平板版樣式 ---
-    @include media-md {
-        max-width: 960px;
-        justify-content: center; // 平板版保持菜單靠右
+  // --- 平板版樣式 ---
+  @include media-md {
+    max-width: 960px;
+    justify-content: center; // 平板版保持菜單靠右
+  }
+
+  // --- 手機版樣式 (max-width: 767px) ---
+  @include media-sm {
+    // 手機版：nav-bar 內部只顯示漢堡按鈕，讓它靠右
+    // nav-bar 會跟隨 nav-wrapper 的 justify-content: flex-end
+    justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
+
+    // 為了確保手機版只有漢堡按鈕顯示在 nav-bar 內，菜單要隱藏
+    .menu {
+      display: none; // *** 確保手機版 nav-bar 內的菜單預設隱藏 ***
     }
 
-    // --- 手機版樣式 (max-width: 767px) ---
-    @include media-sm {
-        // 手機版：nav-bar 內部只顯示漢堡按鈕，讓它靠右
-        // nav-bar 會跟隨 nav-wrapper 的 justify-content: flex-end
-        justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
-
-         // 為了確保手機版只有漢堡按鈕顯示在 nav-bar 內，菜單要隱藏
-        .menu {
-            display: none; // *** 確保手機版 nav-bar 內的菜單預設隱藏 ***
-        }
-        .hamburger-icon {
-            display: flex; // *** 確保手機版 nav-bar 內的漢堡按鈕預設顯示 ***
-        }
+    .hamburger-icon {
+      display: flex; // *** 確保手機版 nav-bar 內的漢堡按鈕預設顯示 ***
     }
-    }
+  }
+}
 
 
 .hamburger-icon {
-    display: none; // *** 關鍵點：這是桌面版和所有更大螢幕的預設值，確保漢堡按鈕隱藏 ***
-     padding: 0; // 確認無內距
-    margin: 0; // 確認無外距
-    box-sizing: border-box; // 避免尺寸計算問題
+  display: none; // *** 關鍵點：這是桌面版和所有更大螢幕的預設值，確保漢堡按鈕隱藏 ***
+  padding: 0; // 確認無內距
+  margin: 0; // 確認無外距
+  box-sizing: border-box; // 避免尺寸計算問題
 
 
-    // --- 手機版 (max-width: 767px) ---
-    @include media-sm {
-        display: flex ;// 手機版顯示漢堡按鈕 (使用 flex 佈局)
-        flex-direction: column;
-        justify-content: space-between; // 讓三條線均勻分布
-        width: 35px; // 漢堡按鈕寬度
-        height: 24px; // 漢堡按鈕高度
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 1101; // 確保在菜單上方
+  // --- 手機版 (max-width: 767px) ---
+  @include media-sm {
+    display: flex; // 手機版顯示漢堡按鈕 (使用 flex 佈局)
+    flex-direction: column;
+    justify-content: space-between; // 讓三條線均勻分布
+    width: 35px; // 漢堡按鈕寬度
+    height: 24px; // 漢堡按鈕高度
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 999; // 確保在菜單上方
+
+    // 我後面放的
+    position: absolute;
+    // **確保有定位，才能使用 right/top 和 z-index**
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  // *** 新增或修改以下 .bar 樣式 ***
+  .bar {
+    display: block; // 讓線條顯示出來
+    width: 100%; // 線條的寬度佔滿父容器
+    height: 3px; // 線條的厚度
+    background-color: $primary; // 線條的顏色
+    border-radius: 2px; // 線條的圓角
+    transition: all 0.3s ease-in-out; // 添加過渡動畫
+    transform-origin: center; // 旋轉時以中心為基準點
+    margin: 0; // 線條之間的間距
+
+  }
+}
+
+body.menu-open .hamburger-icon {
+  @include media-sm {
+    .bar:nth-child(1) {
+      // translateY 的值可能需要根據新的高度重新計算，
+      // 目標是讓第一條線移動到中心點並旋轉。
+      // 大概是 (總高 / 2) - (線高 / 2)
+      // 這裡 (30 / 2) - (4 / 2) = 15 - 2 = 13px
+      transform: translateY(10.5px) rotate(45deg);
     }
-         // *** 新增或修改以下 .bar 樣式 ***
-    .bar {
-        display: block; // 讓線條顯示出來
-        width: 100%; // 線條的寬度佔滿父容器
-        height: 3px; // 線條的厚度
-        background-color: $primary; // 線條的顏色
-        border-radius: 2px; // 線條的圓角
-        transition: all 0.3s ease-in-out; // 添加過渡動畫
-        transform-origin: center; // 旋轉時以中心為基準點
-        margin: 0; // 線條之間的間距
-       
+
+    .bar:nth-child(2) {
+      opacity: 0;
     }
+
+    .bar:nth-child(3) {
+      // 同樣，大概是 -(總高 / 2) + (線高 / 2)
+      transform: translateY(-10.5px) rotate(-45deg);
     }
-    body.menu-open .hamburger-icon {
-    @include media-sm {
-        .bar:nth-child(1) {
-            // translateY 的值可能需要根據新的高度重新計算，
-            // 目標是讓第一條線移動到中心點並旋轉。
-            // 大概是 (總高 / 2) - (線高 / 2)
-            // 這裡 (30 / 2) - (4 / 2) = 15 - 2 = 13px
-            transform: translateY(10.5px) rotate(45deg) ;
-        }
-        .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .bar:nth-child(3) {
-            // 同樣，大概是 -(總高 / 2) + (線高 / 2)
-            transform: translateY(-10.5px) rotate(-45deg) ;
-        }
-    }
+  }
 }
 
 
 .menu {
-    @extend %menu-wrapper;
-    margin: 0;
-    padding: 0;
+  @extend %menu-wrapper;
+  margin: 0;
+  padding: 0;
 
-    // --- 平板版樣式 ---
-    @include media-md {
-        gap: 45px;
-        display: flex; // 平板版菜單預設顯示
-    }
+  // --- 平板版樣式 ---
+  @include media-md {
+    gap: 45px;
+    display: flex; // 平板版菜單預設顯示
+  }
 
-    // --- 手機版 (max-width: 767px) ---
-    @include media-sm {
-        display: none; // 手機版預設隱藏菜單
-        flex-direction: column;
-        position: absolute; // 絕對定位，讓菜單從上方或側面滑出
-        top: 50px; // 根據手機版 nav-wrapper 高度來設定 (與 nav-wrapper 高度保持一致)
-        right: 0;
-        left: unset;
-        width: 100%;
-        height: calc(100vh - 50px);
-        background-color: var(--white-color);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding: 20px;
-        text-align: center;
-        overflow-y: auto;
-        z-index: 10;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-        transform: translateY(-100%);
-        opacity: 0;
-    }
+  // --- 手機版 (max-width: 767px) ---
+  @include media-sm {
+    display: none; // 手機版預設隱藏菜單
+    flex-direction: column;
+    position: absolute; // 絕對定位，讓菜單從上方或側面滑出
+    top: 50px; // 根據手機版 nav-wrapper 高度來設定 (與 nav-wrapper 高度保持一致)
+    right: 0;
+    left: unset;
+    width: 80%;
+    height: calc(100vh - 50px);
+    background-color: var(--white-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    overflow-y: auto;
+    z-index: 10;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(-100%);
+    opacity: 0;
+
+    // 後面放的
+    position: fixed; // 固定在視窗上
+
+    //  初始時將菜單完全移出螢幕右側
+    transform: translateX(100%); //**關鍵：將菜單向右移出自身寬度**
+    opacity: 0;
+  // **初始透明**
+    visibility: hidden;
+  // **初始隱藏**
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+    // **添加過渡動畫**
+    z-index: 999;
+    // **確保菜單在內容之上，但比按鈕低一點**
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1); // 給菜單一點陰影效果，讓它看起來是滑出的
+  }}
+
+// 當菜單開啟時，強制顯示菜單並滑入到正常位置
+body.menu-open .menu {
+  @include media-sm {
+    display: flex !important;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .menu-item {
-    @extend %menu-item-flex-align;
+  @extend %menu-item-flex-align;
 
-    @include media-sm {
-        margin: 10px 0;
-    }
+  @include media-sm {
+    margin: 10px 0;
+  }
 }
 
 .menu-link-item {
-    @extend %nav-text-style;
-    position: relative;
+  @extend %nav-text-style;
+  position: relative;
 
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--primary);
-        display: block;
-        transform: scaleX(0);
-        transition: transform 0.3s ease-out;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    display: block;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); // 半透明黑色
+    z-index: 998; // **比菜單低一點，比內容高**
+    opacity: 0; // 初始透明
+    visibility: hidden; // 初始隱藏
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+}
+
+
+// --- 當 body 有 menu-open class 時的菜單和遮罩顯示效果 ---
+body.menu-open {
+    overflow: hidden; // 防止背景內容捲動
+
+    / 菜單滑入
+    .menu {
+        transform: translateX(0); //**從右側滑入視窗 (回到原位)**
+        opacity: 1;
+        visibility: visible;
     }
 
-    &:hover::after {
-        transform: scaleX(1);
+    // 遮罩顯示
+    .overlay {
+        opacity: 1;
+        visibility: visible;
     }
 }
 
----
-// ## Logo 區塊 
+--- // ## Logo 區塊 
+
 .logo-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    text-align: center; // 文字居中
-  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  text-align: center; // 文字居中
+
 }
 
 // logo 款式
 #debut {
-    color: $primary; 
-    text-align: center; // 確保文字居中
-    font-family: $font-logo; // 新字體，加上通用字體作為備用
-    font-size: 26px; // 電腦版預設字體大小
-    font-style: normal;
-    font-weight: 320;
-    line-height: 150%; // 或 36px，你可以根據視覺效果調整
-    letter-spacing: -0.528px;
-    width: 185px; // Logo 容器的固定寬度
-    height: 43px; // Logo 容器的固定高度
-    flex-shrink: 0; // 防止在 Flex 容器中縮小
-    overflow: hidden; // 如果文字超過尺寸，隱藏溢出部分，或者考慮 auto
-    display: flex; // 將 #debut 設為 Flex 容器，以便其內部文字能垂直居中
-    justify-content: center; // 水平居中
-    align-items: center; // 垂直居中
-    margin: 0 auto;
-    padding: 30px 0 20px;
+  color: $primary;
+  text-align: center; // 確保文字居中
+  font-family: $font-logo; // 新字體，加上通用字體作為備用
+  font-size: 26px; // 電腦版預設字體大小
+  font-style: normal;
+  font-weight: 320;
+  line-height: 150%; // 或 36px，你可以根據視覺效果調整
+  letter-spacing: -0.528px;
+  width: 185px; // Logo 容器的固定寬度
+  height: 43px; // Logo 容器的固定高度
+  flex-shrink: 0; // 防止在 Flex 容器中縮小
+  overflow: hidden; // 如果文字超過尺寸，隱藏溢出部分，或者考慮 auto
+  display: flex; // 將 #debut 設為 Flex 容器，以便其內部文字能垂直居中
+  justify-content: center; // 水平居中
+  align-items: center; // 垂直居中
+  margin: 0 auto;
+  padding: 30px 0 20px;
 
-    // 動畫效果
-    @extend %animated-fade-in-up; // 使用 extend
-    animation-delay: 0.1s; // 延遲 0.2 秒後開始動畫
-    
+  // 動畫效果
+  @extend %animated-fade-in-up; // 使用 extend
+  animation-delay: 0.1s; // 延遲 0.2 秒後開始動畫
 
-    // 響應式字體大小 (根據你的需求調整)
-    @include media-md {
-        font-size: 24px; // 平板版字體大小
-    }
 
-    @include media-sm {
-        font-size: 22px; // 手機版字體大小
-    }
+  // 響應式字體大小 (根據你的需求調整)
+  @include media-md {
+    font-size: 24px; // 平板版字體大小
+  }
 
-    // Hover 效果
-    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                color 0.25s ease;
-    will-change: transform, color;
-    
-    &:hover {
-        transform: translate3d(0, -2px, 0); // 使用 translate3d
-        color: lighten($primary, 10%);
-    }
+  @include media-sm {
+    font-size: 22px; // 手機版字體大小
+  }
+
+  // Hover 效果
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  color 0.25s ease;
+  will-change: transform,
+  color;
+
+  &:hover {
+    transform: translate3d(0, -2px, 0); // 使用 translate3d
+    color: lighten($primary, 10%);
+  }
 }
 
 .banner1 {
-    text-align: center;
-    padding: 0 20px;
-    max-width: 860px;  
-    margin: 0 auto;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 860px;
+  margin: 0 auto;
 
-    // 添加動畫效果 - 讓整個 .banner1 容器在 Logo 後淡入
-    @extend %animated-fade-in; // 使用 extend
-    animation-delay: 0.2s; // 延遲 0.3 秒後開始 (可調整與 Logo 的銜接)
+  // 添加動畫效果 - 讓整個 .banner1 容器在 Logo 後淡入
+  @extend %animated-fade-in; // 使用 extend
+  animation-delay: 0.2s; // 延遲 0.3 秒後開始 (可調整與 Logo 的銜接)
 
-    p {
-        margin-bottom: 5px;
-       @extend %article-text-style;
+  p {
+    margin-bottom: 5px;
+    @extend %article-text-style;
 
-        // **電腦版 (預設) 文字大小**
-        font-size: 1.5rem; 
+    // **電腦版 (預設) 文字大小**
+    font-size: 1.5rem;
 
-        // **平板版 (media-md)**
-        @include media-md {
-            font-size: 1.2rem; // 平板版字體大小
-        }
-
-        // **手機版 (media-sm)**
-        @include media-sm {
-            min-width: 310px; // 手機版最大寬度
-            margin-left: auto; // 確保在 max-width 應用後仍然居中
-            margin-right: auto;
-            // 對應 map 中的 's' (1rem)
-            font-size: 1rem; // 手機版字體大小
-        }
-
-          @extend %animated-fade-in-up;
-        animation-delay: 0.3s;
-        
-        &:nth-child(2) {
-            animation-delay: 0.45s; // 減少間隔到 0.15s
-        }
-        
-        &:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        
-        &:nth-child(4) {
-            animation-delay: 0.75s;
-        }
-        
-        &:nth-child(5) {
-            animation-delay: 0.9s;
-        }
-
+    // **平板版 (media-md)**
+    @include media-md {
+      font-size: 1.2rem; // 平板版字體大小
     }
-    
+
+    // **手機版 (media-sm)**
+    @include media-sm {
+      min-width: 310px; // 手機版最大寬度
+      margin-left: auto; // 確保在 max-width 應用後仍然居中
+      margin-right: auto;
+      // 對應 map 中的 's' (1rem)
+      font-size: 1rem; // 手機版字體大小
+    }
+
+    @extend %animated-fade-in-up;
+    animation-delay: 0.3s;
+
+    &:nth-child(2) {
+      animation-delay: 0.45s; // 減少間隔到 0.15s
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 0.75s;
+    }
+
+    &:nth-child(5) {
+      animation-delay: 0.9s;
+    }
+
+  }
+
 }
-
-

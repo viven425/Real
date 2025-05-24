@@ -254,7 +254,7 @@ a {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1101;
+    z-index: 999;
   }
 }
 .hamburger-icon .bar {
@@ -309,6 +309,15 @@ a {
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     transform: translateY(-100%);
     opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  body.menu-open .menu {
+    display: flex !important;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
 }
 
