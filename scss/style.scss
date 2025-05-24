@@ -114,8 +114,8 @@ a {
     // 我後面放的
     position: absolute;
     // **確保有定位，才能使用 right/top 和 z-index**
-    right: 20px;
-    top: 50%;
+    right: 30px;
+    top: 3%;
     transform: translateY(-50%);
   }
 
@@ -154,7 +154,7 @@ body.menu-open .hamburger-icon {
   }
 }
 
-
+//  .menu 和 .overlay 的 z-index
 .menu {
   @extend %menu-wrapper;
   margin: 0;
