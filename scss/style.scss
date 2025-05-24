@@ -265,6 +265,7 @@ body.menu-open {
         transform: translateX(0); // **從右側滑入視窗 (回到原位)**
         opacity: 1;
         visibility: visible;
+        background-color: $secondary-bg;
     }
 
     // 遮罩顯示
