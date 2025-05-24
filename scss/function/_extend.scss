@@ -4,6 +4,31 @@
 // 公用
 // 公用文字
 
+// 動畫工用
+%animated-fade-in-up {
+    opacity: 0; // 初始狀態設為透明
+    animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; // 使用更平滑的緩動函數
+    will-change: transform, opacity; // 告訴瀏覽器這些屬性會改變，提前優化
+}
+
+%animated-fade-in {
+    opacity: 0; // 初始狀態設為透明
+    animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    will-change: opacity;
+}
+
+
+//通用文字
+%article-text-style {
+    color: #000;       // 黑色
+    text-align: center;
+    font-family: "LXGW WenKai Mono TC", monospace;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 200%;
+    letter-spacing: 0.8px;
+}
+
 // --- 通用按鈕基礎樣式 ---
 // 所有按鈕的基礎樣式，提供統一的外觀和交互過渡。
 %button-base {
@@ -134,13 +159,3 @@
     gap: 1rem;
 }
 
-//通用文字
-%article-text-style {
-    color: #000;       // 黑色
-    text-align: center;
-    font-family: "LXGW WenKai Mono TC", monospace;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 200%;
-    letter-spacing: 0.8px;
-}

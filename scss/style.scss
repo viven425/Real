@@ -107,7 +107,7 @@
         border: none;
         cursor: pointer;
         padding: 0;
-        z-index: 99; // 確保在菜單上方
+        z-index: 1101; // 確保在菜單上方
     }
          // *** 新增或修改以下 .bar 樣式 ***
     .bar {
@@ -239,7 +239,7 @@
 
     // 動畫效果
     @extend %animated-fade-in-up; // 使用 extend
-    animation-delay: 0.2s; // 延遲 0.2 秒後開始動畫
+    animation-delay: 0.1s; // 延遲 0.2 秒後開始動畫
     
 
     // 響應式字體大小 (根據你的需求調整)
@@ -252,9 +252,12 @@
     }
 
     // Hover 效果
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.25s ease;
+    will-change: transform, color;
+    
     &:hover {
-        transform: translateY(-2px);
+        transform: translate3d(0, -2px, 0); // 使用 translate3d
         color: lighten($primary, 10%);
     }
 }
@@ -267,7 +270,7 @@
 
     // 添加動畫效果 - 讓整個 .banner1 容器在 Logo 後淡入
     @extend %animated-fade-in; // 使用 extend
-    animation-delay: 0.3s; // 延遲 0.3 秒後開始 (可調整與 Logo 的銜接)
+    animation-delay: 0.2s; // 延遲 0.3 秒後開始 (可調整與 Logo 的銜接)
 
     p {
         margin-bottom: 5px;
@@ -290,19 +293,23 @@
             font-size: 1rem; // 手機版字體大小
         }
 
-        @extend %animated-fade-in-up; // 讓每個 p 標籤自己滑入
-        animation-delay: 0.5s; // 預設延遲
-
-         &:nth-child(2) {
-            animation-delay: 0.7s; // 0.5s + 0.2s
+          @extend %animated-fade-in-up;
+        animation-delay: 0.3s;
+        
+        &:nth-child(2) {
+            animation-delay: 0.45s; // 減少間隔到 0.15s
         }
-
+        
         &:nth-child(3) {
-            animation-delay: 0.9s; // 0.5s + 0.4s
+            animation-delay: 0.6s;
         }
-
+        
         &:nth-child(4) {
-            animation-delay: 1.1s; // 0.5s + 0.6s
+            animation-delay: 0.75s;
+        }
+        
+        &:nth-child(5) {
+            animation-delay: 0.9s;
         }
 
     }
