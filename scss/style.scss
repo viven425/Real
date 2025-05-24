@@ -402,7 +402,7 @@ body.menu-open {
     width: 100%;
     max-width: 1300px; // 最大寬度限制
     height: 0;
-    max-height: 600px; // 最大高度限制
+    min-height: 600px; // 最大高度限制
     padding-bottom: 45.38%; // 保持 16:9 比例 (590/1300≈45.38%)
     border-radius: 21px;
     overflow: hidden;
@@ -476,79 +476,99 @@ body.menu-open {
 .banner2 {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(30px, 5vw, 60px); // 動態間距
-  padding: clamp(60px, 15vw, 200px) clamp(20px, 10vw, 190px); // 動態padding
+  justify-content: space-between;
+  max-width: 1440px;
   margin: 0 auto;
-  max-width: 1440px; // 新增最大寬度限制
-  box-sizing: border-box;
-  flex-wrap: wrap; //
+  padding: 80px 5%;
+  gap: 40px;
+  position: relative; // 为照片固定定位做准备
+
+  @media (max-width: 1200px) {
+    padding: 60px 5%;
+  }
 
   @media (max-width: 768px) {
-    flex-direction: column; // 手機端改垂直排列
-    text-align: center; // 文字置中
+    flex-direction: column;
+    padding: 40px 5%;
+    gap: 30px;
   }
 }
 
 .small-banner2 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-width: 300px; // 防止過度擠壓
-  flex: 1 1 40%; // 
-
-  @media (max-width: 768px) {
-    align-items: center; // 手機端置中
-  }
+  flex: 0 1 55%;
+  min-width: 0; // 允许内容收缩
 
   h2 {
-    @extend %heading-style;
-    margin-bottom: 1.5rem;
-    font-size: clamp(1.5rem, 3vw, 2.5rem); // 動態字體
+    @extend %animated-fade-in-up;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem); // 响应式文字大小
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
   }
 
   .banner2-text {
-    width: 100%; // 改為相對寬度
-    max-width: 529px; // 保留最大寬度
-    padding: $space-xyxy;
-    
     p {
-      width: 100%; // 改為相對寬度
       color: #000;
       font-family: "LXGW WenKai Mono TC", sans-serif;
-      font-size: clamp(1rem, 1.5vw, 1.25rem); // 動態字體
-      line-height: 1.6; // 改用無單位值
-      letter-spacing: 1px; // 調小間距
-      margin-bottom: 1rem; // 改用rem單位
-      
+      font-size: clamp(0.9rem, 1.1vw, 1.1rem); // 响应式文字大小
+      line-height: 1.7;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.2rem;
+
       &:last-child {
-        margin-bottom: 2rem; // 最後段落加大間距
+        margin-bottom: 2rem;
       }
     }
   }
 
   .button1 {
     @extend %button-base;
-    margin: $space-x-a;
-    align-self: flex-start; // 保持按鈕左對齊
-    
-    @media (max-width: 768px) {
-      align-self: center; // 手機端置中
+    padding: 10px 20px;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+  }
+
+  @media (max-width: 768px) {
+    flex: 1 1 100%;
+    text-align: center;
+
+    h2 {
+      font-size: 1.8rem;
+    }
+
+    .banner2-text p {
+      font-size: 1rem;
     }
   }
 }
 
-.photo2 {
-  width: min(100%, 466px); // 限制最大寬度
-  height: auto;
-  aspect-ratio: 466/426; // 
-  border-radius: 16px;
-  object-fit: cover;
-  flex: 1 1 40%; //
-  
+.photo-container {
+  flex: 0 0 40%; // 固定宽度
+  position: sticky; // 固定位置效果
+  top: 100px; // 滚动时停留位置
+  align-self: flex-start; // 顶部对齐
+  height: fit-content;
+
+  .photo2 {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    border-radius: 16px;
+    object-fit: cover;
+    aspect-ratio: 4/3; // 统一比例
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 1024px) {
+    flex: 0 0 45%;
+  }
+
   @media (max-width: 768px) {
-    order: -1; // 手機端圖片置頂
-    margin-bottom: 2rem;
+    position: static;
+    flex: 1 1 100%;
+    order: -1; // 移动端图片在上
+    margin-bottom: 20px;
+    
+    .photo2 {
+      max-height: 300px;
+    }
   }
 }
