@@ -508,7 +508,7 @@ body.menu-open .overlay {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #f1f1f1;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 10px rgba(10, 0, 0, 0.5);
   width: 90%;
   pointer-events: none;
   font-size: 30px;
@@ -524,7 +524,7 @@ body.menu-open .overlay {
     font-size: 24px;
   }
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .vedio {
     padding: 20px;
   }
