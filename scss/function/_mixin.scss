@@ -2,6 +2,12 @@
 // 混用mixin (需調用)
 // RWD樣式不同時使用mixin
 
+@mixin media-sm { // 新增：手機版斷點 Mixin
+    @media (max-width: 767px) { // 通常用 767px 作為手機的最大寬度
+        @content;
+    }
+}
+
 @mixin media-md {
     @media (min-width: 768px) {
         @content;
@@ -38,6 +44,7 @@
     background: $img $attachment $color $repeat center;
 }
 
+// 玻璃化效果
 @mixin glassmorphism {
     background-color: $alpha-w20;
     backdrop-filter: blur(25px);
@@ -65,6 +72,8 @@
   }
 }
 
+// 直接寫入的 Media Queries (媒體查詢)
+// 在 mixin 定義的下方，你有一系列直接寫入的 @media 規則，它們針對特定的元素 (例如 .letter1, .about1, .about1-text, .about1-text2) 進行響應式調整。
 @media (max-width: 768px) {
   .letter1 {
     flex-direction: column;

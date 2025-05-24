@@ -1,5 +1,5 @@
 @use "../variable/" as *;
-@use "../function/mixin" as *;
+@use "../function/mixin" as mx;
 
 // 公用
 // --- 通用按鈕基礎樣式 ---
@@ -28,103 +28,212 @@
     gap: 1rem;
 }
 
-// --- Navbar 專用文字款式 ---
-%nav-text-style {
-    color: var(--primary);
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-    letter-spacing: -0.396px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-}
+// ======================================
+// 導航欄 (Navbar) 樣式
+// ======================================
 
-// --- Frame 框樣式（包住 a） ---
-// 應用於按鈕或可點擊元素的邊框和背景過渡效果 灰色框架。
-%frame-style {
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-    cursor: pointer;
-    &:hover {
-        // 修正點：在這裡使用 Sass 變數 `$primary`
-        // 因為 `lighten()` 是一個 Sass 函數，它需要在編譯時知道具體的顏色值。
-        background-color: lighten($primary, 40%);
+.nav-wrapper {
+    @extend %nav-outer-wrapper;
+    // 桌面版預設樣式
+    height: 60px; // 導航欄的高度，取代 %nav-outer-wrapper 中的 80px (如果存在)
+    background-color: var(--white-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    // %nav-outer-wrapper 已經提供了 display: flex, justify-content: center, align-items: center
+
+    // --- 平板版樣式 (min-width: 768px) ---
+    @include media-md {
+        height: 60px; // 平板版高度可以保持或微調
+    }
+
+    // --- 手機版樣式 (max-width: 767px) ---
+    @include media-sm {
+        height: 50px; // 手機版導航欄高度
+        padding: 0 20px; // 左右內邊距
+        justify-content: flex-start; // 讓漢堡按鈕靠左
     }
 }
 
-// --- 資中所有人都能套用自己 (Flexbox alignment) ---
-// 常用於水平方向的 Flexbox 項目對齊。
-%menu-item-flex-align {
-    display: flex;
-    align-items: center;
+.nav-bar {
+    @extend %nav-bar-wrapper;
+    // 桌面版預設樣式
+    // %nav-bar-wrapper 已經提供了 width: 100%, max-width: 1200px, display: flex
+    justify-content: flex-end; // 菜單靠右對齊 (桌面版)
+    align-items: center; // 垂直居中
+
+    // --- 平板版樣式 ---
+    @include media-md {
+        max-width: 960px; // 平板內容最大寬度
+    }
+
+    // --- 手機版樣式 ---
+    @include media-sm {
+        justify-content: flex-start; // 漢堡按鈕靠左
+    }
 }
 
-// --- 垂直置中 所有人用自己 (Flexbox column alignment) ---
-// 常用於垂直方向的 Flexbox 項目居中。
-%flex-center-v {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.hamburger-icon {
+    display: none; // **桌面版和平板版預設隱藏**
+
+    // --- 手機版 (max-width: 767px) ---
+    @include media-sm {
+        display: flex; // **手機版顯示漢堡按鈕**
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 20; // 確保在菜單上方
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-dark-grey);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+    }
 }
 
-// --- ▍ul.menu 整體樣式v 标题框架用 ---
-// 菜單列表的通用 Flexbox 佈局。
-%menu-wrapper {
-    display: flex;
-    gap: 32px;
-    padding: 0 30px;
-    align-items: center;
-    list-style: none;
+.menu {
+    @extend %menu-wrapper;
+    // %menu-wrapper 已經提供了 display: flex, gap, padding, align-items, list-style, margin
     margin: 0;
+    padding: 0; // 確保沒有額外的 padding 影響定位
+
+    // --- 平板版樣式 ---
+    @include media-md {
+        gap: 20px; // 平板菜單項間距
+    }
+
+    // --- 手機版 (max-width: 767px) ---
+    @include media-sm {
+        display: none; // **手機版預設隱藏菜單**
+        flex-direction: column; // 菜單項垂直排列
+        position: absolute; // 絕對定位，讓菜單從上方或側面滑出
+        top: 50px; // 根據手機版 nav-wrapper 高度來設定 (與 nav-wrapper 高度保持一致)
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 50px); // 填滿剩餘視窗高度
+        background-color: var(--white-color);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        text-align: center;
+        overflow-y: auto;
+        z-index: 10;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: translateY(-100%); // 初始狀態：從上方滑出隱藏
+        opacity: 0;
+    }
 }
 
-// --- ▍nav-bar 外層樣式（控制寬度标题） ---
-// 導航欄內容的寬度和居中。
-%nav-bar-wrapper {
+.menu-item {
+    @extend %menu-item-flex-align;
+    // ... 基礎樣式 (如果有的話)
+
+    // --- 手機版 ---
+    @include media-sm {
+        margin: 10px 0; // 垂直間距
+    }
+}
+
+.menu-link-item {
+    @extend %nav-text-style;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary); // 使用 CSS 變數
+        display: block;
+        transform: scaleX(0); // 恢復縮放效果
+        transition: transform 0.3s ease-out; // 恢復過渡效果
+    }
+
+    &:hover::after {
+        transform: scaleX(1); // 恢復 hover 效果
+    }
+}
+
+// ======================================
+// Logo 區塊 (在 nav-bar 下方，獨立於 nav-bar)
+// ======================================
+
+.logo-wrapper {
     width: 100%;
-    max-width: 1200px;
     display: flex;
-    justify-content: center;
+    flex-direction: column; // Logo 和 banner1 垂直堆疊
+    align-items: center; // 水平居中
+    padding: 20px 0; // 上下內邊距
+    // background-color: lightgray; // 方便測試，完成後請移除
 }
 
-// --- ▍最外層navbar置中标题 可以用在想要之中的所有地方 ---
-// 整個導航欄的最外層容器樣式，實現居中和基礎視覺效果。
-%nav-outer-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    // 這裡同樣使用 CSS 變數，因為不需要在 Sass 編譯時進行顏色計算。
-    background-color: var(--white-color);
+.logo-link { // Logo 的連結
+    text-decoration: none; // 移除連結預設下劃線
+    color: inherit; // 繼承父元素顏色
+    display: block; // 讓 Logo 連結佔據一整行
+    margin-bottom: 10px; // Logo 和 banner1 之間的間距
 }
 
-// --- 通用按鈕基礎樣式 ---
-// 所有按鈕的基礎樣式，提供統一的外觀和交互過渡。
-%button-base {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+#debut {
+    font-family: var(--font-logo); // 使用 CSS 變數
+    font-size: 40px; // 桌面版 Logo 字體大小
+    font-weight: bold;
+    color: var(--primary);
+    text-align: center; // 確保文字在所佔空間中居中
+
+    // --- 平板版樣式 ---
+    @include media-md {
+        font-size: 32px;
+    }
+
+    // --- 手機版樣式 ---
+    @include media-sm {
+        font-size: 28px; // 手機版 Logo 字體大小
+    }
 }
 
-// --- 通用 Flex Column 樣式 ---
-// 快速創建一個垂直方向的 Flexbox 容器。
-%flex-column {
-    display: flex;
-    flex-direction: column;
+.banner1 {
+    text-align: center; // 文字居中
+    padding: 0 20px; // 左右內邊距
+    // ... 其他 banner1 樣式
+
+    p {
+        margin-bottom: 5px; // 段落間距
+        line-height: 1.5;
+        // ... 你的 banner1 段落字體大小等
+    }
 }
 
-// --- 通用 Flex Column with Gap 樣式 ---
-// 垂直 Flexbox 容器，帶有項目間距。
-%flex-column-gap {
-    @extend %flex-column;
-    gap: 1rem;
+// JavaScript 控制的菜單激活狀態
+
+// body.menu-open {
+//     // overflow: hidden; // 如果需要鎖定背景滾動，避免滾動條出現
+// }
+body.menu-open .menu {
+    @include media-sm {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+body.menu-open .hamburger-icon {
+    @include media-sm {
+        .bar:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+        .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .bar:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+    }
 }

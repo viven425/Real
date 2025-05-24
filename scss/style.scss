@@ -35,42 +35,236 @@
     color: inherit;
   }
 
-  // nav
-  // 導航欄 (Navbar) 樣式
-  .nav-wrapper {
-    @extend %nav-outer-wrapper; 
-  }
+//   // nav
+//   // 導航欄 (Navbar) 樣式
+//   .nav-wrapper {
+//     @extend %nav-outer-wrapper; 
+//   }
 
-  .nav-bar {
-    @extend %nav-bar-wrapper;
-  }
+//   .nav-bar {
+//     @extend %nav-bar-wrapper;
+//   }
 
-  .menu {
-    @extend %menu-wrapper;
+//   .menu {
+//     @extend %menu-wrapper;
 
-    .menu-item {
-      @extend %menu-item-flex-align;
+//     // scss/style.scss
+// .menu-link-item {
+//     @extend %nav-text-style;
+//     position: relative;
+//     // overflow: hidden; // 暫時移除這行
 
-      .menu-link-item {
-        @extend %nav-text-style;
-         position: relative; // 讓偽元素可以相對於此元素定位
-            overflow: hidden;   // 確保下劃線動畫不溢出
-            &::after {
-                content: 'Test'; // 偽元素必須有 content 屬性
-                position: absolute;
-                bottom: -5px; // ✨✨✨ 調整點 1：控制線條離文字的距離 (負值表示往上，正值表示往下) ✨✨✨
-                left: 0;
-                width: 100%;
-                height: 2px; // ✨✨✨ 調整點 2：控制線條的粗細 ✨✨✨
-                background-color: red; // 使用主色調
-                transform: scaleX(0); // 初始狀態：線條寬度為 0 (不可見)
-                transition: transform 0.3s ease-out; // 過渡效果，讓線條平滑出現
-            }
+//     &::after {
+//         content: ''; //  臨時添加文字，確保它有內容
+//         position: absolute;
+//         bottom: -5px; //  
+//         left: 0;
+//         width: 100%;
+//         height: 2px; //  臨時增加高度，讓它非常顯眼
+//         background-color:$primary; // 臨時改成藍色，確保顏色顯眼
+//         display: block; //  確保它是一個塊級元素
+//         transform: scaleX(0); // 暫時移除，讓它直接顯示
+//         transition: transform 0.3s ease-out; // 暫時移除
+//     }
 
-             &:hover::after {
-                transform: scaleX(1); // 鼠標滑過時：線條寬度變為 100% (顯示)
-            }
+//     &:hover::after {
+//         transform: scaleX(1); // 暫時移除 hover 效果
+//     }
+// }
+//   }
 
-      }
+// ## 導航欄 (Navbar) 樣式
+
+.nav-wrapper {
+    @extend %nav-outer-wrapper;
+    height: 60px;
+    background-color: var(--white-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    // --- 平板版樣式 (min-width: 768px) ---
+    @include media-md {
+        height: 60px;
+        // 在平板版，nav-wrapper 應該繼續讓內容居中，因為漢堡按鈕是隱藏的
+        justify-content: center; // *** 新增或確保此行 ***
     }
-  }
+
+    // --- 手機版樣式 (max-width: 767px) ---
+    @include media-sm {
+        height: 50px;
+        padding: 0 20px;
+        // 在手機版，nav-wrapper 應該讓內容 (即 nav-bar) 靠右，以便漢堡按鈕對齊右側
+        justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
+    }
+}
+
+.nav-bar {
+    @extend %nav-bar-wrapper;
+    // 桌面版預設樣式
+    // nav-bar 內部只包含 menu (靠右)
+    justify-content: flex-end; // 桌面版：菜單靠右對齊
+    align-items: center; // 垂直居中
+
+    // --- 平板版樣式 ---
+    @include media-md {
+        max-width: 960px;
+        justify-content: flex-end; // 平板版保持菜單靠右
+    }
+
+    // --- 手機版樣式 (max-width: 767px) ---
+    @include media-sm {
+        // 手機版：nav-bar 內部只顯示漢堡按鈕，讓它靠右
+        // nav-bar 會跟隨 nav-wrapper 的 justify-content: flex-end
+        justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
+    }
+}
+
+.hamburger-icon {
+    display: none; // *** 關鍵點：這是桌面版和所有更大螢幕的預設值，確保漢堡按鈕隱藏 ***
+
+    // --- 手機版 (max-width: 767px) ---
+    @include media-sm {
+        display: flex; // 手機版顯示漢堡按鈕 (使用 flex 佈局)
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 20; // 確保在菜單上方
+    }
+}
+
+.menu {
+    @extend %menu-wrapper;
+    margin: 0;
+    padding: 0;
+
+    // --- 平板版樣式 ---
+    @include media-md {
+        gap: 20px;
+    }
+
+    // --- 手機版 (max-width: 767px) ---
+    @include media-sm {
+        display: none; // 手機版預設隱藏菜單
+        flex-direction: column;
+        position: absolute; // 絕對定位，讓菜單從上方或側面滑出
+        top: 50px; // 根據手機版 nav-wrapper 高度來設定 (與 nav-wrapper 高度保持一致)
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 50px);
+        background-color: var(--white-color);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        text-align: center;
+        overflow-y: auto;
+        z-index: 10;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.menu-item {
+    @extend %menu-item-flex-align;
+
+    @include media-sm {
+        margin: 10px 0;
+    }
+}
+
+.menu-link-item {
+    @extend %nav-text-style;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary);
+        display: block;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-out;
+    }
+
+    &:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+---
+// ## Logo 區塊 (在 nav-bar 下方，獨立於 nav-bar)
+
+.logo-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#debut {
+    font-family: var(--font-logo);
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--primary);
+    text-align: center;
+
+    @include media-md {
+        font-size: 32px;
+    }
+
+    @include media-sm {
+        font-size: 28px;
+    }
+}
+
+.banner1 {
+    text-align: center;
+    padding: 0 20px;
+
+    p {
+        margin-bottom: 5px;
+        line-height: 1.5;
+    }
+}
+
+// ## JavaScript 控制的菜單激活狀態
+
+// body.menu-open {
+//     // overflow: hidden;
+// }
+
+body.menu-open .menu {
+    @include media-sm {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+body.menu-open .hamburger-icon {
+    @include media-sm {
+        .bar:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+        .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .bar:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+    }
+}

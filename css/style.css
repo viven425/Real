@@ -42,7 +42,7 @@
     width: 100%;
   }
 }
-.menu .menu-item .menu-link-item {
+.menu .menu-link-item {
   color: var(--primary);
   font-family: var(--font-body);
   font-size: 18px;
@@ -53,11 +53,6 @@
   text-align: center;
   text-decoration: none;
   display: block;
-}
-
-.menu .menu-item {
-  display: flex;
-  align-items: center;
 }
 
 .menu {
@@ -155,21 +150,21 @@ a {
   color: inherit;
 }
 
-.menu .menu-item .menu-link-item {
+.menu .menu-link-item {
   position: relative;
-  overflow: hidden;
 }
-.menu .menu-item .menu-link-item::after {
-  content: "Test";
+.menu .menu-link-item::after {
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--primary);
+  background-color: #792e2e;
+  display: block;
   transform: scaleX(0);
   transition: transform 0.3s ease-out;
 }
-.menu .menu-item .menu-link-item:hover::after {
+.menu .menu-link-item:hover::after {
   transform: scaleX(1);
 }/*# sourceMappingURL=style.css.map */
