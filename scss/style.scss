@@ -4,7 +4,7 @@
 @use "./icon";
 @use "./keyframe";
 
-@import url("https://fonts.googleapis.com/css2?family=Emblema+One&family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Emblema+One&family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap");
 
 
 // --- CSS 變數定義 (將 Sass 變數轉換為 CSS 變數) ---
@@ -92,12 +92,16 @@
 
 .hamburger-icon {
     display: none; // *** 關鍵點：這是桌面版和所有更大螢幕的預設值，確保漢堡按鈕隱藏 ***
+     padding: 0; // 確認無內距
+    margin: 0; // 確認無外距
+    box-sizing: border-box; // 避免尺寸計算問題
+
 
     // --- 手機版 (max-width: 767px) ---
     @include media-sm {
         display: flex ;// 手機版顯示漢堡按鈕 (使用 flex 佈局)
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between; // 讓三條線均勻分布
         width: 35px; // 漢堡按鈕寬度
         height: 24px; // 漢堡按鈕高度
         background: transparent;
@@ -111,10 +115,12 @@
         display: block; // 讓線條顯示出來
         width: 100%; // 線條的寬度佔滿父容器
         height: 3px; // 線條的厚度
-        background-color: var(--text-dark-grey); // 線條的顏色
+        background-color: $primary; // 線條的顏色
         border-radius: 2px; // 線條的圓角
         transition: all 0.3s ease-in-out; // 添加過渡動畫
         transform-origin: center; // 旋轉時以中心為基準點
+        margin: 0; // 線條之間的間距
+       
     }
     }
     body.menu-open .hamburger-icon {
@@ -201,8 +207,7 @@
 }
 
 ---
-// ## Logo 區塊 (在 nav-bar 下方，獨立於 nav-bar)
-
+// ## Logo 區塊 
 .logo-wrapper {
     width: 100%;
     display: flex;
@@ -215,22 +220,35 @@
     text-decoration: none;
     color: inherit;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 10px; // 你可以根據需要調整這個間距
 }
 
+// logo 款式
 #debut {
-    font-family: var(--font-logo);
-    font-size: 40px;
-    font-weight: bold;
-    color: var(--primary);
-    text-align: center;
+    // 從這裡開始是你的新 Logo 樣式
+    color: $primary; // 新顏色
+    text-align: center; // 確保文字居中
+    font-family: $font-logo; // 新字體，加上通用字體作為備用
+    font-size: 40px; // 電腦版預設字體大小
+    font-style: normal;
+    font-weight: 320;
+    line-height: 150%; // 或 36px，你可以根據視覺效果調整
+    letter-spacing: -0.528px;
+    width: 185px; // Logo 容器的固定寬度
+    height: 43px; // Logo 容器的固定高度
+    flex-shrink: 0; // 防止在 Flex 容器中縮小
+    overflow: hidden; // 如果文字超過尺寸，隱藏溢出部分，或者考慮 auto
+    display: flex; // 將 #debut 設為 Flex 容器，以便其內部文字能垂直居中
+    justify-content: center; // 水平居中
+    align-items: center; // 垂直居中
 
+    // 響應式字體大小 (根據你的需求調整)
     @include media-md {
-        font-size: 32px;
+        font-size: 30px; // 平板版字體大小
     }
 
     @include media-sm {
-        font-size: 28px;
+        font-size: 24px; // 手機版字體大小
     }
 }
 
@@ -244,30 +262,3 @@
     }
 }
 
-// ## JavaScript 控制的菜單激活狀態
-
-// body.menu-open {
-//     // overflow: hidden;
-// }
-
-body.menu-open .menu {
-    @include media-sm {
-        display: flex;
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-body.menu-open .hamburger-icon {
-    @include media-sm {
-        .bar:nth-child(1) {
-            transform: translateY(11px) rotate(45deg);
-        }
-        .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .bar:nth-child(3) {
-            transform: translateY(-11px) rotate(-45deg);
-        }
-    }
-}

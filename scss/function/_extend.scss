@@ -2,6 +2,8 @@
 @use "../function/mixin" as *;
 
 // 公用
+// 公用文字
+
 // --- 通用按鈕基礎樣式 ---
 // 所有按鈕的基礎樣式，提供統一的外觀和交互過渡。
 %button-base {
@@ -131,3 +133,5 @@
     @extend %flex-column;
     gap: 1rem;
 }
+
+
