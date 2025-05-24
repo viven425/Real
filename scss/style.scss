@@ -56,13 +56,13 @@
          position: relative; // 讓偽元素可以相對於此元素定位
             overflow: hidden;   // 確保下劃線動畫不溢出
             &::after {
-                content: ''; // 偽元素必須有 content 屬性
+                content: 'Test'; // 偽元素必須有 content 屬性
                 position: absolute;
                 bottom: -5px; // ✨✨✨ 調整點 1：控制線條離文字的距離 (負值表示往上，正值表示往下) ✨✨✨
                 left: 0;
                 width: 100%;
                 height: 2px; // ✨✨✨ 調整點 2：控制線條的粗細 ✨✨✨
-                background-color: var(--primary); // 使用主色調
+                background-color: red; // 使用主色調
                 transform: scaleX(0); // 初始狀態：線條寬度為 0 (不可見)
                 transition: transform 0.3s ease-out; // 過渡效果，讓線條平滑出現
             }
