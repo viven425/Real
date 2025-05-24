@@ -192,15 +192,16 @@ body.menu-open .hamburger-icon {
     //  初始時將菜單完全移出螢幕右側
     transform: translateX(100%); //**關鍵：將菜單向右移出自身寬度**
     opacity: 0;
-  // **初始透明**
+    // **初始透明**
     visibility: hidden;
-  // **初始隱藏**
+    // **初始隱藏**
     transition: transform 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
     // **添加過渡動畫**
     z-index: 999;
     // **確保菜單在內容之上，但比按鈕低一點**
     box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1); // 給菜單一點陰影效果，讓它看起來是滑出的
-  }}
+  }
+}
 
 // 當菜單開啟時，強制顯示菜單並滑入到正常位置
 body.menu-open .menu {
@@ -243,36 +244,36 @@ body.menu-open .menu {
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); // 半透明黑色
-    z-index: 999; // **比菜單低一點，比內容高**
-    opacity: 0; // 初始透明
-    visibility: hidden; // 初始隱藏
-    transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); // 半透明黑色
+  z-index: 999; // **比菜單低一點，比內容高**
+  opacity: 0; // 初始透明
+  visibility: hidden; // 初始隱藏
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
 }
 
 
 // --- 當 body 有 menu-open class 時的菜單和遮罩顯示效果 ---
 body.menu-open {
-    overflow: hidden; // 防止背景內容捲動
+  overflow: hidden; // 防止背景內容捲動
 
-    // 菜單滑入
-    .menu {
-        transform: translateX(0); // **從右側滑入視窗 (回到原位)**
-        opacity: 0.5;
-        visibility: visible;
-        background-color: $secondary-bg;
-    }
+  // 菜單滑入
+  .menu {
+    transform: translateX(0); // **從右側滑入視窗 (回到原位)**
+    opacity: 0.5;
+    visibility: visible;
+    background-color: $secondary-bg;
+  }
 
-    // 遮罩顯示
-    .overlay {
-        opacity: 0.5;
-        visibility: visible;
-    }
+  // 遮罩顯示
+  .overlay {
+    opacity: 0.5;
+    visibility: visible;
+  }
 }
 
 --- // ## Logo 區塊 
@@ -389,78 +390,165 @@ body.menu-open {
 
 // 影片區塊樣式
 .vedio {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 61px 61.5px 34px 61.5px; // 固定外框間距
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 61.5px 10px 61.5px; // 固定外框間距
+  width: 100%;
+  box-sizing: border-box;
+
+  .carousel {
+    position: relative;
     width: 100%;
-    box-sizing: border-box;
+    max-width: 1300px; // 最大寬度限制
+    height: 0;
+    max-height: 600px; // 最大高度限制
+    padding-bottom: 45.38%; // 保持 16:9 比例 (590/1300≈45.38%)
+    border-radius: 21px;
+    overflow: hidden;
+    background: lightgray; // 預設背景色
 
-    .carousel {
-        position: relative;
+    .carousel-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+
+      img {
         width: 100%;
-        max-width: 1300px; // 最大寬度限制
-        height: 0;
-        padding-bottom: 45.38%; // 保持 16:9 比例 (590/1300≈45.38%)
-        border-radius: 21px;
-        overflow: hidden;
-        background: lightgray; // 預設背景色
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
 
-        .carousel-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-            pointer-events: none;
+      .vedio-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @extend %article-text-style;
+        color: $color-light;
+        text-shadow: 0 0 10px rgba(10, 0, 0, 0.5);
+        width: 90%; // 防止文字過長
+        pointer-events: none;
+        font-size: 30px;
+      }
 
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
-
-            .vedio-text {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-              @extend %article-text-style;
-                color: $color-light;
-                text-shadow: 0 0 10px rgba(10, 0, 0, 0.5);
-                width: 90%; // 防止文字過長
-                pointer-events: none;
-                font-size: 30px;
-            }
-
-            &.active {
-                opacity: 1;
-                pointer-events: auto;
-            }
-        }
+      &.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
-}
+  }
 
-// 響應式調整
-@media (max-width: 1024px) {
+  // 響應式調整
+  @media (max-width: 1024px) {
     .vedio {
-        padding: 40px; // 平板設備調整間距
-        font-size: 24px;
+      padding: 40px; // 平板設備調整間距
+      font-size: 24px;
     }
-}
+  }
 
-@media (min-width: 768px) {
+  @media (max-width: 768px) {
     .vedio {
-        padding: 20px; // 手機設備調整間距
-        
-        .carousel {
-            padding-bottom: 56.25%; // 改為 16:9 比例
-            border-radius: 12px;
+      padding: 20px; // 手機設備調整間距
+
+      .carousel {
+        padding-bottom: 56.25%; // 改為 16:9 比例
+        font-size: 20px; // 手機版字體大小
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+            padding-bottom: 70%; // ✅ 超小手機更高比例
+            max-height: 300px;
             font-size: 20px; // 手機版字體大小
         }
-    }
+
 }
 
+// banner3
+.banner2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(30px, 5vw, 60px); // 動態間距
+  padding: clamp(60px, 15vw, 200px) clamp(20px, 10vw, 190px); // 動態padding
+  margin: 0 auto;
+  max-width: 1440px; // 新增最大寬度限制
+  box-sizing: border-box;
+  flex-wrap: wrap; //
+
+  @media (max-width: 768px) {
+    flex-direction: column; // 手機端改垂直排列
+    text-align: center; // 文字置中
+  }
+}
+
+.small-banner2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 300px; // 防止過度擠壓
+  flex: 1 1 40%; // 
+
+  @media (max-width: 768px) {
+    align-items: center; // 手機端置中
+  }
+
+  h2 {
+    @extend %heading-style;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.5rem); // 動態字體
+  }
+
+  .banner2-text {
+    width: 100%; // 改為相對寬度
+    max-width: 529px; // 保留最大寬度
+    padding: $space-xyxy;
+    
+    p {
+      width: 100%; // 改為相對寬度
+      color: #000;
+      font-family: "LXGW WenKai Mono TC", sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.25rem); // 動態字體
+      line-height: 1.6; // 改用無單位值
+      letter-spacing: 1px; // 調小間距
+      margin-bottom: 1rem; // 改用rem單位
+      
+      &:last-child {
+        margin-bottom: 2rem; // 最後段落加大間距
+      }
+    }
+  }
+
+  .button1 {
+    @extend %button-base;
+    margin: $space-x-a;
+    align-self: flex-start; // 保持按鈕左對齊
+    
+    @media (max-width: 768px) {
+      align-self: center; // 手機端置中
+    }
+  }
+}
+
+.photo2 {
+  width: min(100%, 466px); // 限制最大寬度
+  height: auto;
+  aspect-ratio: 466/426; // 
+  border-radius: 16px;
+  object-fit: cover;
+  flex: 1 1 40%; //
+  
+  @media (max-width: 768px) {
+    order: -1; // 手機端圖片置頂
+    margin-bottom: 2rem;
+  }
+}

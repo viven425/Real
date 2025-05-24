@@ -472,7 +472,7 @@ body.menu-open .overlay {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 61px 61.5px 34px 61.5px;
+  padding: 10px 61.5px 10px 61.5px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -481,6 +481,7 @@ body.menu-open .overlay {
   width: 100%;
   max-width: 1300px;
   height: 0;
+  max-height: 600px;
   padding-bottom: 45.38%;
   border-radius: 21px;
   overflow: hidden;
@@ -517,20 +518,25 @@ body.menu-open .overlay {
   opacity: 1;
   pointer-events: auto;
 }
-
 @media (max-width: 1024px) {
-  .vedio {
+  .vedio .vedio {
     padding: 40px;
     font-size: 24px;
   }
 }
-@media (min-width: 768px) {
-  .vedio {
+@media (max-width: 768px) {
+  .vedio .vedio {
     padding: 20px;
   }
-  .vedio .carousel {
+  .vedio .vedio .carousel {
     padding-bottom: 56.25%;
-    border-radius: 12px;
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .vedio {
+    padding-bottom: 70%;
+    max-height: 300px;
     font-size: 20px;
   }
 }/*# sourceMappingURL=style.css.map */
