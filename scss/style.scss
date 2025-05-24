@@ -263,14 +263,14 @@ body.menu-open {
     // 菜單滑入
     .menu {
         transform: translateX(0); // **從右側滑入視窗 (回到原位)**
-        opacity: 1;
+        opacity: 0.5;
         visibility: visible;
         background-color: $secondary-bg;
     }
 
     // 遮罩顯示
     .overlay {
-        opacity: 1;
+        opacity: 0.5;
         visibility: visible;
     }
 }
@@ -385,4 +385,79 @@ body.menu-open {
 
   }
 
+}
+
+// 影片區塊樣式
+.vedio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 61px 61.5px 34px 61.5px; // 固定外框間距
+    width: 100%;
+    box-sizing: border-box;
+
+    .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 1300px; // 最大寬度限制
+        height: 0;
+        padding-bottom: 45.38%; // 保持 16:9 比例 (590/1300≈45.38%)
+        border-radius: 21px;
+        overflow: hidden;
+        background: lightgray; // 預設背景色
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .vedio-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              @extend %article-text-style;
+                font-weight: bold;
+                color: $color-light;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+                width: 90%; // 防止文字過長
+                pointer-events: none;
+            }
+
+            &.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+    }
+}
+
+// 響應式調整
+@media (max-width: 1024px) {
+    .vedio {
+        padding: 40px; // 平板設備調整間距
+    }
+}
+
+@media (max-width: 768px) {
+    .vedio {
+        padding: 20px; // 手機設備調整間距
+        
+        .carousel {
+            padding-bottom: 56.25%; // 改為 16:9 比例
+            border-radius: 12px;
+        }
+    }
 }

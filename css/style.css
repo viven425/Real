@@ -375,12 +375,12 @@ body.menu-open {
 }
 body.menu-open .menu {
   transform: translateX(0);
-  opacity: 1;
+  opacity: 0.5;
   visibility: visible;
   background-color: #e6cccc;
 }
 body.menu-open .overlay {
-  opacity: 1;
+  opacity: 0.5;
   visibility: visible;
 }
 
