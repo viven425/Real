@@ -149,7 +149,7 @@
 
     // --- 平板版樣式 ---
     @include media-md {
-        gap: 30px;
+        gap: 45px;
         display: flex; // 平板版菜單預設顯示
     }
 
@@ -214,7 +214,7 @@
     align-items: center;
     padding: 20px 0;
     text-align: center; // 文字居中
-    padding: 30px 0 20px;
+  
 }
 
 // logo 款式
@@ -235,6 +235,11 @@
     justify-content: center; // 水平居中
     align-items: center; // 垂直居中
     margin: 0 auto;
+    padding: 30px 0 20px;
+
+    // 動畫效果
+    @extend %animated-fade-in-up; // 使用 extend
+    animation-delay: 0.2s; // 延遲 0.2 秒後開始動畫
     
 
     // 響應式字體大小 (根據你的需求調整)
@@ -245,6 +250,13 @@
     @include media-sm {
         font-size: 22px; // 手機版字體大小
     }
+
+    // Hover 效果
+    transition: transform 0.3s ease, color 0.3s ease;
+    &:hover {
+        transform: translateY(-2px);
+        color: lighten($primary, 10%);
+    }
 }
 
 .banner1 {
@@ -252,6 +264,10 @@
     padding: 0 20px;
     max-width: 860px;  
     margin: 0 auto;
+
+    // 添加動畫效果 - 讓整個 .banner1 容器在 Logo 後淡入
+    @extend %animated-fade-in; // 使用 extend
+    animation-delay: 0.3s; // 延遲 0.3 秒後開始 (可調整與 Logo 的銜接)
 
     p {
         margin-bottom: 5px;
@@ -262,18 +278,35 @@
 
         // **平板版 (media-md)**
         @include media-md {
-            font-size: map-get($font-size, m); // 平板版字體大小
+            font-size: 1.2rem; // 平板版字體大小
         }
 
         // **手機版 (media-sm)**
         @include media-sm {
-            max-width: 310px; // 手機版最大寬度
+            min-width: 310px; // 手機版最大寬度
             margin-left: auto; // 確保在 max-width 應用後仍然居中
             margin-right: auto;
             // 對應 map 中的 's' (1rem)
-            font-size: map-get($font-size, s); // 手機版字體大小
+            font-size: 1rem; // 手機版字體大小
         }
+
+        @extend %animated-fade-in-up; // 讓每個 p 標籤自己滑入
+        animation-delay: 0.5s; // 預設延遲
+
+         &:nth-child(2) {
+            animation-delay: 0.7s; // 0.5s + 0.2s
+        }
+
+        &:nth-child(3) {
+            animation-delay: 0.9s; // 0.5s + 0.4s
+        }
+
+        &:nth-child(4) {
+            animation-delay: 1.1s; // 0.5s + 0.6s
+        }
+
     }
     
 }
+
 

@@ -256,7 +256,7 @@ a {
 }
 @media (min-width: 768px) {
   .menu {
-    gap: 30px;
+    gap: 45px;
     display: flex;
   }
 }
@@ -333,15 +333,16 @@ a {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  padding: 30px 0 20px;
 }
 @media (min-width: 768px) {
   #debut {
-    font-size: 30px;
+    font-size: 24px;
   }
 }
 @media (max-width: 767px) {
   #debut {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 
@@ -353,4 +354,18 @@ a {
 }
 .banner1 p {
   margin-bottom: 5px;
+  font-size: 1.5rem;
+}
+@media (min-width: 768px) {
+  .banner1 p {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 767px) {
+  .banner1 p {
+    min-width: 310px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=style.css.map */
