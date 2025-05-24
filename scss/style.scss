@@ -227,20 +227,18 @@ body.menu-open .menu {
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 50%;
+    bottom: -5px;
+    left: 0;
     width: 100%;
-    max-width: 80px; //  設定線條最大寬度
     height: 2px;
     background-color: var(--primary);
-    width: calc(100% - 40px);
     display: block;
-    transform: scaleX(0) translateX(-50%);
+    transform: scaleX(0);
     transition: transform 0.3s ease-out;
   }
 
   &:hover::after {
-    transform: scaleX(1)  translateX(-50%);
+    transform: scaleX(1);
   }
 }
 

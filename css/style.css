@@ -344,8 +344,8 @@ a {
 .menu-link-item::after {
   content: "";
   position: absolute;
-  bottom: -5px;
-  left: 0;
+  bottom: 0;
+  left: 50%;
   width: 100%;
   max-width: 80px;
   height: 2px;
