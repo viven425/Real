@@ -1,5 +1,6 @@
 @use "./variable" as *;
 @use "./function" as *;
+
 @use "./reset";
 @use "./icon";
 @use "./keyframe";
@@ -7,9 +8,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Emblema+One&family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap");
 
 
-// --- CSS 變數定義 (將 Sass 變數轉換為 CSS 變數) ---
-// 這些變數會在編譯後的 CSS 中定義在 :root 元素上
-// 將 Sass 變數轉換為 CSS 變數，供瀏覽器在運行時使用，
+
 // 也供那些不需要 Sass 函數處理的佔位符使用
 :root {
     --primary: #{$primary};
@@ -214,22 +213,16 @@
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-}
-
-.logo-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    margin-bottom: 10px; // 你可以根據需要調整這個間距
+    text-align: center; // 文字居中
+    padding: 30px 0 20px;
 }
 
 // logo 款式
 #debut {
-    // 從這裡開始是你的新 Logo 樣式
-    color: $primary; // 新顏色
+    color: $primary; 
     text-align: center; // 確保文字居中
     font-family: $font-logo; // 新字體，加上通用字體作為備用
-    font-size: 40px; // 電腦版預設字體大小
+    font-size: 26px; // 電腦版預設字體大小
     font-style: normal;
     font-weight: 320;
     line-height: 150%; // 或 36px，你可以根據視覺效果調整
@@ -241,24 +234,46 @@
     display: flex; // 將 #debut 設為 Flex 容器，以便其內部文字能垂直居中
     justify-content: center; // 水平居中
     align-items: center; // 垂直居中
+    margin: 0 auto;
+    
 
     // 響應式字體大小 (根據你的需求調整)
     @include media-md {
-        font-size: 30px; // 平板版字體大小
+        font-size: 24px; // 平板版字體大小
     }
 
     @include media-sm {
-        font-size: 24px; // 手機版字體大小
+        font-size: 22px; // 手機版字體大小
     }
 }
 
 .banner1 {
     text-align: center;
     padding: 0 20px;
+    max-width: 860px;  
+    margin: 0 auto;
 
     p {
         margin-bottom: 5px;
-        line-height: 1.5;
+       @extend %article-text-style;
+
+        // **電腦版 (預設) 文字大小**
+        font-size: 1.5rem; 
+
+        // **平板版 (media-md)**
+        @include media-md {
+            font-size: map-get($font-size, m); // 平板版字體大小
+        }
+
+        // **手機版 (media-sm)**
+        @include media-sm {
+            max-width: 310px; // 手機版最大寬度
+            margin-left: auto; // 確保在 max-width 應用後仍然居中
+            margin-right: auto;
+            // 對應 map 中的 's' (1rem)
+            font-size: map-get($font-size, s); // 手機版字體大小
+        }
     }
+    
 }
 

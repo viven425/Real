@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Emblema+One&family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Emblema+One&family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap");
 /* 響應式設計調整 是最後關於我們的樣式 */
 @media (max-width: 1200px) {
   .letter1 {
@@ -83,6 +83,16 @@
   align-items: center;
   height: 80px;
   background-color: var(--white-color);
+}
+
+.banner1 p {
+  color: #000;
+  text-align: center;
+  font-family: "LXGW WenKai Mono TC", monospace;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 200%;
+  letter-spacing: 0.8px;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -303,58 +313,44 @@ a {
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
-}
-
-.logo-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  margin-bottom: 10px;
+  text-align: center;
 }
 
 #debut {
-  font-family: var(--font-logo);
-  font-size: 40px;
-  font-weight: bold;
-  color: var(--primary);
+  color: #792e2e;
   text-align: center;
+  font-family: "Akaya Kanadaka", sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 320;
+  line-height: 150%;
+  letter-spacing: -0.528px;
+  width: 185px;
+  height: 43px;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 @media (min-width: 768px) {
   #debut {
-    font-size: 32px;
+    font-size: 30px;
   }
 }
 @media (max-width: 767px) {
   #debut {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 
 .banner1 {
   text-align: center;
   padding: 0 20px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 .banner1 p {
   margin-bottom: 5px;
-  line-height: 1.5;
-}
-
-@media (max-width: 767px) {
-  body.menu-open .menu {
-    display: flex;
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@media (max-width: 767px) {
-  body.menu-open .hamburger-icon .bar:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
-  }
-  body.menu-open .hamburger-icon .bar:nth-child(2) {
-    opacity: 0;
-  }
-  body.menu-open .hamburger-icon .bar:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
-  }
 }/*# sourceMappingURL=style.css.map */
