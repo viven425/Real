@@ -35,51 +35,10 @@
     color: inherit;
   }
 
-//   // nav
-//   // 導航欄 (Navbar) 樣式
-//   .nav-wrapper {
-//     @extend %nav-outer-wrapper; 
-//   }
-
-//   .nav-bar {
-//     @extend %nav-bar-wrapper;
-//   }
-
-//   .menu {
-//     @extend %menu-wrapper;
-
-//     // scss/style.scss
-// .menu-link-item {
-//     @extend %nav-text-style;
-//     position: relative;
-//     // overflow: hidden; // 暫時移除這行
-
-//     &::after {
-//         content: ''; //  臨時添加文字，確保它有內容
-//         position: absolute;
-//         bottom: -5px; //  
-//         left: 0;
-//         width: 100%;
-//         height: 2px; //  臨時增加高度，讓它非常顯眼
-//         background-color:$primary; // 臨時改成藍色，確保顏色顯眼
-//         display: block; //  確保它是一個塊級元素
-//         transform: scaleX(0); // 暫時移除，讓它直接顯示
-//         transition: transform 0.3s ease-out; // 暫時移除
-//     }
-
-//     &:hover::after {
-//         transform: scaleX(1); // 暫時移除 hover 效果
-//     }
-// }
-//   }
-
-// ## 導航欄 (Navbar) 樣式
-
 .nav-wrapper {
     @extend %nav-outer-wrapper;
     height: 60px;
     background-color: var(--white-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
     // --- 平板版樣式 (min-width: 768px) ---
     @include media-md {
@@ -93,15 +52,14 @@
         height: 50px;
         padding: 0 20px;
         // 在手機版，nav-wrapper 應該讓內容 (即 nav-bar) 靠右，以便漢堡按鈕對齊右側
-        justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
+        justify-content: flex-start; // *** 修改此行，從 flex-start 改為 flex-end ***
     }
 }
 
 .nav-bar {
     @extend %nav-bar-wrapper;
     // 桌面版預設樣式
-    // nav-bar 內部只包含 menu (靠右)
-    justify-content: flex-end; // 桌面版：菜單靠右對齊
+    justify-content: center; 
     align-items: center; // 垂直居中
 
     // --- 平板版樣式 ---
@@ -115,15 +73,24 @@
         // 手機版：nav-bar 內部只顯示漢堡按鈕，讓它靠右
         // nav-bar 會跟隨 nav-wrapper 的 justify-content: flex-end
         justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
+
+         // 為了確保手機版只有漢堡按鈕顯示在 nav-bar 內，菜單要隱藏
+        .menu {
+            display: none; // *** 確保手機版 nav-bar 內的菜單預設隱藏 ***
+        }
+        .hamburger-icon {
+            display: flex; // *** 確保手機版 nav-bar 內的漢堡按鈕預設顯示 ***
+        }
     }
-}
+    }
+
 
 .hamburger-icon {
     display: none; // *** 關鍵點：這是桌面版和所有更大螢幕的預設值，確保漢堡按鈕隱藏 ***
 
     // --- 手機版 (max-width: 767px) ---
     @include media-sm {
-        display: flex; // 手機版顯示漢堡按鈕 (使用 flex 佈局)
+        display: flex ;// 手機版顯示漢堡按鈕 (使用 flex 佈局)
         flex-direction: column;
         justify-content: space-around;
         width: 30px;
@@ -143,7 +110,8 @@
 
     // --- 平板版樣式 ---
     @include media-md {
-        gap: 20px;
+        gap: 30px;
+        display: flex; // 平板版菜單預設顯示
     }
 
     // --- 手機版 (max-width: 767px) ---
@@ -152,7 +120,8 @@
         flex-direction: column;
         position: absolute; // 絕對定位，讓菜單從上方或側面滑出
         top: 50px; // 根據手機版 nav-wrapper 高度來設定 (與 nav-wrapper 高度保持一致)
-        left: 0;
+        right: 0;
+        left: unset;
         width: 100%;
         height: calc(100vh - 50px);
         background-color: var(--white-color);
