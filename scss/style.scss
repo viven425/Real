@@ -35,10 +35,15 @@
     color: inherit;
   }
 
+
+  // nav 相關樣式
 .nav-wrapper {
     @extend %nav-outer-wrapper;
     height: 60px;
     background-color: var(--white-color);
+
+     // 桌面版/平板版預設：nav-wrapper 內容居中 (包含 nav-bar 和裡面的菜單)
+    justify-content: center;
 
     // --- 平板版樣式 (min-width: 768px) ---
     @include media-md {
@@ -52,7 +57,7 @@
         height: 50px;
         padding: 0 20px;
         // 在手機版，nav-wrapper 應該讓內容 (即 nav-bar) 靠右，以便漢堡按鈕對齊右側
-        justify-content: flex-start; // *** 修改此行，從 flex-start 改為 flex-end ***
+        justify-content: flex-end; // *** 修改此行，從 flex-start 改為 flex-end ***
     }
 }
 
@@ -65,7 +70,7 @@
     // --- 平板版樣式 ---
     @include media-md {
         max-width: 960px;
-        justify-content: flex-end; // 平板版保持菜單靠右
+        justify-content: center; // 平板版保持菜單靠右
     }
 
     // --- 手機版樣式 (max-width: 767px) ---
@@ -93,15 +98,44 @@
         display: flex ;// 手機版顯示漢堡按鈕 (使用 flex 佈局)
         flex-direction: column;
         justify-content: space-around;
-        width: 30px;
-        height: 25px;
+        width: 35px; // 漢堡按鈕寬度
+        height: 24px; // 漢堡按鈕高度
         background: transparent;
         border: none;
         cursor: pointer;
         padding: 0;
-        z-index: 20; // 確保在菜單上方
+        z-index: 99; // 確保在菜單上方
+    }
+         // *** 新增或修改以下 .bar 樣式 ***
+    .bar {
+        display: block; // 讓線條顯示出來
+        width: 100%; // 線條的寬度佔滿父容器
+        height: 3px; // 線條的厚度
+        background-color: var(--text-dark-grey); // 線條的顏色
+        border-radius: 2px; // 線條的圓角
+        transition: all 0.3s ease-in-out; // 添加過渡動畫
+        transform-origin: center; // 旋轉時以中心為基準點
+    }
+    }
+    body.menu-open .hamburger-icon {
+    @include media-sm {
+        .bar:nth-child(1) {
+            // translateY 的值可能需要根據新的高度重新計算，
+            // 目標是讓第一條線移動到中心點並旋轉。
+            // 大概是 (總高 / 2) - (線高 / 2)
+            // 這裡 (30 / 2) - (4 / 2) = 15 - 2 = 13px
+            transform: translateY(10.5px) rotate(45deg) ;
+        }
+        .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .bar:nth-child(3) {
+            // 同樣，大概是 -(總高 / 2) + (線高 / 2)
+            transform: translateY(-10.5px) rotate(-45deg) ;
+        }
     }
 }
+
 
 .menu {
     @extend %menu-wrapper;
