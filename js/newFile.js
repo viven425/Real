@@ -1,4 +1,27 @@
-// 圖片輪播
+const carousel = document.querySelector('.smallphoto11');
+const leftArrow = document.querySelector('.arrow-btn.left');
+const rightArrow = document.querySelector('.arrow-btn.right');
+
+const cardWidth = 320; // 根據你的 SCSS 設定
+const gap = 24;      // 根據你的 SCSS 設定
+const scrollAmount = cardWidth + gap;
+
+rightArrow.addEventListener('click', () => {
+    carousel.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+    });
+});
+
+leftArrow.addEventListener('click', () => {
+    carousel.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+    });
+});
+//banneer5圖片輪播
+
+// 以前的圖片輪播
 const items = document.querySelectorAll(".carousel-item");
 let current = 0;
 
@@ -8,30 +31,7 @@ setInterval(() => {
   items[current].classList.add("active");
 }, 5000);
 
-// //汉堡按鈕的
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const hamburger = document.querySelector('.hamburger-icon');
-//     const body = document.body;
-//     const menu = document.querySelector('.menu');
-
-//     if (hamburger) {
-//         hamburger.addEventListener('click', () => {
-//             body.classList.toggle('menu-open');
-//         });
-//     }
-
-//     if (menu) {
-//         menu.querySelectorAll('.menu-link-item').forEach(item => {
-//             item.addEventListener('click', () => {
-//                 if (body.classList.contains('menu-open')) {
-//                     body.classList.remove('menu-open');
-//                 }
-//             });
-//         });
-//     }
-// });
-
+//漢堡按鈕
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger-icon');
     const body = document.body;
