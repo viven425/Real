@@ -54,7 +54,7 @@
   will-change: opacity;
 }
 
-.banner1 p, .vedio .carousel .carousel-item .vedio-text {
+.banner1 p, .vedio .carousel .carousel-item .vedio-text, .smallheader5 h3, .smallheader5p .pp p.left, .smallheader5p .pp p.right, .letter1, .letter1 .about1-text, .letter1 .about1-text2 {
   color: #000;
   text-align: center;
   font-family: "LXGW WenKai Mono TC", monospace;
@@ -64,7 +64,7 @@
   letter-spacing: 5.8px;
 }
 
-.smallheader5p .banner5button {
+.smallheader5p .banner5button, .letter1 .about1 .buttom1 {
   display: inline-flex;
   padding: 10.5px 36.5px;
   justify-content: center;
@@ -82,7 +82,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.smallheader5p .banner5button:hover {
+.smallheader5p .banner5button:hover, .letter1 .about1 .buttom1:hover {
   background: #7a403f;
 }
 
@@ -129,7 +129,7 @@
   background-color: var(--white-color);
 }
 
-.smallheader5p .banner5button {
+.smallheader5p .banner5button, .letter1 .about1 .buttom1 {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 8px;
@@ -1288,7 +1288,6 @@ body.menu-open .overlay {
     font-size: 13px;
   }
 }
-/* 整体5样式 */
 .banner5 {
   width: 100%;
   min-height: 959px;
@@ -1325,9 +1324,10 @@ body.menu-open .overlay {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+  font-family: "LXGW WenKai Mono TC", sans-serif;
 }
 .smallheader5 h3 {
-  font-size: 48px;
+  font-size: 26px;
   color: #792E2E;
   margin: 0 auto 50px;
   position: relative;
@@ -1365,11 +1365,10 @@ body.menu-open .overlay {
 }
 .smallheader5p .pp p.left {
   text-align: left;
+  font-family: "LXGW WenKai Mono TC", sans-serif;
 }
 .smallheader5p .pp p.right {
   text-align: center;
-  font-weight: bold;
-  color: #792E2E;
 }
 .smallheader5p .banner5button {
   font-size: 16px;
@@ -1605,6 +1604,7 @@ body.menu-open .overlay {
     flex-direction: column;
     width: auto;
     max-width: 700px;
+    font-family: "LXGW WenKai Mono TC", sans-serif;
     gap: 20px;
   }
   .smallheader5p .pp {
@@ -1682,10 +1682,10 @@ body.menu-open .overlay {
     height: 100%;
   }
   .smallheader5 {
-    padding-top: 40px;
+    padding-top: 24px;
   }
   .smallheader5 h3 {
-    font-size: 32px;
+    font-size: 24px;
     margin-bottom: 30px;
   }
   .smallheader5 h3::after {
@@ -1826,5 +1826,152 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
     width: 40px;
     height: 40px;
     font-size: 16px;
+  }
+}
+/* 关于我们区块样式 */
+.letter1 {
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* 靠右對齊 */
+  align-items: center;
+  padding: 60px 100px;
+  min-height: 550px;
+  overflow: hidden;
+}
+.letter1 .letter1-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.7) grayscale(0.2);
+}
+.letter1 .about1 {
+  position: relative;
+  z-index: 2;
+  width: 550px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 20px;
+  background: rgba(121, 46, 46, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* 兼容性 */
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+}
+.letter1 .about1 .love45 {
+  width: 80px;
+  height: auto;
+  margin-bottom: 5px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)); /* 給 Logo 增加輕微陰影 */
+}
+.letter1 .about1-text {
+  font-size: 32px; /* ⭐ 標題字體更大，更顯眼 */
+  margin-bottom: 0;
+  word-wrap: break-word;
+  width: 100%;
+  position: relative;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* 增加文字陰影 */
+}
+.letter1 .about1-text2 {
+  font-size: 17px; /* ⭐ 內容文字字體稍微增大 */
+  margin-bottom: 10px; /* ⭐ 調整與按鈕的間距 */
+  word-wrap: break-word;
+  width: 100%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 增加文字陰影 */
+}
+@media (max-width: 1023px) {
+  .letter1 {
+    padding: 50px 50px; /* ⭐ 調整 padding */
+    min-height: 480px;
+  }
+  .letter1 .about1 {
+    width: 500px; /* ⭐ 調整寬度 */
+    padding: 30px; /* ⭐ 調整內邊距 */
+    gap: 20px;
+  }
+  .letter1 .about1 .love45 {
+    width: 70px;
+  }
+  .letter1 .about1-text {
+    font-size: 28px;
+  }
+  .letter1 .about1-text::after {
+    bottom: -8px;
+    width: 50px;
+  }
+  .letter1 .about1-text2 {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .letter1 .about1 .buttom1 {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .letter1 {
+    justify-content: center; /* ⭐ 讓 .about1 在水平方向居中 */
+    align-items: center;
+    padding: 40px 20px; /* ⭐ 調整 padding */
+    min-height: 400px; /* ⭐ 降低最小高度 */
+  }
+  .letter1 .about1 {
+    width: 95%; /* ⭐ 讓卡片佔據大部分寬度 */
+    max-width: 400px; /* ⭐ 限制最大寬度，防止過寬 */
+    padding: 25px; /* ⭐ 調整內邊距 */
+    gap: 15px; /* ⭐ 縮小間距 */
+  }
+  .letter1 .about1 .love45 {
+    width: 60px; /* ⭐ 再次縮小 Logo */
+  }
+  .letter1 .about1-text {
+    font-size: 24px; /* ⭐ 標題字體再縮小 */
+  }
+  .letter1 .about1-text::after {
+    bottom: -6px;
+    width: 40px;
+    height: 2px;
+  }
+  .letter1 .about1-text2 {
+    font-size: 14px; /* ⭐ 內容文字字體再縮小 */
+    line-height: 1.6;
+    margin-bottom: 5px;
+  }
+  .letter1 .about1 .buttom1 {
+    padding: 9px 20px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .letter1 {
+    padding: 30px 15px;
+    min-height: 350px;
+  }
+  .letter1 .about1 {
+    padding: 20px;
+    gap: 12px;
+  }
+  .letter1 .about1 .love45 {
+    width: 50px;
+  }
+  .letter1 .about1-text {
+    font-size: 20px;
+  }
+  .letter1 .about1-text2 {
+    font-size: 13px;
+  }
+  .letter1 .about1 .buttom1 {
+    padding: 8px 18px;
+    font-size: 13px;
   }
 }/*# sourceMappingURL=style.css.map */

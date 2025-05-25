@@ -1325,7 +1325,7 @@ body.menu-open {
     }
 }
 
-// //banner6
+// //banner5
 
 .banner5 {
     width: 100%;
@@ -1335,6 +1335,7 @@ body.menu-open {
     padding-bottom: 60px;
     background-color: #fcfcfc;
     font-family: "ZCOOL KuaiLe", sans-serif;
+
 }
 
 // SVG装饰样式
@@ -1365,10 +1366,11 @@ body.menu-open {
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
-
+    font-family: $font-body;
+    
     h3 {
          @extend %article-text-style ;
-        font-size: 48px;
+        font-size: 26px;
         color: #792E2E;
         margin: 0 auto 50px;
         position: relative;
@@ -1397,8 +1399,6 @@ body.menu-open {
     padding: 0 20px;
 
     .pp {
-        // @extend %menu-item-style-v;
-        // @extend %simplewrite;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
@@ -1410,12 +1410,14 @@ body.menu-open {
 
         p.left {
             text-align: left;
+            font-family: $font-body;
+            @extend %article-text-style;
+
         }
 
         p.right {
             text-align: center;
-            font-weight: bold;
-            color: #792E2E;
+            @extend %article-text-style;
         }
     }
 
@@ -1425,28 +1427,28 @@ body.menu-open {
     }
 }
 
-// 卡片滾動區域 - ⭐ 這裡開始是為輪播做的主要調整
+// 卡片滾動區域 -  這裡開始是為輪播做的主要調整
 .smallphoto11 {
     margin-top: 80px;
     padding: 32px 0;
     position: relative;
-    display: flex; // ⭐ 改回 flex 佈局
-    overflow-x: auto; // ⭐ 允許水平滾動
-    scroll-behavior: smooth; // ⭐ 平滑滾動
-    gap: 24px; // ⭐ 卡片間距
-    scrollbar-width: none; // ⭐ 隱藏滾動條 (Firefox)
-    -ms-overflow-style: none; // ⭐ 隱藏滾動條 (IE/Edge)
-    padding: 0 40px; // ⭐ 為了讓兩邊的卡片能看到一點，增加左右 padding
+    display: flex; // 改回 flex 佈局
+    overflow-x: auto; //  允許水平滾動
+    scroll-behavior: smooth; // 平滑滾動
+    gap: 24px; //  卡片間距
+    scrollbar-width: none; //隱藏滾動條 (Firefox)
+    -ms-overflow-style: none; // 隱藏滾動條 (IE/Edge)
+    padding: 0 40px; // 為了讓兩邊的卡片能看到一點，增加左右 padding
     /* 如果要完全隱藏滾動條，確保所有瀏覽器兼容性 */
     &::-webkit-scrollbar {
-        display: none; // ⭐ 隱藏滾動條 (Chrome/Safari/Opera)
+        display: none; //  隱藏滾動條 (Chrome/Safari/Opera)
     }
 
     /* 移除上方愛心裝飾 (之前為網格佈局移除的，輪播也不太需要) */
     // &::before { ... }
 
     .news-card {
-        flex: 0 0 320px; // ⭐ 固定卡片寬度，確保每張卡片大小一致
+        flex: 0 0 320px; //固定卡片寬度，確保每張卡片大小一致
         position: relative;
         background: #fff;
         border-radius: 16px;
@@ -1688,6 +1690,7 @@ body.menu-open {
         flex-direction: column;
         width: auto;
         max-width: 700px;
+      font-family: $font-body;
         gap: 20px;
         .pp {
             text-align: center;
@@ -1775,9 +1778,9 @@ body.menu-open {
     }
 
     .smallheader5 {
-        padding-top: 40px;
+        padding-top: 24px;
         h3 {
-            font-size: 32px;
+            font-size: 24px;
             margin-bottom: 30px;
             &::after {
                 width: 60px;
@@ -1931,6 +1934,185 @@ body.menu-open {
             width: 40px;
             height: 40px;
             font-size: 16px;
+        }
+    }
+}
+
+// 關於我們banner6
+/* 关于我们区块样式 */
+.letter1 {
+    @extend %article-text-style;
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* 靠右對齊 */
+    align-items: center; 
+    padding: 60px 100px;
+    min-height: 550px;
+    overflow: hidden; 
+    
+    //透明
+    .letter1-photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        z-index: 0; 
+        filter: brightness(0.7) grayscale(0.2);
+    }
+
+
+    .about1 {
+        position: relative; // 確保在背景圖片之上
+        z-index: 2; // 確保在背景圖片之上
+        width: 550px;
+        max-width: 90%; 
+        height: auto;
+        border-radius: 20px;
+        background: rgba(121, 46, 46, 0.15);  
+        backdrop-filter: blur(15px); 
+        -webkit-backdrop-filter: blur(15px); /* 兼容性 */
+        padding: 40px; 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 25px;
+        .love45 {
+            width: 80px; 
+            height: auto;
+            margin-bottom: 5px; 
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); /* 給 Logo 增加輕微陰影 */
+        }
+
+        &-text {
+            font-size: 24px; /* ⭐ 標題字體更大，更顯眼 */
+             @extend %article-text-style;
+            margin-bottom: 0;
+            word-wrap: break-word;
+            width: 100%;
+            position: relative;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* 增加文字陰影 */
+        }
+
+        &-text2 {
+            font-size: 17px; /* ⭐ 內容文字字體稍微增大 */
+            
+            margin-bottom: 10px; /* ⭐ 調整與按鈕的間距 */
+            word-wrap: break-word;
+            width: 100%;
+              @extend %article-text-style;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* 增加文字陰影 */
+        }
+
+        .buttom1 {
+         @extend  %button-base
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .letter1 {
+        padding: 50px 50px; /* ⭐ 調整 padding */
+        min-height: 480px;
+
+        .about1 {
+            width: 500px; /* ⭐ 調整寬度 */
+            padding: 30px; /* ⭐ 調整內邊距 */
+            gap: 20px;
+
+            .love45 {
+                width: 70px;
+            }
+
+            &-text {
+                font-size: 28px;
+                &::after {
+                    bottom: -8px;
+                    width: 50px;
+                }
+            }
+            &-text2 {
+                font-size: 15px;
+                margin-bottom: 8px;
+            }
+            .buttom1 {
+                padding: 10px 24px;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+// 手機設備 (通常是 767px 及以下)
+@media (max-width: 767px) {
+    .letter1 {
+        // ⭐ 手機上內容區塊垂直置中
+        justify-content: center; /* ⭐ 讓 .about1 在水平方向居中 */
+        align-items: center;
+        padding: 40px 20px; /* ⭐ 調整 padding */
+        min-height: 400px; /* ⭐ 降低最小高度 */
+
+        .about1 {
+            width: 95%; /* ⭐ 讓卡片佔據大部分寬度 */
+            max-width: 400px; /* ⭐ 限制最大寬度，防止過寬 */
+            padding: 25px; /* ⭐ 調整內邊距 */
+            gap: 15px; /* ⭐ 縮小間距 */
+
+            .love45 {
+                width: 60px; /* ⭐ 再次縮小 Logo */
+            }
+
+            &-text {
+                font-size: 24px; /* ⭐ 標題字體再縮小 */
+                &::after {
+                    bottom: -6px;
+                    width: 40px;
+                    height: 2px;
+                }
+            }
+            &-text2 {
+                font-size: 14px; /* ⭐ 內容文字字體再縮小 */
+                line-height: 1.6;
+                margin-bottom: 5px;
+            }
+            .buttom1 {
+                padding: 9px 20px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+// 超小手機 (480px 及以下)
+@media (max-width: 480px) {
+    .letter1 {
+        padding: 30px 15px;
+        min-height: 350px;
+
+        .about1 {
+            padding: 20px;
+            gap: 12px;
+
+            .love45 {
+                width: 50px;
+            }
+
+            &-text {
+                font-size: 20px;
+            }
+            &-text2 {
+                font-size: 13px;
+            }
+            .buttom1 {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
         }
     }
 }
