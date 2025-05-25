@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初心網站</title>
+    <link rel="stylesheet" href="/css/style.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="page page-1">
+            <img src="path/to/your/Frame242.png" alt="頁面 1 內容">
+            <div class="hover-detector" aria-label="點擊開始吧"></div>
+        </div>
+
+        <div class="page page-2">
+            <img src="path/to/your/Frame243.png" alt="頁面 2 內容">
+        </div>
+    </div>
+    <!-- nav  -->
+    <header class="nav-wrapper">
+        <nav class="nav-bar">
+
+            <button class="hamburger-icon" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="#news" class="menu-link-item">留學攻略</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#service" class="menu-link-item">最新消息</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#about" class="menu-link-item">關於我們</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#contact" class="menu-link-item">會員登錄</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 這裏是卡通人物換圖區 -->
+    <div class="app-wrapper">
+
+        <div class="intro-page page-one">
+
+            <img src="圖片" alt="Page One Content">
+
+            <div class="click-overlay overlay-one" aria-label="點擊開始吧"></div>
+
+        </div>
+
+        <div class="intro-page page-two">
+
+            <img src="圖片" alt="Page Two Content">
+
+            <div class="click-overlay overlay-two" aria-label="點擊開始吧"></div>
+
+        </div>
+    </div>
+
+    <!-- 聯係我們 -->
+    <section class="contact-us-section">
+        <div class="contact-us-container">
+            <h2>聯絡我們</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" name="name" required placeholder="您的姓名">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">電子郵件</label>
+                    <input type="email" id="email" name="email" required placeholder="您的電子郵件地址">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">電話號碼 (選填)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="您的電話號碼">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">您的留言</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="請輸入您的留言..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">送出</button>
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- 自訂的js (一定放在最下面) -->
+    <script src="/js/newFile.js"></script>
+</body>
+
+</html>
