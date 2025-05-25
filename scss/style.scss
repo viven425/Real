@@ -1970,7 +1970,7 @@ body.menu-open {
         max-width: 90%; 
         height: auto;
         border-radius: 20px;
-        background: rgba(121, 46, 46, 0.15);  
+        background: rgba(214, 202, 202, 0.15);  
         backdrop-filter: blur(15px); 
         -webkit-backdrop-filter: blur(15px); /* 兼容性 */
         padding: 40px; 
@@ -1991,7 +1991,7 @@ body.menu-open {
         }
 
         &-text {
-            font-size: 24px; /* ⭐ 標題字體更大，更顯眼 */
+            font-size: 24px; 
              @extend %article-text-style;
             margin-bottom: 0;
             word-wrap: break-word;
@@ -2011,7 +2011,8 @@ body.menu-open {
         }
 
         .buttom1 {
-         @extend  %button-base
+         @extend  %button-base;
+         font-size: 16px; 
         }
     }
 }
