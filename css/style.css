@@ -1855,7 +1855,7 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
   max-width: 90%;
   height: auto;
   border-radius: 20px;
-  background: rgba(121, 46, 46, 0.15);
+  background: rgba(214, 202, 202, 0.15);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px); /* 兼容性 */
   padding: 40px;
