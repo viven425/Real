@@ -647,11 +647,13 @@ body.menu-open .overlay {
 
 .photo2 {
   width: 100%;
-  height: 400px; /* 固定高度，確保一致性 */
+  height: 400px;
+  /* 固定高度，確保一致性 */
   border-radius: 16px;
   /* 關鍵設置：始終顯示圖片中間部分 */
   object-fit: cover;
-  object-position: center center; /* 無論圖片比例如何，始終顯示中心部分 */
+  object-position: center center;
+  /* 無論圖片比例如何，始終顯示中心部分 */
   /* 額外的視覺效果 */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -699,18 +701,23 @@ body.menu-open .overlay {
   }
   .small-banner2 {
     flex: 1 1 100%;
-    order: 2; /* 文字內容在下方 */
+    order: 2;
+    /* 文字內容在下方 */
   }
   .photo-container {
     flex: 1 1 100%;
-    position: static; /* 取消 sticky */
-    order: 1; /* 圖片在上方 */
+    position: static;
+    /* 取消 sticky */
+    order: 1;
+    /* 圖片在上方 */
     max-width: 500px;
     margin: 0 auto;
   }
   .photo2 {
-    height: 320px; /* 平板上稍微降低高度 */
-    object-position: center center; /* 仍然保持居中 */
+    height: 320px;
+    /* 平板上稍微降低高度 */
+    object-position: center center;
+    /* 仍然保持居中 */
   }
   .button1 {
     align-self: center;
@@ -733,7 +740,8 @@ body.menu-open .overlay {
   }
   .banner2-text p {
     font-size: 1rem;
-    text-align: left; /* 手機上文字保持左對齊，便於閱讀 */
+    text-align: left;
+    /* 手機上文字保持左對齊，便於閱讀 */
   }
   .photo-container {
     flex: 1 1 100%;
@@ -742,9 +750,12 @@ body.menu-open .overlay {
     margin-bottom: 20px;
   }
   .photo2 {
-    height: 280px; /* 手機上適中的高度 */
-    object-position: center center; /* 依然保持居中顯示 */
-    border-radius: 12px; /* 手機上稍小的圓角 */
+    height: 280px;
+    /* 手機上適中的高度 */
+    object-position: center center;
+    /* 依然保持居中顯示 */
+    border-radius: 12px;
+    /* 手機上稍小的圓角 */
   }
   .button1 {
     align-self: center;
@@ -758,8 +769,10 @@ body.menu-open .overlay {
     gap: 25px;
   }
   .photo2 {
-    height: 240px; /* 小手機上更緊湊的高度 */
-    object-position: center center; /* 始終居中 */
+    height: 240px;
+    /* 小手機上更緊湊的高度 */
+    object-position: center center;
+    /* 始終居中 */
   }
   .small-banner2 h2 {
     font-size: 1.5rem;
@@ -784,8 +797,10 @@ body.menu-open .overlay {
 .photo2 {
   /* 這些設置確保無論原圖是橫圖、豎圖還是正方形，
      都會裁剪並顯示圖片的中心部分 */
-  object-fit: cover; /* 保持長寬比，裁剪多餘部分 */
-  object-position: 50% 50%; /* 精確指定顯示圖片的中心點 */
+  object-fit: cover;
+  /* 保持長寬比，裁剪多餘部分 */
+  object-position: 50% 50%;
+  /* 精確指定顯示圖片的中心點 */
   /* 防止圖片變形 */
   width: 100%;
   display: block;
@@ -793,15 +808,18 @@ body.menu-open .overlay {
 
 /* 如果需要更精確的控制，可以使用這個類別 */
 .photo2.center-focus {
-  object-position: center 40%; /* 如果你的圖片主要內容在稍微偏上的位置 */
+  object-position: center 40%;
+  /* 如果你的圖片主要內容在稍微偏上的位置 */
 }
 
 .photo2.top-focus {
-  object-position: center 30%; /* 如果圖片重點在上方 */
+  object-position: center 30%;
+  /* 如果圖片重點在上方 */
 }
 
 .photo2.bottom-focus {
-  object-position: center 70%; /* 如果圖片重點在下方 */
+  object-position: center 70%;
+  /* 如果圖片重點在下方 */
 }
 
 @keyframes float {
@@ -999,7 +1017,8 @@ body.menu-open .overlay {
   padding: 60px 20px;
   font-family: "ZCOOL KuaiLe", sans-serif;
   text-align: center;
-  background-color: #ffffff; /* 確保背景色，如果沒有定義 */
+  background-color: #ffffff;
+  /* 確保背景色，如果沒有定義 */
 }
 
 /* 頂部標題區 */
@@ -1009,9 +1028,12 @@ body.menu-open .overlay {
 .header4 .down-arrow {
   width: 40px;
   margin-bottom: 20px;
-  display: block; /* 確保獨立一行，便於 margin auto 居中 */
-  margin-left: auto; /* 水平居中 */
-  margin-right: auto; /* 水平居中 */
+  display: block;
+  /* 確保獨立一行，便於 margin auto 居中 */
+  margin-left: auto;
+  /* 水平居中 */
+  margin-right: auto;
+  /* 水平居中 */
   animation: bounce 2s infinite ease-in-out;
   filter: drop-shadow(0 2px 4px rgba(121, 46, 46, 0.3));
 }
@@ -1025,49 +1047,63 @@ body.menu-open .overlay {
   font-weight: 400;
   line-height: 150%;
   letter-spacing: 5.7px;
-  margin: 0 auto; /* 確保 h3 自身居中 */
-  max-width: 600px; /* 限制最大寬度，避免文字過長在一行 */
+  margin: 0 auto;
+  /* 確保 h3 自身居中 */
+  max-width: 600px;
+  /* 限制最大寬度，避免文字過長在一行 */
 }
 
 /* 內容區塊通用樣式 */
 .banner4photo {
-  padding: 0 120px; /* 左右內邊距，主要影響桌面版 */
+  padding: 0 120px;
+  /* 左右內邊距，主要影響桌面版 */
 }
 
 .content-block {
   display: flex;
   align-items: center;
   border-radius: 20px;
-  margin: 0 auto 40px; /* 上下間距和水平居中 */
+  margin: 0 auto 40px;
+  /* 上下間距和水平居中 */
   position: relative;
   overflow: hidden;
-  justify-content: center; /* 讓內容在主軸上居中 */
-  max-width: 1200px; /* 限制每個內容區塊的最大寬度 */
+  justify-content: center;
+  /* 讓內容在主軸上居中 */
+  max-width: 1200px;
+  /* 限制每個內容區塊的最大寬度 */
   /* 圖片區域 */
   /* 中間箭頭 */
   /* 文字內容 */
   /* 反向區塊樣式 */
 }
 .content-block .content-image {
-  width: 740px; /* 桌面端圖片寬度 */
-  height: 310px; /* 桌面端圖片高度 */
+  width: 740px;
+  /* 桌面端圖片寬度 */
+  height: 310px;
+  /* 桌面端圖片高度 */
   object-fit: cover;
   border-radius: 8px;
-  flex-shrink: 0; /* 防止圖片縮小 */
-  margin: 0 30px; /* 圖片與箭頭/文字之間的間距 */
+  flex-shrink: 0;
+  /* 防止圖片縮小 */
+  margin: 0 30px;
+  /* 圖片與箭頭/文字之間的間距 */
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 .content-block .middle-arrow {
   width: 60px;
   flex-shrink: 0;
-  margin: 0 20px; /* 箭頭與圖片/文字之間的間距 */
+  margin: 0 20px;
+  /* 箭頭與圖片/文字之間的間距 */
   animation: pulse 1.5s infinite ease-in-out;
   transition: all 0.3s;
 }
 .content-block .text-content {
-  flex: 1; /* 佔據剩餘空間 */
-  min-width: 300px; /* 確保文字內容有最小寬度 */
-  padding: 0 20px; /* 文字內容內邊距 */
+  flex: 1;
+  /* 佔據剩餘空間 */
+  min-width: 300px;
+  /* 確保文字內容有最小寬度 */
+  padding: 0 20px;
+  /* 文字內容內邊距 */
   text-align: left;
 }
 .content-block .text-content h3 {
@@ -1132,22 +1168,27 @@ body.menu-open .overlay {
 }
 @media (max-width: 1023px) {
   .banner4 {
-    padding: 50px 20px; /* 平板的整體內邊距 */
+    padding: 50px 20px;
+    /* 平板的整體內邊距 */
   }
   .banner4photo {
-    padding: 0 40px; /* 平板的左右內邊距縮小 */
+    padding: 0 40px;
+    /* 平板的左右內邊距縮小 */
   }
   .header4 {
     margin-bottom: 40px;
   }
   .header4 h3 {
-    font-size: 28px; /* 平板標題字體稍微縮小 */
+    font-size: 28px;
+    /* 平板標題字體稍微縮小 */
     letter-spacing: 4px;
   }
   .content-block {
     flex-direction: column;
-    margin-bottom: 30px; /* 區塊間距縮小 */
-    padding: 20px; /* 內容區塊內部邊距 */
+    margin-bottom: 30px;
+    /* 區塊間距縮小 */
+    padding: 20px;
+    /* 內容區塊內部邊距 */
   }
   .content-block.reversed {
     flex-direction: column;
@@ -1164,21 +1205,28 @@ body.menu-open .overlay {
   }
   .content-block .content-image {
     width: 80%;
-    height: auto; /* 保持圖片比例 */
+    height: auto;
+    /* 保持圖片比例 */
     max-width: 450px;
     margin: 15px 0;
   }
   .content-block .middle-arrow {
-    width: 50px; /* 箭頭尺寸縮小 */
+    width: 50px;
+    /* 箭頭尺寸縮小 */
     transform: rotate(90deg);
-    margin: 20px 0; /* 箭頭上下間距縮小 */
+    margin: 20px 0;
+    /* 箭頭上下間距縮小 */
     animation: bounce 2s infinite ease-in-out !important;
   }
   .content-block .text-content {
-    width: 100%; /*容佔滿寬度 */
-    min-width: auto; /* 移除最小寬度限制 */
-    margin: 15px 0; /* 文字內容上下間距 */
-    padding: 0 15px; /* 文字內容內邊距 */
+    width: 100%;
+    /*容佔滿寬度 */
+    min-width: auto;
+    /* 移除最小寬度限制 */
+    margin: 15px 0;
+    /* 文字內容上下間距 */
+    padding: 0 15px;
+    /* 文字內容內邊距 */
     text-align: center;
   }
   .content-block .text-content h3 {
@@ -1186,7 +1234,8 @@ body.menu-open .overlay {
     margin-bottom: 10px;
   }
   .content-block .text-content h3::after {
-    width: 30px; /* 下劃線縮小 */
+    width: 30px;
+    /* 下劃線縮小 */
     left: 50%;
     transform: translateX(-50%);
   }
@@ -1214,7 +1263,8 @@ body.menu-open .overlay {
     letter-spacing: 2px;
   }
   .content-block {
-    flex-direction: column-reverse; /* 將內容堆疊順序反轉：文字在上，圖片在下 */
+    flex-direction: column-reverse;
+    /* 將內容堆疊順序反轉：文字在上，圖片在下 */
     margin-bottom: 30px;
     padding: 20px;
   }
@@ -1616,7 +1666,8 @@ body.menu-open .overlay {
     max-width: 100%;
     font-size: 16px;
   }
-  .smallheader5p .pp p.left, .smallheader5p .pp p.right {
+  .smallheader5p .pp p.left,
+  .smallheader5p .pp p.right {
     text-align: center;
   }
   .smallheader5p .banner5button {
@@ -1627,7 +1678,8 @@ body.menu-open .overlay {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* iOS 滑動優化 */
+    -webkit-overflow-scrolling: touch;
+    /* iOS 滑動優化 */
     gap: 20px;
     padding: 0 30px;
     margin-top: 40px;
@@ -1660,7 +1712,8 @@ body.menu-open .overlay {
     font-size: 12px;
     padding: 3px 8px;
   }
-  .smallphoto11 .news-card .buttom2, .smallphoto11 .news-card .read-more-btn {
+  .smallphoto11 .news-card .buttom2,
+  .smallphoto11 .news-card .read-more-btn {
     font-size: 13px;
     padding: 7px 16px;
   }
@@ -1725,8 +1778,9 @@ body.menu-open .overlay {
     display: none;
   }
   .smallphoto11 .news-card {
-    flex: 0 0 85%; /*
-max-width: 300px; /* 限制最大寬度，防止過大 */
+    flex: 0 0 85%;
+    /*
+          max-width: 300px; /* 限制最大寬度，防止過大 */
   }
   .smallphoto11 .news-card .card-image-wrapper {
     height: 160px;
@@ -1755,7 +1809,8 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
     gap: 10px;
     padding: 12px 16px 16px;
   }
-  .smallphoto11 .news-card .card-actions .buttom2, .smallphoto11 .news-card .card-actions .read-more-btn {
+  .smallphoto11 .news-card .card-actions .buttom2,
+  .smallphoto11 .news-card .card-actions .read-more-btn {
     width: 100%;
     text-align: center;
     padding: 10px 0;
@@ -1798,8 +1853,10 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
     margin-top: 20px;
   }
   .smallphoto11 .news-card {
-    flex: 0 0 90%; /*超小手機卡片佔父容器寬度 90% */
-    max-width: 280px; /* 限制最大寬度 */
+    flex: 0 0 90%;
+    /*超小手機卡片佔父容器寬度 90% */
+    max-width: 280px;
+    /* 限制最大寬度 */
   }
   .smallphoto11 .news-card .card-image-wrapper {
     height: 140px;
@@ -1818,7 +1875,8 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
     padding: 10px 12px 12px;
     gap: 8px;
   }
-  .smallphoto11 .news-card .buttom2, .smallphoto11 .news-card .read-more-btn {
+  .smallphoto11 .news-card .buttom2,
+  .smallphoto11 .news-card .read-more-btn {
     padding: 8px 0;
     font-size: 12px;
   }
@@ -1836,7 +1894,8 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
 .letter1 {
   position: relative;
   display: flex;
-  justify-content: flex-end; /* 靠右對齊 */
+  justify-content: flex-end;
+  /* 靠右對齊 */
   align-items: center;
   padding: 60px 100px;
   min-height: 550px;
@@ -1861,7 +1920,8 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
   border-radius: 20px;
   background: rgba(214, 202, 202, 0.15);
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px); /* 兼容性 */
+  -webkit-backdrop-filter: blur(15px);
+  /* 兼容性 */
   padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1876,7 +1936,8 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
   width: 80px;
   height: auto;
   margin-bottom: 5px;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1)); /* 給 Logo 增加輕微陰影 */
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  /* 給 Logo 增加輕微陰影 */
 }
 .letter1 .about1-text {
   font-size: 24px;
@@ -1884,14 +1945,18 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
   word-wrap: break-word;
   width: 100%;
   position: relative;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* 增加文字陰影 */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  /* 增加文字陰影 */
 }
 .letter1 .about1-text2 {
-  font-size: 17px; /* ⭐ 內容文字字體稍微增大 */
-  margin-bottom: 10px; /* ⭐ 調整與按鈕的間距 */
+  font-size: 17px;
+  /* ⭐ 內容文字字體稍微增大 */
+  margin-bottom: 10px;
+  /* ⭐ 調整與按鈕的間距 */
   word-wrap: break-word;
   width: 100%;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 增加文字陰影 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  /* 增加文字陰影 */
 }
 .letter1 .about1 .buttom1 {
   font-size: 16px;
@@ -1899,12 +1964,15 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
 
 @media (max-width: 1023px) {
   .letter1 {
-    padding: 50px 50px; /* ⭐ 調整 padding */
+    padding: 50px 50px;
+    /* ⭐ 調整 padding */
     min-height: 480px;
   }
   .letter1 .about1 {
-    width: 500px; /* ⭐ 調整寬度 */
-    padding: 30px; /* ⭐ 調整內邊距 */
+    width: 500px;
+    /* ⭐ 調整寬度 */
+    padding: 30px;
+    /* ⭐ 調整內邊距 */
     gap: 20px;
   }
   .letter1 .about1 .love45 {
@@ -1928,22 +1996,31 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
 }
 @media (max-width: 767px) {
   .letter1 {
-    justify-content: center; /* ⭐ 讓 .about1 在水平方向居中 */
+    justify-content: center;
+    /* ⭐ 讓 .about1 在水平方向居中 */
     align-items: center;
-    padding: 40px 20px; /* ⭐ 調整 padding */
-    min-height: 400px; /* ⭐ 降低最小高度 */
+    padding: 40px 20px;
+    /* ⭐ 調整 padding */
+    min-height: 400px;
+    /* ⭐ 降低最小高度 */
   }
   .letter1 .about1 {
-    width: 95%; /* ⭐ 讓卡片佔據大部分寬度 */
-    max-width: 400px; /* ⭐ 限制最大寬度，防止過寬 */
-    padding: 25px; /* ⭐ 調整內邊距 */
-    gap: 15px; /* ⭐ 縮小間距 */
+    width: 95%;
+    /* ⭐ 讓卡片佔據大部分寬度 */
+    max-width: 400px;
+    /* ⭐ 限制最大寬度，防止過寬 */
+    padding: 25px;
+    /* ⭐ 調整內邊距 */
+    gap: 15px;
+    /* ⭐ 縮小間距 */
   }
   .letter1 .about1 .love45 {
-    width: 60px; /* ⭐ 再次縮小 Logo */
+    width: 60px;
+    /* ⭐ 再次縮小 Logo */
   }
   .letter1 .about1-text {
-    font-size: 24px; /* ⭐ 標題字體再縮小 */
+    font-size: 24px;
+    /* ⭐ 標題字體再縮小 */
   }
   .letter1 .about1-text::after {
     bottom: -6px;
@@ -1951,7 +2028,8 @@ max-width: 300px; /* 限制最大寬度，防止過大 */
     height: 2px;
   }
   .letter1 .about1-text2 {
-    font-size: 14px; /* ⭐ 內容文字字體再縮小 */
+    font-size: 14px;
+    /* ⭐ 內容文字字體再縮小 */
     line-height: 1.6;
     margin-bottom: 5px;
   }
@@ -2192,8 +2270,10 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
   height: 400px;
   overflow: hidden;
   position: relative;
-  border: 2px solid #007bff; /* 加個邊框方便觀察 */
-  background-color: #e9e9e9; /* 容器背景色，防止圖片載入前空白 */
+  border: 2px solid #007bff;
+  /* 加個邊框方便觀察 */
+  background-color: #e9e9e9;
+  /* 容器背景色，防止圖片載入前空白 */
 }
 
 .current-image {
@@ -2210,3 +2290,7 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
 .current-image.active {
   opacity: 1;
 }
+
+.current-image.instant {
+  transition: none !important;
+}/*# sourceMappingURL=style.css.map */
