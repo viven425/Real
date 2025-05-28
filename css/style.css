@@ -64,7 +64,7 @@
   letter-spacing: 5.8px;
 }
 
-.smallheader5p .banner5button, .letter1 .about1 .buttom1 {
+.smallheader5p .banner5button, .letter1 .about1 .buttom1, .change-image-button {
   display: inline-flex;
   padding: 10.5px 36.5px;
   justify-content: center;
@@ -82,7 +82,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.smallheader5p .banner5button:hover, .letter1 .about1 .buttom1:hover {
+.smallheader5p .banner5button:hover, .letter1 .about1 .buttom1:hover, .change-image-button:hover {
   background: #7a403f;
 }
 
@@ -129,7 +129,7 @@
   background-color: var(--white-color);
 }
 
-.smallheader5p .banner5button, .letter1 .about1 .buttom1 {
+.smallheader5p .banner5button, .letter1 .about1 .buttom1, .change-image-button {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 8px;
@@ -164,6 +164,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
   font-size: 100%;
   line-height: 1.5;
+  background-color: #e6cccc;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -665,7 +666,7 @@ body.menu-open .overlay {
 /* 大型桌機 (1200px+) */
 @media (min-width: 1200px) {
   .banner2 {
-    padding: 100px 5%;
+    padding: 100px 15%;
     gap: 60px;
   }
   .photo2 {
@@ -753,7 +754,7 @@ body.menu-open .overlay {
 /* 超小手機 (最大 480px) */
 @media (max-width: 480px) {
   .banner2 {
-    padding: 30px 4%;
+    padding: 40px 4%;
     gap: 25px;
   }
   .photo2 {
@@ -2166,4 +2167,46 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
     gap: 15px;
     text-align: center;
   }
+}
+
+/* CSS 樣式 - 確保圖片固定位置和切換效果 */
+.image-changer {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.image-changer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-display {
+  width: 900px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #007bff; /* 加個邊框方便觀察 */
+  background-color: #e9e9e9; /* 容器背景色，防止圖片載入前空白 */
+}
+
+.current-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.current-image.active {
+  opacity: 1;
 }

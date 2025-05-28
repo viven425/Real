@@ -61,3 +61,31 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.addEventListener('click', closeMenu);
     }
 });
+
+// 第二页换图功能
+
+ document.addEventListener('DOMContentLoaded', () => {
+            const changeButton = document.querySelector('.change-image-button');
+            // 根據 src 屬性選取圖片，確保選擇到正確的圖片
+            const beforeImage = document.querySelector('.current-image[src*="before.svg"]');
+            const afterImage = document.querySelector('.current-image[src*="after.svg"]');
+
+            // 檢查所有必要的元素是否存在，防止錯誤
+            if (changeButton && beforeImage && afterImage) {
+                changeButton.addEventListener('mouseenter', () => {
+                    // 當滑鼠進入按鈕時，隱藏第一張圖片，顯示第二張圖片
+                    beforeImage.classList.remove('active');
+                    afterImage.classList.add('active');
+                    console.log('滑鼠進入：顯示 after.svg'); // 偵錯訊息
+                });
+
+                changeButton.addEventListener('mouseleave', () => {
+                    // 當滑鼠離開按鈕時，隱藏第二張圖片，顯示第一張圖片
+                    afterImage.classList.remove('active');
+                    beforeImage.classList.add('active');
+                    console.log('滑鼠離開：顯示 before.svg'); // 偵錯訊息
+                });
+            } else {
+                console.error('錯誤：找不到按鈕或圖片元素。請檢查 HTML 選擇器和圖片路徑。');
+            }
+        });
