@@ -26,9 +26,9 @@ const items = document.querySelectorAll(".carousel-item");
 let current = 0;
 
 setInterval(() => {
-  items[current].classList.remove("active");
-  current = (current + 1) % items.length;
-  items[current].classList.add("active");
+    items[current].classList.remove("active");
+    current = (current + 1) % items.length;
+    items[current].classList.add("active");
 }, 5000);
 
 //漢堡按鈕
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger-icon');
     const body = document.body;
     const menu = document.querySelector('.menu');
-    const overlay = document.querySelector('.overlay'); 
+    const overlay = document.querySelector('.overlay');
 
     const closeMenu = () => { // 創建一個關閉菜單的函數
         if (body.classList.contains('menu-open')) {
@@ -66,30 +66,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const changeButton = document.querySelector('.change-image-button');
-    const beforeImage = document.querySelector('.current-image[src*="before.svg"]');
-    const afterImage = document.querySelector('.current-image[src*="after.svg"]');
+    const beforeImage = document.querySelector('.current-image:first-child');
+    const afterImage = document.querySelector('.current-image:last-child');
+
+    console.log('按鈕:', changeButton);
+    console.log('Before元素:', beforeImage);
+    console.log('After元素:', afterImage);
 
     if (changeButton && beforeImage && afterImage) {
-        // 初始狀態
-        beforeImage.style.opacity = '1';
-        afterImage.style.opacity = '0';
-
         changeButton.addEventListener('mouseenter', () => {
+            console.log('滑鼠進入');
             beforeImage.style.transition = 'none';
             afterImage.style.transition = 'none';
             beforeImage.style.opacity = '0';
             afterImage.style.opacity = '1';
-            console.log('滑鼠進入按鈕：顯示 after.svg');
         });
 
         changeButton.addEventListener('mouseleave', () => {
+            console.log('滑鼠離開');
             beforeImage.style.transition = 'none';
             afterImage.style.transition = 'none';
-            afterImage.style.opacity = '0';
             beforeImage.style.opacity = '1';
-            console.log('滑鼠離開按鈕：顯示 before.svg');
+            afterImage.style.opacity = '0';
         });
     } else {
-        console.error('否正確。');
+        console.error('找不到元素');
     }
 });
