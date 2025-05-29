@@ -64,7 +64,7 @@
   letter-spacing: 5.8px;
 }
 
-.smallheader5p .banner5button, .letter1 .about1 .buttom1, .change-image-button {
+.smallheader5p .banner5button, .letter1 .about1 .buttom1 {
   display: inline-flex;
   padding: 10.5px 36.5px;
   justify-content: center;
@@ -82,7 +82,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.smallheader5p .banner5button:hover, .letter1 .about1 .buttom1:hover, .change-image-button:hover {
+.smallheader5p .banner5button:hover, .letter1 .about1 .buttom1:hover {
   background: #7a403f;
 }
 
@@ -129,7 +129,7 @@
   background-color: var(--white-color);
 }
 
-.smallheader5p .banner5button, .letter1 .about1 .buttom1, .change-image-button {
+.smallheader5p .banner5button, .letter1 .about1 .buttom1 {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 8px;
@@ -2277,7 +2277,6 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
 }
 
 .current-image.active {
