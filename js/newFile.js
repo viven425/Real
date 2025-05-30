@@ -152,70 +152,156 @@ document.addEventListener('DOMContentLoaded', () => {
 //   }
 // });
 
-//導覽列旁邊
+// //導覽列旁邊
+// document.addEventListener('DOMContentLoaded', function () {
+//     const sidebar = document.querySelector('.sidebar-navigation');
+//     const footer = document.querySelector('footer');
+
+//     if (!sidebar || !footer) return;
+
+//     // 使用Intersection Observer API - 更高效可靠
+//     const observer = new IntersectionObserver(
+//         (entries) => {
+//             entries.forEach(entry => {
+//                 if (entry.isIntersecting) {
+//                     sidebar.classList.add('hide-sidebar');
+//                 } else {
+//                     sidebar.classList.remove('hide-sidebar');
+//                 }
+//             });
+//         },
+//         {
+//             root: null,
+//             rootMargin: '-50px 0px 0px 0px', // 提前50px检测
+//             threshold: 0.01
+//         }
+//     );
+
+//     observer.observe(footer);
+
+//     // 導覽列小icon
+//     document.addEventListener("DOMContentLoaded", () => {
+//         const sidebar = document.querySelector(".sidebar-navigation");
+//         const footer = document.querySelector("footer");
+
+//         if ('IntersectionObserver' in window) {
+//             const observer = new IntersectionObserver(entries => {
+//                 entries.forEach(entry => {
+//                     if (entry.isIntersecting) {
+//                         sidebar.classList.add('hide-sidebar');
+//                     } else {
+//                         sidebar.classList.remove('hide-sidebar');
+//                     }
+//                 });
+//             }, {
+//                 root: null,
+//                 threshold: 0
+//             });
+
+//             observer.observe(footer);
+//         } else {
+//             // fallback 使用 scroll 事件監聽
+//             function checkFooterPosition() {
+//                 const footerRect = footer.getBoundingClientRect();
+//                 const triggerPoint = window.innerHeight * 0.8;
+//                 if (footerRect.top < triggerPoint) {
+//                     sidebar.classList.add('hide-sidebar');
+//                 } else {
+//                     sidebar.classList.remove('hide-sidebar');
+//                 }
+//             }
+
+//             window.addEventListener('scroll', () => {
+//                 requestAnimationFrame(checkFooterPosition);
+//             });
+
+//             checkFooterPosition();
+//         }
+//         });
+//     });
+
+//     //手機icon消失
+//     const toggleBtn = document.querySelector('.floating-sidebar-toggle');
+// const sidebar = document.querySelector('.sidebar-navigation');
+
+// if (toggleBtn && sidebar) {
+//   toggleBtn.addEventListener('click', () => {
+//     sidebar.classList.toggle('show-on-mobile');
+//   });
+// }
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const sidebar = document.querySelector('.sidebar-navigation');
+//   const toggleBtn = document.querySelector('.floating-sidebar-toggle');
+//   const mobileBreakpoint = 768;
+
+//   if (toggleBtn && sidebar) {
+//     toggleBtn.addEventListener('click', () => {
+//       sidebar.classList.toggle('show-on-mobile');
+//     });
+
+//     // 監聽視窗尺寸變化
+//     window.addEventListener('resize', () => {
+//       if (window.innerWidth > mobileBreakpoint && sidebar.classList.contains('show-on-mobile')) {
+//         sidebar.classList.remove('show-on-mobile');
+//       }
+//     });
+//   }
+// });
 document.addEventListener('DOMContentLoaded', function () {
-    const sidebar = document.querySelector('.sidebar-navigation');
-    const footer = document.querySelector('footer');
+  const sidebar = document.querySelector('.sidebar-navigation');
+  const footer = document.querySelector('footer');
+  const toggleBtn = document.querySelector('.floating-sidebar-toggle');
+  const mobileBreakpoint = 768;
 
-    if (!sidebar || !footer) return;
+  if (!sidebar || !footer) return;
 
-    // 使用Intersection Observer API - 更高效可靠
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    sidebar.classList.add('hide-sidebar');
-                } else {
-                    sidebar.classList.remove('hide-sidebar');
-                }
-            });
-        },
-        {
-            root: null,
-            rootMargin: '-50px 0px 0px 0px', // 提前50px检测
-            threshold: 0.01
+  // IntersectionObserver - 監控 footer 是否出現，切換 sidebar 顯示
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sidebar.classList.add('hide-sidebar');
+        } else {
+          sidebar.classList.remove('hide-sidebar');
         }
-    );
+      });
+    }, {
+      root: null,
+      rootMargin: '-50px 0px 0px 0px',
+      threshold: 0.01
+    });
 
     observer.observe(footer);
-
-    // 導覽列小icon
-    document.addEventListener("DOMContentLoaded", () => {
-        const sidebar = document.querySelector(".sidebar-navigation");
-        const footer = document.querySelector("footer");
-
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        sidebar.classList.add('hide-sidebar');
-                    } else {
-                        sidebar.classList.remove('hide-sidebar');
-                    }
-                });
-            }, {
-                root: null,
-                threshold: 0
-            });
-
-            observer.observe(footer);
-        } else {
-            // fallback 使用 scroll 事件監聽
-            function checkFooterPosition() {
-                const footerRect = footer.getBoundingClientRect();
-                const triggerPoint = window.innerHeight * 0.8;
-                if (footerRect.top < triggerPoint) {
-                    sidebar.classList.add('hide-sidebar');
-                } else {
-                    sidebar.classList.remove('hide-sidebar');
-                }
-            }
-
-            window.addEventListener('scroll', () => {
-                requestAnimationFrame(checkFooterPosition);
-            });
-
-            checkFooterPosition();
-        }
-        });
+  } else {
+    // fallback - scroll 事件
+    function checkFooterPosition() {
+      const footerRect = footer.getBoundingClientRect();
+      const triggerPoint = window.innerHeight * 0.8;
+      if (footerRect.top < triggerPoint) {
+        sidebar.classList.add('hide-sidebar');
+      } else {
+        sidebar.classList.remove('hide-sidebar');
+      }
+    }
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(checkFooterPosition);
     });
+    checkFooterPosition();
+  }
+
+  // 手機版 sidebar toggle 按鈕行為
+  if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('show-on-mobile');
+    });
+
+    // 視窗寬度變化，超過手機寬度自動關閉側邊欄
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > mobileBreakpoint && sidebar.classList.contains('show-on-mobile')) {
+        sidebar.classList.remove('show-on-mobile');
+      }
+    });
+  }
+});

@@ -765,11 +765,9 @@ body.menu-open {
 }
 
 .button-container {
-  // 按鈕容器現在是 .banner3-container 的 Flex 項目，與 .floating-book 平級
-  // 它會由父容器的 align-items: center; 進行水平居中
-  // 只需要調整它與上方浮動書本區塊的垂直距離
+ 
   margin-top: -30px; // 負值 margin-top 讓按鈕「上移」，靠近浮動書本的最低點
-  // 這個值可能需要你根據實際視覺效果微調
+  
   z-index: 10; // 確保按鈕層級在書本上方
 }
 
@@ -846,7 +844,7 @@ body.menu-open {
   }
 
   .floating-book {
-    // ⭐ 【調整】: 手機上書本尺寸稍微放大，從 280px 改為 320px
+   
     max-width: 320px;
     animation: float 3s ease-in-out infinite;
     margin-top: 16px;
@@ -2691,11 +2689,11 @@ footer {
 }
 @media (max-width: 768px) {
   .sidebar-navigation {
-    display: none;
+    display: none !important;
   }
 
   .floating-sidebar-toggle {
-    display: flex;
+    display: flex!important;
   }
 }
 
@@ -3229,7 +3227,7 @@ form#quizForm {
   border-radius: $radius-l;
   box-shadow: 0 4px 12px ;
   overflow: hidden;
-   width: calc(33.3333% - #{20px* 2 / 3});
+   width: calc(33.3333% - #{calc($gap * 2 / 3)});
   min-width: 240px;
   max-width: 300px;
   display: flex;
