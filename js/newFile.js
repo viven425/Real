@@ -73,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // 第二页换图功能
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM載入完成');
-    
+
     const changeButton = document.querySelector('.change-image-button');
     const images = document.querySelectorAll('.current-image');
-    
+
     if (!changeButton || images.length < 2) {
         console.error('找不到按鈕或圖片元素不足');
         return;
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // document.addEventListener('DOMContentLoaded', function() {
 //   const sidebar = document.querySelector('.sidebar-navigation');
 //   const footer = document.querySelector('footer');
-  
+
 //   if (!sidebar || !footer) return;
 
 //   // 使用Intersection Observer API - 更高效可靠
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //   function checkFooterPosition() {
 //     const footerRect = footer.getBoundingClientRect();
 //     const triggerPoint = window.innerHeight * 0.8; // 当页脚到达视窗80%位置时触发
-    
+
 //     if (footerRect.top < triggerPoint) {
 //       sidebar.classList.add('hide-sidebar');
 //     } else {
@@ -153,49 +153,69 @@ document.addEventListener('DOMContentLoaded', () => {
 // });
 
 //導覽列旁邊
-document.addEventListener('DOMContentLoaded', function() {
-  const sidebar = document.querySelector('.sidebar-navigation');
-  const footer = document.querySelector('footer');
-  
-  if (!sidebar || !footer) return;
+document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.querySelector('.sidebar-navigation');
+    const footer = document.querySelector('footer');
 
-  // 使用Intersection Observer API - 更高效可靠
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          sidebar.classList.add('hide-sidebar');
-        } else {
-          sidebar.classList.remove('hide-sidebar');
+    if (!sidebar || !footer) return;
+
+    // 使用Intersection Observer API - 更高效可靠
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sidebar.classList.add('hide-sidebar');
+                } else {
+                    sidebar.classList.remove('hide-sidebar');
+                }
+            });
+        },
+        {
+            root: null,
+            rootMargin: '-50px 0px 0px 0px', // 提前50px检测
+            threshold: 0.01
         }
-      });
-    },
-    {
-      root: null,
-      rootMargin: '-50px 0px 0px 0px', // 提前50px检测
-      threshold: 0.01
-    }
-  );
+    );
 
-  observer.observe(footer);
+    observer.observe(footer);
 
-  // 導覽列小icon
-  function checkFooterPosition() {
-    const footerRect = footer.getBoundingClientRect();
-    const triggerPoint = window.innerHeight * 0.8; // 当页脚到达视窗80%位置时触发
-    
-    if (footerRect.top < triggerPoint) {
-      sidebar.classList.add('hide-sidebar');
-    } else {
-      sidebar.classList.remove('hide-sidebar');
-    }
-  }
+    // 導覽列小icon
+    document.addEventListener("DOMContentLoaded", () => {
+        const sidebar = document.querySelector(".sidebar-navigation");
+        const footer = document.querySelector("footer");
 
-  // 如果Intersection Observer不可用，使用传统方法
-  if (!('IntersectionObserver' in window)) {
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(checkFooterPosition);
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        sidebar.classList.add('hide-sidebar');
+                    } else {
+                        sidebar.classList.remove('hide-sidebar');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0
+            });
+
+            observer.observe(footer);
+        } else {
+            // fallback 使用 scroll 事件監聽
+            function checkFooterPosition() {
+                const footerRect = footer.getBoundingClientRect();
+                const triggerPoint = window.innerHeight * 0.8;
+                if (footerRect.top < triggerPoint) {
+                    sidebar.classList.add('hide-sidebar');
+                } else {
+                    sidebar.classList.remove('hide-sidebar');
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                requestAnimationFrame(checkFooterPosition);
+            });
+
+            checkFooterPosition();
+        }
+        });
     });
-    checkFooterPosition();
-  }
-});
