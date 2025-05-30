@@ -105,150 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // //導覽列旁邊
-// document.addEventListener('DOMContentLoaded', function() {
-//   const sidebar = document.querySelector('.sidebar-navigation');
-//   const footer = document.querySelector('footer');
-
-//   if (!sidebar || !footer) return;
-
-//   // 使用Intersection Observer API - 更高效可靠
-//   const observer = new IntersectionObserver(
-//     (entries) => {
-//       entries.forEach(entry => {
-//         if (entry.isIntersecting) {
-//           sidebar.classList.add('hide-sidebar');
-//         } else {
-//           sidebar.classList.remove('hide-sidebar');
-//         }
-//       });
-//     },
-//     {
-//       root: null,
-//       rootMargin: '-50px 0px 0px 0px', // 提前50px检测
-//       threshold: 0.01
-//     }
-//   );
-
-//   observer.observe(footer);
-
-//   // 备用方案：传统滚动检测
-//   function checkFooterPosition() {
-//     const footerRect = footer.getBoundingClientRect();
-//     const triggerPoint = window.innerHeight * 0.8; // 当页脚到达视窗80%位置时触发
-
-//     if (footerRect.top < triggerPoint) {
-//       sidebar.classList.add('hide-sidebar');
-//     } else {
-//       sidebar.classList.remove('hide-sidebar');
-//     }
-//   }
-
-//   // 如果Intersection Observer不可用，使用传统方法
-//   if (!('IntersectionObserver' in window)) {
-//     window.addEventListener('scroll', function() {
-//       requestAnimationFrame(checkFooterPosition);
-//     });
-//     checkFooterPosition();
-//   }
-// });
-
-// //導覽列旁邊
-// document.addEventListener('DOMContentLoaded', function () {
-//     const sidebar = document.querySelector('.sidebar-navigation');
-//     const footer = document.querySelector('footer');
-
-//     if (!sidebar || !footer) return;
-
-//     // 使用Intersection Observer API - 更高效可靠
-//     const observer = new IntersectionObserver(
-//         (entries) => {
-//             entries.forEach(entry => {
-//                 if (entry.isIntersecting) {
-//                     sidebar.classList.add('hide-sidebar');
-//                 } else {
-//                     sidebar.classList.remove('hide-sidebar');
-//                 }
-//             });
-//         },
-//         {
-//             root: null,
-//             rootMargin: '-50px 0px 0px 0px', // 提前50px检测
-//             threshold: 0.01
-//         }
-//     );
-
-//     observer.observe(footer);
-
-//     // 導覽列小icon
-//     document.addEventListener("DOMContentLoaded", () => {
-//         const sidebar = document.querySelector(".sidebar-navigation");
-//         const footer = document.querySelector("footer");
-
-//         if ('IntersectionObserver' in window) {
-//             const observer = new IntersectionObserver(entries => {
-//                 entries.forEach(entry => {
-//                     if (entry.isIntersecting) {
-//                         sidebar.classList.add('hide-sidebar');
-//                     } else {
-//                         sidebar.classList.remove('hide-sidebar');
-//                     }
-//                 });
-//             }, {
-//                 root: null,
-//                 threshold: 0
-//             });
-
-//             observer.observe(footer);
-//         } else {
-//             // fallback 使用 scroll 事件監聽
-//             function checkFooterPosition() {
-//                 const footerRect = footer.getBoundingClientRect();
-//                 const triggerPoint = window.innerHeight * 0.8;
-//                 if (footerRect.top < triggerPoint) {
-//                     sidebar.classList.add('hide-sidebar');
-//                 } else {
-//                     sidebar.classList.remove('hide-sidebar');
-//                 }
-//             }
-
-//             window.addEventListener('scroll', () => {
-//                 requestAnimationFrame(checkFooterPosition);
-//             });
-
-//             checkFooterPosition();
-//         }
-//         });
-//     });
-
-//     //手機icon消失
-//     const toggleBtn = document.querySelector('.floating-sidebar-toggle');
-// const sidebar = document.querySelector('.sidebar-navigation');
-
-// if (toggleBtn && sidebar) {
-//   toggleBtn.addEventListener('click', () => {
-//     sidebar.classList.toggle('show-on-mobile');
-//   });
-// }
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   const sidebar = document.querySelector('.sidebar-navigation');
-//   const toggleBtn = document.querySelector('.floating-sidebar-toggle');
-//   const mobileBreakpoint = 768;
-
-//   if (toggleBtn && sidebar) {
-//     toggleBtn.addEventListener('click', () => {
-//       sidebar.classList.toggle('show-on-mobile');
-//     });
-
-//     // 監聽視窗尺寸變化
-//     window.addEventListener('resize', () => {
-//       if (window.innerWidth > mobileBreakpoint && sidebar.classList.contains('show-on-mobile')) {
-//         sidebar.classList.remove('show-on-mobile');
-//       }
-//     });
-//   }
-// });
 document.addEventListener('DOMContentLoaded', function () {
   const sidebar = document.querySelector('.sidebar-navigation');
   const footer = document.querySelector('footer');
@@ -305,3 +161,53 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+//心裏測驗
+function calculateResult() {
+    const totalQuestions = 10;
+    const form = document.getElementById("quizForm");
+    const answers = new FormData(form);
+
+    let scores = {
+        logic: 0,
+        creative: 0,
+        social: 0
+    };
+
+    for (let i = 1; i <= totalQuestions; i++) {
+        const answer = answers.get(`q${i}`);
+        if (answer) {
+            scores[answer]++;
+        }
+    }
+
+    // 找出最高分
+    let resultType = "logic";
+    let maxScore = scores.logic;
+
+    if (scores.creative > maxScore) {
+        resultType = "creative";
+        maxScore = scores.creative;
+    }
+    if (scores.social > maxScore) {
+        resultType = "social";
+    }
+
+    // 隱藏所有結果區塊
+    document.getElementById("result-A").style.display = "none";
+    document.getElementById("result-B").style.display = "none";
+    document.getElementById("result-C").style.display = "none";
+
+    // 顯示對應的結果區塊
+    if (resultType === "logic") {
+        document.getElementById("result-A").style.display = "block";
+    } else if (resultType === "creative") {
+        document.getElementById("result-B").style.display = "block";
+    } else if (resultType === "social") {
+        document.getElementById("result-C").style.display = "block";
+    }
+
+    // 平滑滾動到結果
+    document.querySelector(`#result-${resultType === 'logic' ? 'A' : resultType === 'creative' ? 'B' : 'C'}`)
+        .scrollIntoView({ behavior: 'smooth' });
+}
