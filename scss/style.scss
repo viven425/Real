@@ -3163,199 +3163,181 @@ form#quizForm {
 
 
 //學校卡片
-.page-header {
-    text-align: center;
-    margin-bottom: $space-xyxy; 
-    padding: $space-m 0; 
-    background-color: $white-color; 
-    box-shadow: 0 4px 10px $alpha-b15; 
-    border-bottom: $border-l $primary; 
-
-    h1 {
-        font-size: 3em; // 無變數，直接使用數值
-        color: $text-dark-grey; 
-        margin-bottom: $space-s; 
-        font-weight: 700; // 無變數，直接使用數值
-    }
-
-    p {
-        font-size: 1.2em; // 無變數，直接使用數值
-        color: $text-light-grey; 
-        max-width: 800px; // 無變數，直接使用數值
-        margin: $space-x-a; 
-    }
-}
-
-
-// 3. 卡片容器樣式 (Cards Container)
-// ---
+// 卡片容器樣式優化
 .cards-container {
-    display: flex; // 無變數，直接使用關鍵字
-    flex-wrap: wrap; // 無變數，直接使用關鍵字
-    justify-content: center; // 無變數，直接使用關鍵字
-    gap: $space-m + $space-s; // 計算方式更新
-    max-width: 1280px; // 無變數，直接使用數值
-    margin: $space-x-a; 
-    padding: $space-m; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-m; // 縮小間距
+  max-width: 1200px; // 縮小最大寬度
+  margin: $space-x-a;
+  padding: $space-s; // 減少內邊距
 }
 
-
-// 4. 單張大學卡片樣式 (University Card Styles)
-// ---
+// 大學卡片樣式精簡
 .university-card {
-    background-color: $white-color; 
-    border-radius: $radius-l; 
-    box-shadow: 0 8px 20px $alpha-b15; 
-    overflow: hidden; // 無變數，直接使用關鍵字
-    width: calc(33.33% - #{$space-m + $space-s}); // 計算方式更新
-    min-width: 300px; // 無變數，直接使用數值
-    max-width: 400px; // 無變數，直接使用數值
-    display: flex; // 無變數，直接使用關鍵字
-    flex-direction: column; // 無變數，直接使用關鍵字
-    transition: transform $speed-fast ease, box-shadow $speed-fast ease; 
-    cursor: pointer; // 無變數，直接使用關鍵字
-    border: $border-s $grey-border; 
+  background-color: $white-color;
+  border-radius: $radius-l;
+  box-shadow: 0 5px 15px $alpha-b15; // 減弱陰影
+  overflow: hidden;
+  width: calc(33.33% - #{$space-m}); // 更緊湊的寬度計算
+  min-width: 280px; // 減小最小寬度
+  max-width: 350px; // 減小最大寬度
+  display: flex;
+  flex-direction: column;
+  transition: transform $speed-fast ease, box-shadow $speed-fast ease;
+  cursor: pointer;
+  border: $border-s $grey-border;
 
-    &:hover { // 巢狀懸停效果
-        transform: translateY(-10px); // 無變數，直接使用數值
-        box-shadow: 0 15px 30px $alpha-b30; 
+  &:hover {
+    transform: translateY(-5px); // 減小懸浮高度
+    box-shadow: 0 10px 25px $alpha-b25;
+  }
+
+  .card-image-wrapper {
+    height: 180px; // 降低圖片高度
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $speed-slow ease;
+    }
+  }
+
+  &:hover .card-image-wrapper img {
+    transform: scale(1.03); // 減小放大效果
+  }
+
+  .card-content {
+    padding: $space-m; // 使用標準間距
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-size: 1rem; // 減小字體
+    color: $primary;
+    margin-top: 0;
+    margin-bottom: $space-s;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .card-location {
+    font-size: 0.85em; // 減小字體
+    color: $color-grey;
+    margin-bottom: $space-s;
+    font-weight: 500;
+  }
+
+  .card-description {
+    font-size: 0.95em; // 減小字體
+    color: $text-light-grey;
+    margin-bottom: $space-m;
+    flex-grow: 1;
+    line-height: 1.5;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: $space-s;
+    border-top: $border-s $grey-border;
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $space-s; // 使用標準間距
+
+      .tag {
+        background-color: $category-bg;
+        color: $category-text;
+        font-size: 0.5em; // 減小字體
+        padding: 4px 8px; // 減小內邊距
+        border-radius: $radius-ex;
+      }
     }
 
-    .card-image-wrapper {
-        height: 220px; // 無變數，直接使用數值
-        overflow: hidden; // 無變數，直接使用關鍵字
-        position: relative; // 無變數，直接使用關鍵字
+    .card-link {
+      text-decoration: none;
+      color: $primary;
+      font-weight: 600;
+      font-size: 0.8em; // 減小字體
+      display: flex;
+      align-items: center;
+      transition: color $speed-fast ease;
 
-        img {
-            width: 100%; // 無變數，直接使用數值
-            height: 100%; // 無變數，直接使用數值
-            object-fit: cover; // 無變數，直接使用關鍵字
-            transition: transform $speed-slow ease; 
-        }
+      &:hover {
+        color: $color-lesser4;
+      }
+
+      i {
+        margin-left: $space-s;
+        font-size: 0.8em;
+        transition: transform $speed-fast ease;
+      }
+
+      &:hover i {
+        transform: translateX(2px); // 減小移動距離
+      }
     }
-
-    &:hover .card-image-wrapper img { // 圖片懸停放大
-        transform: scale(1.05); // 無變數，直接使用數值
-    }
-
-    .card-content {
-        padding: 25px; // 使用最接近的 $space-xl (原本是 25px)
-        flex-grow: 1; // 無變數，直接使用數值
-        display: flex; // 無變數，直接使用關鍵字
-        flex-direction: column; // 無變數，直接使用關鍵字
-    }
-
-    .card-title {
-        font-size: 1.8em; // 無變數，直接使用數值
-        color: $primary; 
-        margin-top: 0; // 無變數，直接使用數值
-        margin-bottom: $space-m; // 使用 $space-m (原本是 20px)
-        font-weight: 700; // 無變數，直接使用數值
-        line-height: 1.3; // 無變數，直接使用數值
-    }
-
-    .card-location {
-        font-size: 0.95em; // 無變數，直接使用數值
-        color: $color-grey; 
-        margin-bottom: $space-xs; // 無變數，直接使用數值 (原 $spacing-xs)
-        font-weight: 500; // 無變數，直接使用數值
-    }
-
-    .card-description {
-        font-size: 1.05em; // 無變數，直接使用數值
-        color: $text-light-grey; 
-        margin-bottom: $space-xl; // 使用 $space-xl (原本是 25px)
-        flex-grow: 1; // 無變數，直接使用數值
-    }
-
-    .card-footer {
-        display: flex; // 無變數，直接使用關鍵字
-        justify-content: space-between; // 無變數，直接使用關鍵字
-        align-items: center; // 無變數，直接使用關鍵字
-        padding-top: $space-m; // 使用 $space-m (原本是 20px)
-        border-top: $border-s $grey-border; 
-
-        .card-tags {
-            display: flex; // 無變數，直接使用關鍵字
-            flex-wrap: wrap; // 無變數，直接使用關鍵字
-            gap: $space-xs; // 無變數，直接使用數值 (原 $spacing-xs)
-
-            .tag {
-                background-color: $category-bg; 
-                color: $category-text; 
-                font-size: 0.85em; // 無變數，直接使用數值
-                padding: 6px 12px; // 無變數，直接使用數值
-                border-radius: $radius-ex; 
-                white-space: nowrap; // 無變數，直接使用關鍵字
-            }
-        }
-
-        .card-link {
-            text-decoration: none; // 無變數，直接使用關鍵字
-            color: $primary; 
-            font-weight: 600; // 無變數，直接使用數值
-            display: flex; // 無變數，直接使用關鍵字
-            align-items: center; // 無變數，直接使用關鍵字
-            transition: color $speed-fast ease; 
-
-            &:hover {
-                color: $color-lesser4; // 使用您提供的 $color-lesser4 作為懸停色
-            }
-
-            i {
-                margin-left: $space-xs; // 無變數，直接使用數值 (原 $spacing-xs)
-                font-size: 0.9em; // 無變數，直接使用數值
-                transition: transform $speed-fast ease; 
-            }
-
-            &:hover i {
-                transform: translateX(3px); // 無變數，直接使用數值
-            }
-        }
-    }
+  }
 }
 
-
-// 5. 響應式樣式 (Responsive Styles)
-// ---
-@media (#{$media-lg}) { 
-    .university-card {
-        width: calc(50% - #{$space-m + $space-s}); // 計算方式更新
-    }
+// 響應式設計調整
+@media (#{$media-lg}) {
+  .university-card {
+    width: calc(50% - #{$space-m});
+  }
 }
 
 @media (#{$media-md}) {
-    .page-header {
-        h1 {
-            font-size: 2.2em; // 無變數，直接使用數值
-        }
-        p {
-            font-size: 1em; // 無變數，直接使用數值
-            padding: $space-x-m; 
-        }
+  .page-header {
+    h1 {
+      font-size: 1.8em; // 減小標題
     }
+    p {
+      font-size: 0.95em; // 減小字體
+      padding: $space-s;
+    }
+  }
 
-    .cards-container {
-        padding: $space-s; 
-        gap: $space-m; 
-    }
+  .cards-container {
+    padding: $space-xs;
+    gap: $space-s;
+  }
 
-    .university-card {
-        width: calc(100% - #{$space-m}); // 計算方式更新
-        margin: $space-x-a; 
+  .university-card {
+    width: 100%;
+    max-width: 400px; // 移動端適當放大
+    margin: $space-x-a;
+    
+    .card-title {
+      font-size: 1.3em;
     }
+    
+    .card-footer {
+      flex-direction: row; // 保持水平排列
+      gap: $space-s;
+    }
+  }
+}
 
-    .university-card .card-title {
-        font-size: 1.6em; // 無變數，直接使用數值
+@media (#{$media-sm}) {
+  .university-card {
+    min-width: 250px;
+    
+    .card-image-wrapper {
+      height: 160px;
     }
-
-    .university-card .card-description {
-        font-size: 0.95em; // 無變數，直接使用數值
+    
+    .card-content {
+      padding: $space-s;
     }
-
-    .university-card .card-footer {
-        flex-direction: column; // 無變數，直接使用關鍵字
-        align-items: flex-start; // 無變數，直接使用關鍵字
-        gap: $space-md; // 使用 $space-md (原本是 15px)
-    }
+  }
 }
