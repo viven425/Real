@@ -1,35 +1,43 @@
+// 輪播功能 - 加上安全檢查
 const carousel = document.querySelector('.smallphoto11');
 const leftArrow = document.querySelector('.arrow-btn.left');
 const rightArrow = document.querySelector('.arrow-btn.right');
 
-const cardWidth = 320; // 根據你的 SCSS 設定
-const gap = 24;      // 根據你的 SCSS 設定
-const scrollAmount = cardWidth + gap;
+if (carousel && leftArrow && rightArrow) {
+    const cardWidth = 320; // 根據你的 SCSS 設定
+    const gap = 24;      // 根據你的 SCSS 設定
+    const scrollAmount = cardWidth + gap;
 
-rightArrow.addEventListener('click', () => {
-    carousel.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
+    rightArrow.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
     });
-});
 
-leftArrow.addEventListener('click', () => {
-    carousel.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
+    leftArrow.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
     });
-});
-//banneer5圖片輪播
+} else {
+    console.log('輪播元素未找到，跳過輪播功能');
+}
 
-// 以前的圖片輪播
+//banner5圖片輪播
 const items = document.querySelectorAll(".carousel-item");
-let current = 0;
+if (items.length > 0) {
+    let current = 0;
 
-setInterval(() => {
-    items[current].classList.remove("active");
-    current = (current + 1) % items.length;
-    items[current].classList.add("active");
-}, 5000);
+    setInterval(() => {
+        items[current].classList.remove("active");
+        current = (current + 1) % items.length;
+        items[current].classList.add("active");
+    }, 5000);
+} else {
+    console.log('carousel-item 元素未找到，跳過圖片輪播');
+}
 
 //漢堡按鈕
 document.addEventListener('DOMContentLoaded', () => {
@@ -63,33 +71,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 第二页换图功能
-
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM載入完成');
+    
     const changeButton = document.querySelector('.change-image-button');
-    const beforeImage = document.querySelector('.current-image:first-child');
-    const afterImage = document.querySelector('.current-image:last-child');
+    const images = document.querySelectorAll('.current-image');
+    
+    if (!changeButton || images.length < 2) {
+        console.error('找不到按鈕或圖片元素不足');
+        return;
+    }
+
+    const beforeImage = images[0];
+    const afterImage = images[1];
 
     console.log('按鈕:', changeButton);
     console.log('Before元素:', beforeImage);
     console.log('After元素:', afterImage);
 
-    if (changeButton && beforeImage && afterImage) {
-        changeButton.addEventListener('mouseenter', () => {
-            console.log('滑鼠進入');
-            beforeImage.style.transition = 'none';
-            afterImage.style.transition = 'none';
-            beforeImage.style.opacity = '0';
-            afterImage.style.opacity = '1';
-        });
+    changeButton.addEventListener('mouseenter', () => {
+        console.log('滑鼠進入');
+        beforeImage.style.opacity = '0';
+        afterImage.style.opacity = '1';
+    });
 
-        changeButton.addEventListener('mouseleave', () => {
-            console.log('滑鼠離開');
-            beforeImage.style.transition = 'none';
-            afterImage.style.transition = 'none';
-            beforeImage.style.opacity = '1';
-            afterImage.style.opacity = '0';
-        });
-    } else {
-        console.error('找不到元素');
-    }
+    changeButton.addEventListener('mouseleave', () => {
+        console.log('滑鼠離開');
+        beforeImage.style.opacity = '1';
+        afterImage.style.opacity = '0';
+    });
+
+    console.log('事件監聽器已綁定完成');
 });
