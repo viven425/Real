@@ -2689,6 +2689,50 @@ footer {
     }
   }
 }
+@media (max-width: 768px) {
+  .sidebar-navigation {
+    display: none;
+  }
+
+  .floating-sidebar-toggle {
+    display: flex;
+  }
+}
+
+// 手機版的浮動小按鈕（右下角）
+.floating-sidebar-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  background-color: $primary;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba($primary, 0.2);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1100;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+}
+// 手機版點擊後顯示側邊欄
+.sidebar-navigation.show-on-mobile {
+  display: block !important;
+  position: fixed;
+  top: auto;
+  bottom: 70px;
+  left: 10px;
+  width: 80%;
+  transform: none;
+  border-radius: 12px;
+}
 
 // 頁腳設置
 footer {
@@ -3163,39 +3207,45 @@ form#quizForm {
 
 
 //學校卡片
-// 卡片容器樣式優化
+
+.page-header {
+  text-align: center;
+  margin: 10px;
+}
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: $space-m; // 縮小間距
-  max-width: 1200px; // 縮小最大寬度
+  gap: $space-s; // 更緊湊的間距
+  max-width: 1080px;
   margin: $space-x-a;
-  padding: $space-s; // 減少內邊距
+  padding: 25px; 
 }
 
-// 大學卡片樣式精簡
+// 大學卡片樣式精簡化
 .university-card {
   background-color: $white-color;
   border-radius: $radius-l;
-  box-shadow: 0 5px 15px $alpha-b15; // 減弱陰影
+  box-shadow: 0 4px 12px ;
   overflow: hidden;
-  width: calc(33.33% - #{$space-m}); // 更緊湊的寬度計算
-  min-width: 280px; // 減小最小寬度
-  max-width: 350px; // 減小最大寬度
+   width: calc(33.3333% - #{20px* 2 / 3});
+  min-width: 240px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   transition: transform $speed-fast ease, box-shadow $speed-fast ease;
   cursor: pointer;
   border: $border-s $grey-border;
+  margin: 10px;
 
   &:hover {
-    transform: translateY(-5px); // 減小懸浮高度
-    box-shadow: 0 10px 25px ;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px ;
   }
 
   .card-image-wrapper {
-    height: 180px; // 降低圖片高度
+    height: 150px;
     overflow: hidden;
     position: relative;
 
@@ -3208,58 +3258,59 @@ form#quizForm {
   }
 
   &:hover .card-image-wrapper img {
-    transform: scale(1.03); // 減小放大效果
+    transform: scale(1.03);
   }
 
   .card-content {
-    padding: $space-m; // 使用標準間距
+    padding: $space-s;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
 
   .card-title {
-    font-size: 1rem; // 減小字體
+    font-size: 0.85rem;
     color: $primary;
     margin-top: 0;
-    margin-bottom: $space-s;
+    margin-bottom: 25px;
     font-weight: 700;
     line-height: 1.3;
   }
 
   .card-location {
-    font-size: 0.85em; // 減小字體
+    font-size: 0.75rem;
     color: $color-grey;
-    margin-bottom: $space-s;
+    margin-bottom:25px;
     font-weight: 500;
   }
 
   .card-description {
-    font-size: 0.95em; // 減小字體
+    font-size: 0.8rem;
     color: $text-light-grey;
-    margin-bottom: $space-m;
+    margin-bottom: $space-s;
     flex-grow: 1;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: $space-s;
+    padding-top: 25px;
     border-top: $border-s $grey-border;
 
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: $space-s; // 使用標準間距
+      gap: 25px;
 
       .tag {
         background-color: $category-bg;
         color: $category-text;
-        font-size: 0.5em; // 減小字體
-        padding: 4px 8px; // 減小內邊距
+        font-size: 0.65rem;
+        padding: 3px 6px;
         border-radius: $radius-ex;
+        white-space: nowrap;
       }
     }
 
@@ -3267,7 +3318,7 @@ form#quizForm {
       text-decoration: none;
       color: $primary;
       font-weight: 600;
-      font-size: 0.8em; // 減小字體
+      font-size: 0.75rem;
       display: flex;
       align-items: center;
       transition: color $speed-fast ease;
@@ -3277,67 +3328,57 @@ form#quizForm {
       }
 
       i {
-        margin-left: $space-s;
-        font-size: 0.8em;
+        margin-left: 5px;
+        font-size: 0.7rem;
         transition: transform $speed-fast ease;
       }
 
       &:hover i {
-        transform: translateX(2px); // 減小移動距離
+        transform: translateX(2px);
       }
     }
   }
 }
 
-// 響應式設計調整
+// 響應式設計
 @media (#{$media-lg}) {
   .university-card {
-    width: calc(50% - #{$space-m});
+   width: calc(50% - #{$space-m});
   }
 }
 
 @media (#{$media-md}) {
-  .page-header {
-    h1 {
-      font-size: 1.8em; // 減小標題
-    }
-    p {
-      font-size: 0.95em; // 減小字體
-      padding: $space-s;
-    }
-  }
-
   .cards-container {
-    padding: 10px;
-    gap: 10px;
+    padding: $space-s;
+    gap: $space-s;
   }
 
   .university-card {
-    width: 100%;
-    max-width: 400px; // 移動端適當放大
+   width: 100%;
+    max-width: 400px;
     margin: $space-x-a;
-    
+
     .card-title {
-      font-size: 1.3em;
+      font-size: 1rem;
     }
-    
+
     .card-footer {
-      flex-direction: row; // 保持水平排列
-      gap: $space-s;
+      flex-direction: row;
+      gap: 25px;
     }
   }
 }
 
 @media (#{$media-sm}) {
   .university-card {
-    min-width: 250px;
-    
+    min-width: 220px;
+
     .card-image-wrapper {
-      height: 160px;
+      height: 130px;
     }
-    
+
     .card-content {
-      padding: $space-s;
+      padding:25px;
     }
   }
 }

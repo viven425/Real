@@ -104,6 +104,54 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('事件監聽器已綁定完成');
 });
 
+// //導覽列旁邊
+// document.addEventListener('DOMContentLoaded', function() {
+//   const sidebar = document.querySelector('.sidebar-navigation');
+//   const footer = document.querySelector('footer');
+  
+//   if (!sidebar || !footer) return;
+
+//   // 使用Intersection Observer API - 更高效可靠
+//   const observer = new IntersectionObserver(
+//     (entries) => {
+//       entries.forEach(entry => {
+//         if (entry.isIntersecting) {
+//           sidebar.classList.add('hide-sidebar');
+//         } else {
+//           sidebar.classList.remove('hide-sidebar');
+//         }
+//       });
+//     },
+//     {
+//       root: null,
+//       rootMargin: '-50px 0px 0px 0px', // 提前50px检测
+//       threshold: 0.01
+//     }
+//   );
+
+//   observer.observe(footer);
+
+//   // 备用方案：传统滚动检测
+//   function checkFooterPosition() {
+//     const footerRect = footer.getBoundingClientRect();
+//     const triggerPoint = window.innerHeight * 0.8; // 当页脚到达视窗80%位置时触发
+    
+//     if (footerRect.top < triggerPoint) {
+//       sidebar.classList.add('hide-sidebar');
+//     } else {
+//       sidebar.classList.remove('hide-sidebar');
+//     }
+//   }
+
+//   // 如果Intersection Observer不可用，使用传统方法
+//   if (!('IntersectionObserver' in window)) {
+//     window.addEventListener('scroll', function() {
+//       requestAnimationFrame(checkFooterPosition);
+//     });
+//     checkFooterPosition();
+//   }
+// });
+
 //導覽列旁邊
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector('.sidebar-navigation');
@@ -131,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   observer.observe(footer);
 
-  // 备用方案：传统滚动检测
+  // 導覽列小icon
   function checkFooterPosition() {
     const footerRect = footer.getBoundingClientRect();
     const triggerPoint = window.innerHeight * 0.8; // 当页脚到达视窗80%位置时触发

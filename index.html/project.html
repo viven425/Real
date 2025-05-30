@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="/css/style.min.css">
 </head>
+
 <body>
 
-       <!-- nav  -->
+    <!-- nav  -->
     <header class="nav-wrapper">
         <nav class="nav-bar">
 
@@ -43,29 +46,35 @@
 
     </section>
 
-     <!-- 放一個旁邊導覽列 -->
-     <div class="sidebar-navigation">
-            <h3 class="sidebar-heading">分區</h3>
-            <ul class="sidebar-menu">
-                <li><button class="sidebar-button">探索自己</button></li>
-                <li><button class="sidebar-button">學校介紹</button></li>
-                <li><button class="sidebar-button">學校申請</button></li>
-                <li><button class="sidebar-button">科系介紹</button></li>
-                 <li><button class="sidebar-button">生活適應</button></li>
-            </ul>
-        </div>
+    <!-- 放一個旁邊導覽列 -->
+    <div class="sidebar-navigation">
+        <h3 class="sidebar-heading">分區</h3>
+        <ul class="sidebar-menu">
+            <li><button class="sidebar-button">探索自己</button></li>
+            <li><button class="sidebar-button">學校介紹</button></li>
+            <li><button class="sidebar-button">學校申請</button></li>
+            <li><button class="sidebar-button">科系介紹</button></li>
+            <li><button class="sidebar-button">生活適應</button></li>
+        </ul>
+    </div>
 
-     <div class="page-header">
+    <div class="floating-sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+
+    <!-- 學校卡片 -->
+    <div class="page-header">
         <h1>台灣大學院校介紹</h1>
         <p>
-           各所大學的獨特魅力、學術強項與校園文化，助您選擇理想的學府。
+            各所大學的獨特魅力、學術強項與校園文化，助您選擇理想的學府。
         </p>
     </div>
 
     <div class="cards-container">
 
 
-         <div class="university-card">
+        <div class="university-card">
             <div class="card-image-wrapper">
                 <img src="https://via.placeholder.com/400x220/8b4513/ffffff?text=NTUB" alt="國立臺北商業大學校景">
             </div>
@@ -90,7 +99,8 @@
 
         <div class="university-card">
             <div class="card-image-wrapper">
-                <img src="https://via.placeholder.com/400x220/004c8f/ffffff?text=National+Taiwan+University" alt="國立臺灣大學校門">
+                <img src="https://via.placeholder.com/400x220/004c8f/ffffff?text=National+Taiwan+University"
+                    alt="國立臺灣大學校門">
             </div>
             <div class="card-content">
                 <span class="card-location">臺北市</span>
@@ -113,7 +123,8 @@
 
         <div class="university-card">
             <div class="card-image-wrapper">
-                <img src="https://via.placeholder.com/400x220/007a73/ffffff?text=National+Tsing+Hua+University" alt="國立清華大學校景">
+                <img src="https://via.placeholder.com/400x220/007a73/ffffff?text=National+Tsing+Hua+University"
+                    alt="國立清華大學校景">
             </div>
             <div class="card-content">
                 <span class="card-location">新竹市</span>
@@ -136,7 +147,8 @@
 
         <div class="university-card">
             <div class="card-image-wrapper">
-                <img src="https://via.placeholder.com/400x220/9c27b0/ffffff?text=National+Yang+Ming+Chiao+Tung+University" alt="國立陽明交通大學校徽">
+                <img src="https://via.placeholder.com/400x220/9c27b0/ffffff?text=National+Yang+Ming+Chiao+Tung+University"
+                    alt="國立陽明交通大學校徽">
             </div>
             <div class="card-content">
                 <span class="card-location">新竹市/臺北市</span>
@@ -159,7 +171,8 @@
 
         <div class="university-card">
             <div class="card-image-wrapper">
-                <img src="https://via.placeholder.com/400x220/f44336/ffffff?text=National+Cheng+Kung+University" alt="國立成功大學榕園">
+                <img src="https://via.placeholder.com/400x220/f44336/ffffff?text=National+Cheng+Kung+University"
+                    alt="國立成功大學榕園">
             </div>
             <div class="card-content">
                 <span class="card-location">臺南市</span>
@@ -182,7 +195,8 @@
 
         <div class="university-card">
             <div class="card-image-wrapper">
-                <img src="https://via.placeholder.com/400x220/ff5722/ffffff?text=National+Chengchi+University" alt="國立政治大學校園">
+                <img src="https://via.placeholder.com/400x220/ff5722/ffffff?text=National+Chengchi+University"
+                    alt="國立政治大學校園">
             </div>
             <div class="card-content">
                 <span class="card-location">臺北市</span>
@@ -205,7 +219,8 @@
 
         <div class="university-card">
             <div class="card-image-wrapper">
-                <img src="https://via.placeholder.com/400x220/4caf50/ffffff?text=National+Taiwan+Normal+University" alt="國立臺灣師範大學校區">
+                <img src="https://via.placeholder.com/400x220/4caf50/ffffff?text=National+Taiwan+Normal+University"
+                    alt="國立臺灣師範大學校區">
             </div>
             <div class="card-content">
                 <span class="card-location">臺北市</span>
@@ -229,7 +244,7 @@
     </div>
 
 
-       <!-- footer 区 -->
+    <!-- footer 区 -->
     <!-- 最后 -->
     <footer if="main-footer">
         <div class="footer-container">
@@ -265,14 +280,10 @@
             <div class="footer-logo-marquee">
                 <!-- 這裏放學校 logo滾動效果 -->
                 <div class="logo-scroll-wrapper">
-                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoollogo1.2.png"
-                            alt=""></a>
-                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoologo1.3.svg"
-                            alt=""></a>
-                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoologo1.1.svg"
-                            alt=""></a>
-                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoologo2.png"
-                            alt=""></a>
+                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoollogo1.2.png" alt=""></a>
+                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoologo1.3.svg" alt=""></a>
+                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoologo1.1.svg" alt=""></a>
+                    <a href="#"><img src="" alt="" class="footer-logo"><img src="../img/schoologo2.png" alt=""></a>
                     <!-- 更多 -->
                 </div>
             </div>
@@ -337,7 +348,7 @@
 
 
 
-     <!-- 自訂的js (一定放在最下面) -->
+    <!-- 自訂的js (一定放在最下面) -->
     <script src="/js/newFile.js"></script>
 </body>
 
