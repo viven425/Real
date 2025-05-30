@@ -979,7 +979,6 @@ body.menu-open .overlay {
   position: relative;
   display: inline-block;
   backface-visibility: hidden;
-  transform: translateZ(0);
   animation: smoothFloat 3s ease-in-out infinite;
   margin-top: 40px;
   margin-bottom: 40px;
@@ -993,14 +992,6 @@ body.menu-open .overlay {
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
 }
 
-@keyframes smoothFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
 .written {
   position: absolute;
   top: 50%;

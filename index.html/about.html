@@ -1,12 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>心裏測驗</title>
     <link rel="stylesheet" href="/css/style.min.css">
 </head>
+
 <body>
-    
+    <h1>你是什麼性格？適合哪種科系？</h1>
+
+    <form id="quizForm">
+        <!-- 題目範本 -->
+        <div class="question">
+            <h3>1. 你遇到困難時，通常怎麼做？</h3>
+            <label><input type="radio" name="q1" value="logic"> 冷靜分析問題</label>
+            <label><input type="radio" name="q1" value="creative"> 換個角度思考</label>
+            <label><input type="radio" name="q1" value="social"> 找朋友討論</label>
+        </div>
+
+        <div class="question">
+            <h3>2. 你喜歡的學習方式是？</h3>
+            <label><input type="radio" name="q2" value="logic"> 系統化整理筆記</label>
+            <label><input type="radio" name="q2" value="creative"> 做圖表、畫重點</label>
+            <label><input type="radio" name="q2" value="social"> 參加讀書會</label>
+        </div>
+
+        <div class="question">
+            <h3>3. 假日你最可能做什麼？</h3>
+            <label><input type="radio" name="q3" value="logic"> 看紀錄片或閱讀</label>
+            <label><input type="radio" name="q3" value="creative"> 拍照、畫畫、寫日記</label>
+            <label><input type="radio" name="q3" value="social"> 跟朋友聚會或聊天</label>
+        </div>
+
+        <div class="question">
+            <h3>4. 你在團體中的角色是？</h3>
+            <label><input type="radio" name="q4" value="logic"> 策劃與計畫者</label>
+            <label><input type="radio" name="q4" value="creative"> 提出新點子的發想者</label>
+            <label><input type="radio" name="q4" value="social"> 協調與溝通者</label>
+        </div>
+
+        <div class="question">
+            <h3>5. 哪句話最符合你？</h3>
+            <label><input type="radio" name="q5" value="logic"> 解決問題最有成就感</label>
+            <label><input type="radio" name="q5" value="creative"> 我喜歡發揮想像力</label>
+            <label><input type="radio" name="q5" value="social"> 與人交流讓我快樂</label>
+        </div>
+
+        <div class="question">
+            <h3>6. 你對哪種工作最感興趣？</h3>
+            <label><input type="radio" name="q6" value="logic"> 工程師、金融分析師</label>
+            <label><input type="radio" name="q6" value="creative"> 藝術家、設計師</label>
+            <label><input type="radio" name="q6" value="social"> 教師、心理師、人資</label>
+        </div>
+
+        <div class="question">
+            <h3>7. 你對數字與邏輯的感覺是？</h3>
+            <label><input type="radio" name="q7" value="logic"> 非常喜歡</label>
+            <label><input type="radio" name="q7" value="creative"> 偶爾用用就好</label>
+            <label><input type="radio" name="q7" value="social"> 沒興趣，比較喜歡人</label>
+        </div>
+
+        <div class="question">
+            <h3>8. 最喜歡的學校課程？</h3>
+            <label><input type="radio" name="q8" value="logic"> 數學、自然科學</label>
+            <label><input type="radio" name="q8" value="creative"> 藝術、文學</label>
+            <label><input type="radio" name="q8" value="social"> 公民、健康教育</label>
+        </div>
+
+        <div class="question">
+            <h3>9. 你認為成功的關鍵是？</h3>
+            <label><input type="radio" name="q9" value="logic"> 策略與分析能力</label>
+            <label><input type="radio" name="q9" value="creative"> 靈感與創造力</label>
+            <label><input type="radio" name="q9" value="social"> 團隊合作與溝通</label>
+        </div>
+
+        <div class="question">
+            <h3>10. 你最怕的事情是？</h3>
+            <label><input type="radio" name="q10" value="logic"> 沒有條理的生活</label>
+            <label><input type="radio" name="q10" value="creative"> 沒機會表現自己</label>
+            <label><input type="radio" name="q10" value="social"> 被孤立或沒人理解</label>
+        </div>
+
+        <div id="result"></div>
+
+        <button type="button" onclick="calculateResult()">查看結果</button>
+
+
+        <!-- 結果展示區塊 -->
+        <div id="result-A" class="result-block" style="display: none;">
+            <h2>結果 A：分析型性格</h2>
+            <div class="recommendation best">
+                <h3>最佳推薦：資訊工程系</h3>
+                <p>擅長邏輯與推理的你，非常適合學習程式與系統架構。</p>
+                <a href="/majors/computer-science" target="_blank">了解更多 →</a>
+            </div>
+            <div class="recommendation">
+                <h3>建議科系：統計學系 / 財務金融系</h3>
+                <p>如果你也對數據與財經有興趣，這些科系會是不錯的選擇。</p>
+            </div>
+        </div>
+
+        <div id="result-B" class="result-block" style="display: none;">
+            <h2>結果 B：創意型性格</h2>
+            <div class="recommendation best">
+                <h3>最佳推薦：設計學系</h3>
+                <p>你具備豐富想像與審美能力，設計系讓你發揮所長。</p>
+                <a href="/majors/design" target="_blank">了解更多 →</a>
+            </div>
+            <div class="recommendation">
+                <h3>建議科系：藝術學系 / 傳播學系</h3>
+                <p>若你喜歡多媒體或表達，也可以考慮相關科系。</p>
+            </div>
+        </div>
+
+        <div id="result-C" class="result-block" style="display: none;">
+            <h2>結果 C：社交型性格</h2>
+            <div class="recommendation best">
+                <h3>最佳推薦：心理學系</h3>
+                <p>你關心他人、樂於溝通，心理學是你發揮影響力的地方。</p>
+                <a href="/majors/psychology" target="_blank">了解更多 →</a>
+            </div>
+            <div class="recommendation">
+                <h3>建議科系：教育系 / 社工系</h3>
+                <p>如果你想幫助更多人，這些科系也非常適合你。</p>
+            </div>
+        </div>
+
+    </form>
+
 </body>
+
 </html>
