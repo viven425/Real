@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初心網站</title>
+    <title>project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/style.min.css">
 </head>
 
 <body>
+
     <!-- nav  -->
     <header class="nav-wrapper">
         <nav class="nav-bar">
@@ -44,20 +47,6 @@
 
     </section>
 
-
-
-    <!-- 這裏是卡通人物換圖區 -->
-
-    <div class="image-changer">
-        <div class="image-display">
-            <img src="../img/before.svg" alt="Before Image" class="current-image active">
-            <img src="../img/after.svg" alt="After Image" class="current-image">
-        </div>
-        <div class="button-container">
-            <button class="change-image-button">點擊開始吧</button>
-        </div>
-    </div>
-
     <!-- 放一個旁邊導覽列 -->
     <div class="sidebar-navigation">
         <h3 class="sidebar-heading">分區</h3>
@@ -71,41 +60,190 @@
     </div>
 
     <div class="floating-sidebar-toggle" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
+        <i class="fas-solid fa-bars"></i>
     </div>
 
 
-    <!-- 聯係我們 -->
-    <section class="contact-us-section">
-        <div class="contact-us-container">
-            <h2>聯絡我們</h2>
-            <p>如果您有任何問題或建議，請隨時聯絡我們。我們會盡快回覆您。</p>
+    <!-- 學校卡片 -->
+    <div class="page-header">
+        <h1>台灣大學院校介紹</h1>
+        <p>
+            各所大學的獨特魅力、學術強項與校園文化，助您選擇理想的學府。
+        </p>
+    </div>
 
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">姓名</label>
-                    <input type="text" id="name" name="name" required placeholder="您的姓名">
+    <div class="cards-container">
+
+
+        <div class="university-card">
+            <div class="card-image-wrapper">
+                <img src="https://via.placeholder.com/400x220/8b4513/ffffff?text=NTUB" alt="國立臺北商業大學校景">
+            </div>
+            <div class="card-content">
+                <span class="card-location">臺北市/桃園市</span>
+                <h3 class="card-title">國立臺北商業大學</h3>
+                <p class="card-description">
+                    台灣首間商業技職高等學府，以會計、財金、企管等商管領域聞名，培養實務導向的商業管理人才。
+                </p>
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="tag">商業管理</span>
+                        <span class="tag">會計財金</span>
+                        <span class="tag">實務導向</span>
+                    </div>
+                    <a href="https://www.ntub.edu.tw/" target="_blank" class="card-link">
+                        前往官網 <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
-
-                <div class="form-group">
-                    <label for="email">電子郵件</label>
-                    <input type="email" id="email" name="email" required placeholder="您的電子郵件地址">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">電話號碼 (選填)</label>
-                    <input type="tel" id="phone" name="phone" placeholder="您的電話號碼">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">您的留言</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="請輸入您的留言..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-button">送出</button>
-            </form>
+            </div>
         </div>
-    </section>
+
+        <div class="university-card">
+            <div class="card-image-wrapper">
+                <img src="https://via.placeholder.com/400x220/004c8f/ffffff?text=National+Taiwan+University"
+                    alt="國立臺灣大學校門">
+            </div>
+            <div class="card-content">
+                <span class="card-location">臺北市</span>
+                <h3 class="card-title">國立臺灣大學</h3>
+                <p class="card-description">
+                    台灣首屈一指的綜合研究型大學，以其頂尖的學術研究、豐富的學術資源和多元的國際交流聞名。
+                </p>
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="tag">綜合研究</span>
+                        <span class="tag">學術頂尖</span>
+                        <span class="tag">國際化</span>
+                    </div>
+                    <a href="https://www.ntu.edu.tw/" target="_blank" class="card-link">
+                        前往官網 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="university-card">
+            <div class="card-image-wrapper">
+                <img src="https://via.placeholder.com/400x220/007a73/ffffff?text=National+Tsing+Hua+University"
+                    alt="國立清華大學校景">
+            </div>
+            <div class="card-content">
+                <span class="card-location">新竹市</span>
+                <h3 class="card-title">國立清華大學</h3>
+                <p class="card-description">
+                    以理工領域見長，近年積極發展跨領域研究與人文社會科學，培養具備創新思維的未來人才。
+                </p>
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="tag">理工強項</span>
+                        <span class="tag">跨領域</span>
+                        <span class="tag">科技創新</span>
+                    </div>
+                    <a href="https://www.nthu.edu.tw/" target="_blank" class="card-link">
+                        前往官網 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="university-card">
+            <div class="card-image-wrapper">
+                <img src="https://via.placeholder.com/400x220/9c27b0/ffffff?text=National+Yang+Ming+Chiao+Tung+University"
+                    alt="國立陽明交通大學校徽">
+            </div>
+            <div class="card-content">
+                <span class="card-location">新竹市/臺北市</span>
+                <h3 class="card-title">國立陽明交通大學</h3>
+                <p class="card-description">
+                    由陽明大學與交通大學合併，在醫學、生命科學、電子電機及資訊科技等領域具國際領先地位。
+                </p>
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="tag">生醫科技</span>
+                        <span class="tag">電子資訊</span>
+                        <span class="tag">醫學工程</span>
+                    </div>
+                    <a href="https://www.nycu.edu.tw/" target="_blank" class="card-link">
+                        前往官網 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="university-card">
+            <div class="card-image-wrapper">
+                <img src="https://via.placeholder.com/400x220/f44336/ffffff?text=National+Cheng+Kung+University"
+                    alt="國立成功大學榕園">
+            </div>
+            <div class="card-content">
+                <span class="card-location">臺南市</span>
+                <h3 class="card-title">國立成功大學</h3>
+                <p class="card-description">
+                    南部學術重鎮，以工學、醫學和規劃設計領域聞名，與產業連結緊密，培育實務應用人才。
+                </p>
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="tag">工學龍頭</span>
+                        <span class="tag">醫學中心</span>
+                        <span class="tag">產學合作</span>
+                    </div>
+                    <a href="https://www.ncku.edu.tw/" target="_blank" class="card-link">
+                        前往官網 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="university-card">
+            <div class="card-image-wrapper">
+                <img src="https://via.placeholder.com/400x220/ff5722/ffffff?text=National+Chengchi+University"
+                    alt="國立政治大學校園">
+            </div>
+            <div class="card-content">
+                <span class="card-location">臺北市</span>
+                <h3 class="card-title">國立政治大學</h3>
+                <p class="card-description">
+                    台灣人文社會科學領域的頂尖學府，在法律、商學、傳播、外語及政治學等領域表現卓越。
+                </p>
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="tag">人文社科</span>
+                        <span class="tag">國際政經</span>
+                        <span class="tag">傳播外語</span>
+                    </div>
+                    <a href="https://www.nccu.edu.tw/" target="_blank" class="card-link">
+                        前往官網 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="university-card">
+            <div class="card-image-wrapper">
+                <img src="https://via.placeholder.com/400x220/4caf50/ffffff?text=National+Taiwan+Normal+University"
+                    alt="國立臺灣師範大學校區">
+            </div>
+            <div class="card-content">
+                <span class="card-location">臺北市</span>
+                <h3 class="card-title">國立臺灣師範大學</h3>
+                <p class="card-description">
+                    以師資培育聞名，同時積極發展綜合性學術研究，在教育、藝術、音樂、體育及文史等領域表現出色。
+                </p>
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="tag">師資培育</span>
+                        <span class="tag">綜合發展</span>
+                        <span class="tag">人文藝術</span>
+                    </div>
+                    <a href="https://www.ntnu.edu.tw/" target="_blank" class="card-link">
+                        前往官網 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 
     <!-- footer 区 -->
     <!-- 最后 -->
@@ -214,5 +352,6 @@
     <!-- 自訂的js (一定放在最下面) -->
     <script src="/js/newFile.js"></script>
 </body>
+
 
 </html>
