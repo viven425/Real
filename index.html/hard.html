@@ -18,123 +18,145 @@
 
 
     <form id="quizForm">
-        <!-- 題目列表 -->
-        <div class="question">
-            <h3>1. 你遇到困難時，通常怎麼做？</h3>
-            <label><input type="radio" name="q1" value="logic"> 冷靜分析問題</label>
-            <label><input type="radio" name="q1" value="creative"> 換個角度思考</label>
-            <label><input type="radio" name="q1" value="social"> 找朋友討論</label>
+        <!-- 題目一 -->
+        <div class="question" data-type="logic">
+            <h3>你喜歡哪種活動？</h3>
+            <div class="options">
+                <label><input type="radio" name="q1" value="logic"> 解謎遊戲</label>
+                <label><input type="radio" name="q1" value="creative"> 畫畫</label>
+                <label><input type="radio" name="q1" value="social"> 和朋友聊天</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>2. 你喜歡的學習方式是？</h3>
-            <label><input type="radio" name="q2" value="logic"> 系統化整理筆記</label>
-            <label><input type="radio" name="q2" value="creative"> 做圖表、畫重點</label>
-            <label><input type="radio" name="q2" value="social"> 參加讀書會</label>
+        <!-- 題目二 -->
+        <div class="question" data-type="creative">
+            <h3>你偏好哪種工作環境？</h3>
+            <div class="options">
+                <label><input type="radio" name="q2" value="logic"> 安靜有規律</label>
+                <label><input type="radio" name="q2" value="creative"> 多元有創意</label>
+                <label><input type="radio" name="q2" value="social"> 活潑人多</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>3. 假日你最可能做什麼？</h3>
-            <label><input type="radio" name="q3" value="logic"> 看紀錄片或閱讀</label>
-            <label><input type="radio" name="q3" value="creative"> 拍照、畫畫、寫日記</label>
-            <label><input type="radio" name="q3" value="social"> 跟朋友聚會或聊天</label>
+        <!-- 題目三 -->
+        <div class="question" data-type="social">
+            <h3>你如何解決問題？</h3>
+            <div class="options">
+                <label><input type="radio" name="q3" value="logic"> 分析思考</label>
+                <label><input type="radio" name="q3" value="creative"> 靈感直覺</label>
+                <label><input type="radio" name="q3" value="social"> 問別人</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>4. 你在團體中的角色是？</h3>
-            <label><input type="radio" name="q4" value="logic"> 策劃與計畫者</label>
-            <label><input type="radio" name="q4" value="creative"> 提出新點子的發想者</label>
-            <label><input type="radio" name="q4" value="social"> 協調與溝通者</label>
+        <!-- 題目四 -->
+        <div class="question" data-type="logic">
+            <h3>你喜歡什麼樣的數據分析？</h3>
+            <div class="options">
+                <label><input type="radio" name="q4" value="logic"> 數字和報表</label>
+                <label><input type="radio" name="q4" value="creative"> 用圖表呈現</label>
+                <label><input type="radio" name="q4" value="social"> 與團隊分享</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>5. 哪句話最符合你？</h3>
-            <label><input type="radio" name="q5" value="logic"> 解決問題最有成就感</label>
-            <label><input type="radio" name="q5" value="creative"> 我喜歡發揮想像力</label>
-            <label><input type="radio" name="q5" value="social"> 與人交流讓我快樂</label>
+        <!-- 題目五 -->
+        <div class="question" data-type="creative">
+            <h3>你更喜歡怎麼學習新知？</h3>
+            <div class="options">
+                <label><input type="radio" name="q5" value="logic"> 按部就班</label>
+                <label><input type="radio" name="q5" value="creative"> 實作創作</label>
+                <label><input type="radio" name="q5" value="social"> 與人討論</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>6. 你對哪種工作最感興趣？</h3>
-            <label><input type="radio" name="q6" value="logic"> 工程師、金融分析師</label>
-            <label><input type="radio" name="q6" value="creative"> 藝術家、設計師</label>
-            <label><input type="radio" name="q6" value="social"> 教師、心理師、人資</label>
+        <!-- 題目六 -->
+        <div class="question" data-type="social">
+            <h3>你覺得團隊合作中你扮演什麼角色？</h3>
+            <div class="options">
+                <label><input type="radio" name="q6" value="logic"> 組織者</label>
+                <label><input type="radio" name="q6" value="creative"> 創意發想者</label>
+                <label><input type="radio" name="q6" value="social"> 溝通協調者</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>7. 你對數字與邏輯的感覺是？</h3>
-            <label><input type="radio" name="q7" value="logic"> 非常喜歡</label>
-            <label><input type="radio" name="q7" value="creative"> 偶爾用用就好</label>
-            <label><input type="radio" name="q7" value="social"> 沒興趣，比較喜歡人</label>
+        <!-- 題目七 -->
+        <div class="question" data-type="logic">
+            <h3>你面對新挑戰時的態度是？</h3>
+            <div class="options">
+                <label><input type="radio" name="q7" value="logic"> 計劃周詳後行動</label>
+                <label><input type="radio" name="q7" value="creative"> 馬上嘗試創新方法</label>
+                <label><input type="radio" name="q7" value="social"> 先徵求他人意見</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>8. 最喜歡的學校課程？</h3>
-            <label><input type="radio" name="q8" value="logic"> 數學、自然科學</label>
-            <label><input type="radio" name="q8" value="creative"> 藝術、文學</label>
-            <label><input type="radio" name="q8" value="social"> 公民、健康教育</label>
+        <!-- 題目八 -->
+        <div class="question" data-type="creative">
+            <h3>你最喜歡的課外活動是？</h3>
+            <div class="options">
+                <label><input type="radio" name="q8" value="logic"> 下棋或解謎</label>
+                <label><input type="radio" name="q8" value="creative"> 音樂或藝術</label>
+                <label><input type="radio" name="q8" value="social"> 社團活動或聚會</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>9. 你認為成功的關鍵是？</h3>
-            <label><input type="radio" name="q9" value="logic"> 策略與分析能力</label>
-            <label><input type="radio" name="q9" value="creative"> 靈感與創造力</label>
-            <label><input type="radio" name="q9" value="social"> 團隊合作與溝通</label>
+        <!-- 題目九 -->
+        <div class="question" data-type="social">
+            <h3>你如何處理壓力？</h3>
+            <div class="options">
+                <label><input type="radio" name="q9" value="logic"> 制定解決方案</label>
+                <label><input type="radio" name="q9" value="creative"> 找方法放鬆心情</label>
+                <label><input type="radio" name="q9" value="social"> 向朋友傾訴</label>
+            </div>
         </div>
 
-        <div class="question">
-            <h3>10. 你最怕的事情是？</h3>
-            <label><input type="radio" name="q10" value="logic"> 沒有條理的生活</label>
-            <label><input type="radio" name="q10" value="creative"> 沒機會表現自己</label>
-            <label><input type="radio" name="q10" value="social"> 被孤立或沒人理解</label>
+        <!-- 題目十 -->
+        <div class="question" data-type="logic">
+            <h3>你覺得自己屬於哪種思維方式？</h3>
+            <div class="options">
+                <label><input type="radio" name="q10" value="logic"> 分析條理清楚</label>
+                <label><input type="radio" name="q10" value="creative"> 靈感豐富</label>
+                <label><input type="radio" name="q10" value="social"> 善於人際</label>
+            </div>
         </div>
 
-        <button type="button" onclick="calculateResult()">查看結果</button>
+        <!-- 進度條 -->
+        <div id="progressBar">
+            <div id="progressFill"></div>
+        </div>
 
-        <!-- 結果區塊 -->
-        <div id="result-A" class="result-block" style="display: none;">
-            <h2>結果 A：分析型性格</h2>
+        <!-- 結果 A：分析型 -->
+        <div class="result-block" id="result-A" style="display: none;">
+            <h2>分析型人格</h2>
+            <p>你喜歡邏輯與結構，適合理工類科系。</p>
             <div class="recommendation best">
-                <h3>最佳推薦：資訊工程系</h3>
-                <p>擅長邏輯與推理的你，非常適合學習程式與系統架構。</p>
-                <a href="/majors/computer-science" target="_blank">了解更多 →</a>
-            </div>
-            <div class="recommendation">
-                <h3>建議科系：統計學系 / 財務金融系</h3>
-                <p>如果你也對數據與財經有興趣，這些科系會是不錯的選擇。</p>
+                <strong>推薦科系：</strong> 資訊工程、數學系
+                <a href="/majors/logic">了解更多</a>
             </div>
         </div>
 
-        <div id="result-B" class="result-block" style="display: none;">
-            <h2>結果 B：創意型性格</h2>
+        <!-- 結果 B：創意型 -->
+        <div class="result-block" id="result-B" style="display: none;">
+            <h2>創意型人格</h2>
+            <p>你擅長創意發想，適合設計、藝術相關科系。</p>
             <div class="recommendation best">
-                <h3>最佳推薦：設計學系</h3>
-                <p>你具備豐富想像與審美能力，設計系讓你發揮所長。</p>
-                <a href="/majors/design" target="_blank">了解更多 →</a>
-            </div>
-            <div class="recommendation">
-                <h3>建議科系：藝術學系 / 傳播學系</h3>
-                <p>若你喜歡多媒體或表達，也可以考慮相關科系。</p>
+                <strong>推薦科系：</strong> 視覺傳達設計、建築系
+                <a href="/majors/creative">了解更多</a>
             </div>
         </div>
 
-        <div id="result-C" class="result-block" style="display: none;">
-            <h2>結果 C：社交型性格</h2>
+        <!-- 結果 C：社交型 -->
+        <div class="result-block" id="result-C" style="display: none;">
+            <h2>社交型人格</h2>
+            <p>你喜歡與人互動，適合心理、教育、行銷相關科系。</p>
             <div class="recommendation best">
-                <h3>最佳推薦：心理學系</h3>
-                <p>你關心他人、樂於溝通，心理學是你發揮影響力的地方。</p>
-                <a href="/majors/psychology" target="_blank">了解更多 →</a>
-            </div>
-            <div class="recommendation">
-                <h3>建議科系：教育系 / 社工系</h3>
-                <p>如果你想幫助更多人，這些科系也非常適合你。</p>
+                <strong>推薦科系：</strong> 心理系、傳播系
+                <a href="/majors/social">了解更多</a>
             </div>
         </div>
 
-        <div class="button-group fade-in">
-            <button class="btn">再測一次</button>
-            <button class="btn">查看所有推薦</button>
-            <button class="btn">返回首頁</button>
+        <!-- 按鈕群組 -->
+        <div class="button-group" style="display: none;">
+            <button class="btn" onclick="restartQuiz()">重新測驗</button>
+            <button class="btn" onclick="goHome()">回到首頁</button>
         </div>
     </form>
     <!-- 自訂的js (一定放在最下面) -->

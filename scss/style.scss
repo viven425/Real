@@ -3191,7 +3191,38 @@ button[type="button"] {
   }
 }
 
-//學校卡片
+#progressBar {
+  position: relative;  /* 加相對定位 */
+  z-index: 10;         /* 層級設定比問題區高 */
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.question {
+  position: relative;  /* 如果你想保留動畫效果，也許需要 */
+  z-index: 5;          /* 層級比進度條低，才不會蓋住進度條 */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.5s ease;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+//學校卡片okok
 
 .page-header {
   text-align: center;

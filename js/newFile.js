@@ -163,51 +163,214 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //心裏測驗
-function calculateResult() {
-    const totalQuestions = 10;
-    const form = document.getElementById("quizForm");
-    const answers = new FormData(form);
+// function calculateResult() {
+//     const totalQuestions = 10;
+//     const form = document.getElementById("quizForm");
+//     const answers = new FormData(form);
 
-    let scores = {
-        logic: 0,
-        creative: 0,
-        social: 0
-    };
+//     let scores = {
+//         logic: 0,
+//         creative: 0,
+//         social: 0
+//     };
 
-    for (let i = 1; i <= totalQuestions; i++) {
-        const answer = answers.get(`q${i}`);
-        if (answer) {
-            scores[answer]++;
+//     for (let i = 1; i <= totalQuestions; i++) {
+//         const answer = answers.get(`q${i}`);
+//         if (answer) {
+//             scores[answer]++;
+//         }
+//     }
+
+//     // 找出最高分
+//     let resultType = "logic";
+//     let maxScore = scores.logic;
+
+//     if (scores.creative > maxScore) {
+//         resultType = "creative";
+//         maxScore = scores.creative;
+//     }
+//     if (scores.social > maxScore) {
+//         resultType = "social";
+//     }
+
+//     // 隱藏所有結果區塊
+//     document.getElementById("result-A").style.display = "none";
+//     document.getElementById("result-B").style.display = "none";
+//     document.getElementById("result-C").style.display = "none";
+
+//     // 顯示對應的結果區塊
+//     if (resultType === "logic") {
+//         document.getElementById("result-A").style.display = "block";
+//     } else if (resultType === "creative") {
+//         document.getElementById("result-B").style.display = "block";
+//     } else if (resultType === "social") {
+//         document.getElementById("result-C").style.display = "block";
+//     }
+
+//     // 平滑滾動到結果
+//     document.querySelector(`#result-${resultType === 'logic' ? 'A' : resultType === 'creative' ? 'B' : 'C'}`)
+//         .scrollIntoView({ behavior: 'smooth' });
+// }
+// document.addEventListener("DOMContentLoaded", () => {
+//     const totalQuestions = 10;
+//     const progressFill = document.getElementById("progressFill");
+//     const quizForm = document.getElementById("quizForm");
+//     const resultBlocks = document.querySelectorAll(".result-block");
+
+//     // 1. 更新 progress bar
+//     quizForm.addEventListener("change", () => {
+//         const answered = quizForm.querySelectorAll("input[type=radio]:checked").length;
+//         const percent = (answered / totalQuestions) * 100;
+//         progressFill.style.width = `${percent}%`;
+
+//         // 2. 更新 label 樣式
+//         const questions = quizForm.querySelectorAll(".question");
+//         questions.forEach(q => {
+//             const radios = q.querySelectorAll("input[type=radio]");
+//             radios.forEach(r => {
+//                 r.parentElement.classList.remove("selected");
+//                 if (r.checked) {
+//                     r.parentElement.classList.add("selected");
+//                 }
+//             });
+//         });
+//     });
+
+//     // 3. 計算結果
+//     window.calculateResult = () => {
+//         const answers = quizForm.querySelectorAll("input[type=radio]:checked");
+//         if (answers.length < totalQuestions) {
+//             alert("請完成所有題目再查看結果！");
+//             return;
+//         }
+
+//         let scores = { logic: 0, creative: 0, social: 0 };
+//         answers.forEach(a => scores[a.value]++);
+
+//         // 找出最高分類別
+//         let maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+//         // 隱藏所有結果，顯示對應結果區塊
+//         resultBlocks.forEach(block => block.style.display = "none");
+//         if (maxType === "logic") {
+//             document.getElementById("result-A").style.display = "block";
+//         } else if (maxType === "creative") {
+//             document.getElementById("result-B").style.display = "block";
+//         } else {
+//             document.getElementById("result-C").style.display = "block";
+//         }
+
+//         // 滾動到結果區塊
+//         setTimeout(() => {
+//             document.querySelector(".result-block[style*='block']").scrollIntoView({
+//                 behavior: "smooth"
+//             });
+//         }, 200);
+//     };
+
+//     // 4. 重設問卷
+//     window.restartQuiz = () => {
+//         quizForm.reset();
+//         progressFill.style.width = "0%";
+//         resultBlocks.forEach(block => block.style.display = "none");
+//         const labels = quizForm.querySelectorAll("label");
+//         labels.forEach(label => label.classList.remove("selected"));
+//         window.scrollTo({ top: 0, behavior: "smooth" });
+//     };
+
+//     // 5. 回首頁
+//     window.goHome = () => {
+//         window.location.href = "/";
+//     };
+// });
+//心裏測驗
+document.addEventListener("DOMContentLoaded", () => {
+  const questions = document.querySelectorAll(".question");
+  const progressFill = document.getElementById("progressFill");
+  const resultBlocks = document.querySelectorAll(".result-block");
+  const buttonGroup = document.querySelector(".button-group");
+  let currentIndex = 0;
+  let answers = {};
+
+  // 初始只顯示第一題
+  function showQuestion(index) {
+    questions.forEach((q, i) => {
+      q.classList.toggle("active", i === index);
+    });
+    updateProgress(index);
+  }
+
+  function updateProgress(index) {
+    // 用 index + 1 保證最後一題為 100%
+    const percent = ((index + 1) / questions.length) * 100;
+    progressFill.style.width = `${percent}%`;
+  }
+
+  function calculateResult() {
+    const counts = { logic: 0, creative: 0, social: 0 };
+    Object.values(answers).forEach(val => {
+      if (counts[val] !== undefined) counts[val]++;
+    });
+    // 找最高分
+    let maxType = "logic";
+    let maxCount = 0;
+    for (const type in counts) {
+      if (counts[type] > maxCount) {
+        maxCount = counts[type];
+        maxType = type;
+      }
+    }
+    return maxType;
+  }
+
+  function showResult(type) {
+    // 隱藏題目（全部隱藏）
+    questions.forEach(q => q.classList.remove("active"));
+    // 進度條填滿
+    progressFill.style.width = "100%";
+
+    // 顯示對應結果區塊（覆蓋答題區域）
+    resultBlocks.forEach(rb => {
+      rb.style.display = rb.id === `result-${type.toUpperCase()}` ? "block" : "none";
+    });
+    // 顯示按鈕群組
+    buttonGroup.style.display = "flex";
+  }
+
+  // 綁定選項事件
+  questions.forEach((q, i) => {
+    const inputs = q.querySelectorAll("input[type=radio]");
+    inputs.forEach(input => {
+      input.addEventListener("change", () => {
+        answers[input.name] = input.value;
+        currentIndex++;
+        if (currentIndex < questions.length) {
+          showQuestion(currentIndex);
+        } else {
+          // 結束，顯示結果
+          const resType = calculateResult();
+          showResult(resType);
         }
-    }
+      });
+    });
+  });
 
-    // 找出最高分
-    let resultType = "logic";
-    let maxScore = scores.logic;
+  // 重置測驗
+  window.restartQuiz = function () {
+    answers = {};
+    currentIndex = 0;
+    resultBlocks.forEach(rb => (rb.style.display = "none"));
+    buttonGroup.style.display = "none";
+    showQuestion(currentIndex);
+    // 重置進度條
+    progressFill.style.width = "0%";
+  };
 
-    if (scores.creative > maxScore) {
-        resultType = "creative";
-        maxScore = scores.creative;
-    }
-    if (scores.social > maxScore) {
-        resultType = "social";
-    }
+  // 回首頁（可自行定義）
+  window.goHome = function () {
+    window.location.href = "/";
+  };
 
-    // 隱藏所有結果區塊
-    document.getElementById("result-A").style.display = "none";
-    document.getElementById("result-B").style.display = "none";
-    document.getElementById("result-C").style.display = "none";
-
-    // 顯示對應的結果區塊
-    if (resultType === "logic") {
-        document.getElementById("result-A").style.display = "block";
-    } else if (resultType === "creative") {
-        document.getElementById("result-B").style.display = "block";
-    } else if (resultType === "social") {
-        document.getElementById("result-C").style.display = "block";
-    }
-
-    // 平滑滾動到結果
-    document.querySelector(`#result-${resultType === 'logic' ? 'A' : resultType === 'creative' ? 'B' : 'C'}`)
-        .scrollIntoView({ behavior: 'smooth' });
-}
+  // 啟動測驗顯示第一題
+  showQuestion(currentIndex);
+});
