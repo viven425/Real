@@ -9,10 +9,14 @@
 </head>
 
 <body>
-    <h1>你是什麼性格？適合哪種科系？</h1>
+    <div class="container">
+        <div class="logo">🎓</div>
+        <h1>你是什麼性格？適合哪種科系？</h1>
+        <p class="subtitle">透過心理測驗找到最適合你的學習領域</p>
+    </div>
 
     <form id="quizForm">
-        <!-- 題目範本 -->
+        <!-- 題目列表 -->
         <div class="question">
             <h3>1. 你遇到困難時，通常怎麼做？</h3>
             <label><input type="radio" name="q1" value="logic"> 冷靜分析問題</label>
@@ -83,12 +87,9 @@
             <label><input type="radio" name="q10" value="social"> 被孤立或沒人理解</label>
         </div>
 
-        <div id="result"></div>
-
         <button type="button" onclick="calculateResult()">查看結果</button>
 
-
-        <!-- 結果展示區塊 -->
+        <!-- 結果區塊 -->
         <div id="result-A" class="result-block" style="display: none;">
             <h2>結果 A：分析型性格</h2>
             <div class="recommendation best">
@@ -127,9 +128,9 @@
                 <p>如果你想幫助更多人，這些科系也非常適合你。</p>
             </div>
         </div>
-
     </form>
-
+    <!-- 自訂的js (一定放在最下面) -->
+    <script src="/js/newFile.js"></script>
 </body>
 
 </html>

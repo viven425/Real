@@ -600,6 +600,7 @@ body.menu-open .overlay {
   margin-bottom: 1.2rem;
   line-height: 1.4;
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .banner2-text {
@@ -1011,6 +1012,17 @@ body.menu-open .overlay {
   font-weight: bold;
 }
 
+@keyframes smoothFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 /* 主容器設定 */
 .banner4 {
   padding: 60px 20px;
@@ -1049,6 +1061,7 @@ body.menu-open .overlay {
   margin: 0 auto;
   /* 確保 h3 自身居中 */
   max-width: 600px;
+  font-family: "LXGW WenKai Mono TC", sans-serif;
   /* 限制最大寬度，避免文字過長在一行 */
 }
 
@@ -2296,6 +2309,118 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
   }
 }
 
+.sidebar-navigation {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 200px;
+  background: linear-gradient(145deg, #eedddd, #f5eaea);
+  box-shadow: 5px 0 25px rgba(121, 46, 46, 0.15);
+  padding: 10px 15px;
+  border-radius: 0 12px 12px 0;
+  z-index: 1000;
+  border-left: 4px solid #792e2e;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.sidebar-navigation.hide-sidebar {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(-100%);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar-navigation .sidebar-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #1E1E1E;
+  text-align: center;
+  position: relative;
+}
+.sidebar-navigation .sidebar-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #792e2e, transparent);
+}
+.sidebar-navigation .sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-navigation .sidebar-menu li {
+  margin-bottom: 8px;
+}
+.sidebar-navigation .sidebar-menu .sidebar-button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a5568;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.sidebar-navigation .sidebar-menu .sidebar-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: #792e2e;
+  transform: scaleY(0);
+  transition: transform 0.3s;
+}
+.sidebar-navigation .sidebar-menu .sidebar-button:hover {
+  background: #792e2e;
+  color: white;
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(121, 46, 46, 0.3);
+}
+.sidebar-navigation .sidebar-menu .sidebar-button:hover::before {
+  transform: scaleY(1);
+}
+.sidebar-navigation .sidebar-menu .sidebar-button.active {
+  background: #792e2e;
+  color: white;
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(121, 46, 46, 0.3);
+  font-weight: 600;
+}
+.sidebar-navigation .sidebar-menu .sidebar-button.active::before {
+  transform: scaleY(1);
+  background: #542020;
+}
+.sidebar-navigation .sidebar-menu .sidebar-button.active:hover {
+  background: #672727;
+}
+
+footer {
+  position: relative;
+  z-index: 1001;
+}
+footer::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: transparent;
+}
+
 .contact-us-section {
   padding: 100px 20px;
   position: relative;
@@ -2571,4 +2696,139 @@ p {
   .contact-us-container {
     padding: 30px 20px;
   }
+}
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 50px 40px;
+  background: #fefefe;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+.container .logo {
+  font-size: 60px;
+  margin-bottom: 20px;
+  user-select: none;
+}
+.container h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 10px;
+}
+.container .subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #666666;
+  margin-bottom: 40px;
+}
+
+/* 問卷表單樣式 */
+form#quizForm {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+  /* 按鈕樣式 */
+  /* 結果區塊 */
+}
+form#quizForm .question {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+form#quizForm .question h3 {
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+form#quizForm .question label {
+  display: block;
+  font-size: 16px;
+  color: #444444;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  position: relative;
+  user-select: none;
+  /* 點選時改變標籤文字顏色 */
+}
+form#quizForm .question label input[type=radio] {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+input[type=radio]:checked + form#quizForm .question label {
+  color: #2c3e50;
+  font-weight: 700;
+}
+form#quizForm button {
+  display: block;
+  width: 160px;
+  margin: 40px auto 0 auto;
+  padding: 12px 0;
+  background-color: #2c3e50;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+form#quizForm button:hover {
+  background-color: #455a6f;
+}
+form#quizForm .result-block {
+  margin-top: 40px;
+  background: #f9f9f9;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 10px #ddd;
+  color: #222222;
+}
+form#quizForm .result-block h2 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  text-align: center;
+}
+form#quizForm .result-block .recommendation {
+  margin-bottom: 20px;
+}
+form#quizForm .result-block .recommendation.best {
+  border-left: 5px solid #2c3e50;
+  padding-left: 15px;
+}
+form#quizForm .result-block .recommendation.best h3 {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+form#quizForm .result-block .recommendation.best p {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #444;
+}
+form#quizForm .result-block .recommendation.best a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #2c3e50;
+}
+form#quizForm .result-block .recommendation.best a:hover {
+  text-decoration: underline;
+}
+form#quizForm .result-block .recommendation h3 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+form#quizForm .result-block .recommendation p {
+  font-size: 15px;
+  color: #555555;
 }/*# sourceMappingURL=style.css.map */
