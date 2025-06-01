@@ -2746,11 +2746,13 @@ p {
   border-radius: 16px;
   box-shadow: var(--shadow);
   overflow: hidden;
+  position: relative;
 }
 
 .page-section {
   padding: 30px;
   border-bottom: 1px solid var(--light-gray);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .intro-section {
@@ -2784,8 +2786,28 @@ h1 {
 
 .question {
   background-color: white;
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
+.question.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 h2 {
   font-size: 1.4rem;
   margin-bottom: 20px;
@@ -2833,6 +2855,7 @@ h2 {
   border-radius: 5px;
   margin: 20px 0 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .progress-bar {
@@ -2840,6 +2863,7 @@ h2 {
   background: linear-gradient(to right, var(--primary), var(--secondary));
   border-radius: 5px;
   transition: width 0.5s ease;
+  width: 10%;
 }
 
 .progress-info {
@@ -2875,7 +2899,6 @@ h2 {
   background: linear-gradient(to right, var(--primary), var(--secondary));
   color: white;
   box-shadow: 0 4px 10px rgba(74, 111, 165, 0.3);
-  flex: 1;
 }
 
 .btn.primary:hover {
@@ -2887,7 +2910,6 @@ h2 {
   background-color: white;
   color: var(--primary);
   border: 2px solid var(--primary);
-  flex: 1;
 }
 
 .btn.secondary:hover {
@@ -2897,7 +2919,6 @@ h2 {
 .btn.accent {
   background: linear-gradient(to right, var(--accent), #ff9e7d);
   color: white;
-  flex: 1;
 }
 
 .btn.accent:hover {
@@ -2920,10 +2941,16 @@ h2 {
   background-color: #dcdcdc;
 }
 
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .recommendations-section {
   padding: 30px;
   background-color: #f8fbfe;
   border-top: 1px solid var(--light-gray);
+  display: none;
 }
 
 .recommendation {
@@ -3106,6 +3133,64 @@ footer {
   color: var(--dark);
 }
 
+.question-counter {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.floating-progress {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  height: 8px;
+  background-color: var(--light-gray);
+  border-radius: 4px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.floating-progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  width: 10%;
+}
+
+@media (max-width: 768px) {
+  .floating-progress {
+    top: 10px;
+    width: 85%;
+  }
+}
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent);
+  top: -10px;
+  z-index: 1000;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 .page-header {
   text-align: center;
   margin: 10px;
