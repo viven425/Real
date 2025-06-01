@@ -1,36 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心裏測驗</title>
-    <link rel="stylesheet" href="/css/style.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心理測驗平台 - Début Rêve</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
     <div class="container">
-        <div class="logo">🎓</div>
-        <h1>你是什麼性格？適合哪種科系？</h1>
-        <p class="subtitle">透過心理測驗找到最適合你的學習領域</p>
+    <div class="page-section">
+      <div class="logo">Début Rêve</div>
+      <h1>探索你的潛能</h1>
+      <p class="subtitle">完成心理測驗，獲得最適合你的科系推薦</p>
     </div>
 
-
-
-    <form id="quizForm">
-        <!-- 題目一 -->
-        <div class="question" data-type="logic">
-            <h3>你喜歡哪種活動？</h3>
+    <!-- 題目 1~10 -->
+    <div class="page-section question">
+      <h2>問題 1：你對數字或邏輯推理的興趣如何？</h2>
             <div class="options">
-                <label><input type="radio" name="q1" value="logic"> 解謎遊戲</label>
-                <label><input type="radio" name="q1" value="creative"> 畫畫</label>
-                <label><input type="radio" name="q1" value="social"> 和朋友聊天</label>
+        <input type="radio" id="q1a1" name="q1" />
+        <label for="q1a1">非常有興趣</label>
+        <input type="radio" id="q1a2" name="q1" />
+        <label for="q1a2">普通</label>
+        <input type="radio" id="q1a3" name="q1" />
+        <label for="q1a3">沒興趣</label>
             </div>
         </div>
 
-        <!-- 題目二 -->
-        <div class="question" data-type="creative">
-            <h3>你偏好哪種工作環境？</h3>
+    <div class="page-section question">
+      <h2>問題 2：你是否喜歡與人溝通和合作？</h2>
             <div class="options">
                 <label><input type="radio" name="q2" value="logic"> 安靜有規律</label>
                 <label><input type="radio" name="q2" value="creative"> 多元有創意</label>
