@@ -286,208 +286,280 @@ document.addEventListener('DOMContentLoaded', function () {
 //心裏測驗
 // 測驗狀態管理
     // 添加选项选择效果
-    document.addEventListener('DOMContentLoaded', function() {
-      // 初始化变量
-      const totalQuestions = 10;
-      let currentQuestion = 1;
-      const answers = {};
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化变量
+  const totalQuestions = 10;
+  let currentQuestion = 1;
+  const answers = {};
+  
+  // DOM元素 - 修復選擇器
+  const prevBtn = document.querySelector('.nav-btn');
+  const nextBtn = document.querySelector('.btn.primary');
+  const retryBtn = document.getElementById('retry-btn');
+  const scienceBtn = document.getElementById('science-btn');
+  const scienceModal = document.getElementById('science-modal');
+  const closeModal = document.getElementById('close-modal');
+  const closeModalBtn = document.getElementById('close-modal-btn');
+  const progressBar = document.querySelector('.progress-bar');
+  const floatingProgressBar = document.querySelector('.floating-progress-bar');
+  const resultsSection = document.querySelector('.recommendations-section');
+  const floatingProgress = document.querySelector('.floating-progress');
+  const progressInfo = document.querySelector('.progress-info');
+  
+  // 為每個問題添加ID（如果不存在）
+  const questions = document.querySelectorAll('.question');
+  questions.forEach((question, index) => {
+    if (!question.id) {
+      question.id = `q${index + 1}`;
+    }
+  });
+  
+  // 更新进度条
+  function updateProgress() {
+    const progress = (currentQuestion / totalQuestions) * 100;
+    progressBar.style.width = `${progress}%`;
+    
+    if (floatingProgressBar) {
+      floatingProgressBar.style.width = `${progress}%`;
+    }
+    
+    // 更新進度資訊
+    if (progressInfo) {
+      const spans = progressInfo.querySelectorAll('span');
+      if (spans[0]) spans[0].textContent = `第 ${currentQuestion} 題 / 共 ${totalQuestions} 題`;
+      if (spans[1]) spans[1].textContent = `${Math.round(progress)}%`;
+    }
+    
+    // 更新按钮状态
+    if (prevBtn) prevBtn.disabled = currentQuestion === 1;
+    if (nextBtn) nextBtn.innerHTML = currentQuestion === totalQuestions ? 
+      '看結果 <i class="fas fa-star"></i>' : 
+      '下一題 <i class="fas fa-arrow-right"></i>';
+    
+    // 显示/隐藏浮动进度条
+    if (floatingProgress) {
+      if (currentQuestion > 1) {
+        floatingProgress.style.display = 'block';
+      } else {
+        floatingProgress.style.display = 'none';
+      }
+    }
+  }
+  
+  // 显示当前问题
+  function showCurrentQuestion() {
+    // 隐藏所有问题
+    questions.forEach((q, index) => {
+      q.classList.remove('active');
+      q.style.display = 'none';
+    });
+    
+    // 显示当前问题
+    const currentQ = questions[currentQuestion - 1]; // 使用索引而不是ID
+    if (currentQ) {
+      currentQ.classList.add('active');
+      currentQ.style.display = 'block';
       
-      // DOM元素
-      const prevBtn = document.getElementById('prev-btn');
-      const nextBtn = document.getElementById('next-btn');
-      const retryBtn = document.getElementById('retry-btn');
-      const scienceBtn = document.getElementById('science-btn');
-      const scienceModal = document.getElementById('science-modal');
-      const closeModal = document.getElementById('close-modal');
-      const closeModalBtn = document.getElementById('close-modal-btn');
-      const progressBar = document.querySelector('.progress-bar');
-      const floatingProgressBar = document.querySelector('.floating-progress-bar');
-      const currentQuestionSpan = document.getElementById('current-question');
-      const progressPercentSpan = document.getElementById('progress-percent');
-      const resultsSection = document.getElementById('results-section');
-      const floatingProgress = document.querySelector('.floating-progress');
+      // 滚动到问题位置
+      setTimeout(() => {
+        currentQ.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+    
+    updateProgress();
+  }
+  
+  // 下一题
+  function nextQuestion() {
+    // 只有當用戶點擊"下一題"或"看結果"按鈕時才檢查答案
+    const isManualNext = arguments.length > 0 && arguments[0] === 'manual';
+    
+    if (isManualNext) {
+      // 检查当前问题是否已回答（僅在手動點擊時）
+      const currentQuestionElement = questions[currentQuestion - 1];
+      const selectedOption = currentQuestionElement ? currentQuestionElement.querySelector('input[type="radio"]:checked') : null;
       
-      // 更新进度条
-      function updateProgress() {
-        const progress = (currentQuestion / totalQuestions) * 100;
-        progressBar.style.width = `${progress}%`;
-        floatingProgressBar.style.width = `${progress}%`;
-        currentQuestionSpan.textContent = currentQuestion;
-        progressPercentSpan.textContent = Math.round(progress);
-        
-        // 更新按钮状态
-        prevBtn.disabled = currentQuestion === 1;
-        nextBtn.textContent = currentQuestion === totalQuestions ? "看結果" : "下一題";
-        
-        // 显示/隐藏浮动进度条
-        if (currentQuestion > 1) {
-          floatingProgress.style.display = 'block';
-        } else {
-          floatingProgress.style.display = 'none';
-        }
+      if (!selectedOption) {
+        alert('請選擇一個答案後繼續');
+        return;
       }
       
-      // 显示当前问题
-      function showCurrentQuestion() {
-        // 隐藏所有问题
-        document.querySelectorAll('.question').forEach(q => {
-          q.classList.remove('active');
-        });
-        
-        // 显示当前问题
-        const currentQ = document.getElementById(`q${currentQuestion}`);
-        if (currentQ) {
-          currentQ.classList.add('active');
-          
-          // 滚动到问题位置
-          setTimeout(() => {
-            currentQ.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 300);
-        }
-        
-        updateProgress();
+      if (selectedOption) {
+        // 保存答案
+        answers[`q${currentQuestion}`] = selectedOption.id;
       }
+    }
+    
+    if (currentQuestion < totalQuestions) {
+      currentQuestion++;
+      showCurrentQuestion();
+    } else {
+      // 显示结果
+      if (resultsSection) {
+        resultsSection.style.display = 'block';
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+        createConfetti();
+      }
+    }
+  }
+  
+  // 上一题
+  function prevQuestion() {
+    if (currentQuestion > 1) {
+      currentQuestion--;
+      showCurrentQuestion();
+    }
+  }
+  
+  // 重新测试
+  function retryTest() {
+    // 重置所有选择
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.checked = false;
+    });
+    
+    // 移除选中样式
+    document.querySelectorAll('.option-item').forEach(item => {
+      item.classList.remove('selected');
+    });
+    
+    // 重置变量
+    currentQuestion = 1;
+    for (let key in answers) {
+      delete answers[key];
+    }
+    
+    // 隐藏结果
+    if (resultsSection) {
+      resultsSection.style.display = 'none';
+    }
+    
+    // 显示第一题
+    showCurrentQuestion();
+    
+    // 滚动到顶部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
+  // 添加选项选择效果
+  document.querySelectorAll('.option-item').forEach(item => {
+    const radio = item.querySelector('input[type="radio"]');
+    
+    // 点击整个区域都可以选择
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      radio.checked = true;
       
-      // 下一题
-      function nextQuestion() {
-        // 检查当前问题是否已回答
-        const selectedOption = document.querySelector(`#q${currentQuestion} input[type="radio"]:checked`);
-        if (!selectedOption && currentQuestion !== totalQuestions) {
-          alert('請選擇一個答案後繼續');
-          return;
-        }
-        
-        if (selectedOption) {
-          // 保存答案
-          answers[`q${currentQuestion}`] = selectedOption.id;
-        }
-        
+      // 保存答案
+      answers[`q${currentQuestion}`] = radio.id;
+      
+      updateSelectedStyles();
+      
+      // 自动前进到下一題（800ms后）
+      setTimeout(() => {
         if (currentQuestion < totalQuestions) {
           currentQuestion++;
           showCurrentQuestion();
         } else {
-          // 显示结果
-          resultsSection.style.display = 'block';
-          resultsSection.scrollIntoView({ behavior: 'smooth' });
-          createConfetti();
-        }
-      }
-      
-      // 上一题
-      function prevQuestion() {
-        if (currentQuestion > 1) {
-          currentQuestion--;
-          showCurrentQuestion();
-        }
-      }
-      
-      // 重新测试
-      function retryTest() {
-        // 重置所有选择
-        document.querySelectorAll('input[type="radio"]').forEach(radio => {
-          radio.checked = false;
-        });
-        
-        // 移除选中样式
-        document.querySelectorAll('.option-item').forEach(item => {
-          item.classList.remove('selected');
-        });
-        
-        // 重置变量
-        currentQuestion = 1;
-        for (let key in answers) {
-          delete answers[key];
-        }
-        
-        // 隐藏结果
-        resultsSection.style.display = 'none';
-        
-        // 显示第一题
-        showCurrentQuestion();
-        
-        // 滚动到顶部
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      
-      // 添加选项选择效果
-      document.querySelectorAll('.option-item').forEach(item => {
-        const radio = item.querySelector('input[type="radio"]');
-        const label = item.querySelector('label');
-        
-        // 点击整个区域都可以选择
-        item.addEventListener('click', () => {
-          radio.checked = true;
-          updateSelectedStyles();
-          
-          // 自动前进到下一题（2秒后）
-          if (currentQuestion < totalQuestions) {
-            setTimeout(() => {
-              nextQuestion();
-            }, 800);
+          // 如果是最後一題，顯示結果
+          if (resultsSection) {
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            createConfetti();
           }
-        });
-        
-        // 点击label时阻止事件冒泡
-        label.addEventListener('click', e => {
-          e.stopPropagation();
-          radio.checked = true;
-          updateSelectedStyles();
-        });
-      });
-      
-      // 更新选中样式
-      function updateSelectedStyles() {
-        document.querySelectorAll('.option-item').forEach(item => {
-          if (item.querySelector('input[type="radio"]').checked) {
-            item.classList.add('selected');
-          } else {
-            item.classList.remove('selected');
-          }
-        });
-      }
-      
-      // 创建彩色纸屑效果
-      function createConfetti() {
-        const colors = ['#4a6fa5', '#6d9bc3', '#ff7e5f', '#28a745', '#ffc107'];
-        for (let i = 0; i < 100; i++) {
-          const confetti = document.createElement('div');
-          confetti.className = 'confetti';
-          confetti.style.left = `${Math.random() * 100}%`;
-          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.width = `${Math.random() * 10 + 5}px`;
-          confetti.style.height = confetti.style.width;
-          confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
-          document.body.appendChild(confetti);
-          
-          // 动画结束后移除元素
-          setTimeout(() => {
-            confetti.remove();
-          }, 5000);
         }
-      }
-      
-      // 事件监听
-      nextBtn.addEventListener('click', nextQuestion);
-      prevBtn.addEventListener('click', prevQuestion);
-      retryBtn.addEventListener('click', retryTest);
-      scienceBtn.addEventListener('click', () => {
-        scienceModal.style.display = 'flex';
-      });
-      closeModal.addEventListener('click', () => {
-        scienceModal.style.display = 'none';
-      });
-      closeModalBtn.addEventListener('click', () => {
-        scienceModal.style.display = 'none';
-      });
-      
-      // 点击模态框外部关闭
-      window.addEventListener('click', (e) => {
-        if (e.target === scienceModal) {
-          scienceModal.style.display = 'none';
-        }
-      });
-      
-      // 初始化
-      updateProgress();
-      showCurrentQuestion();
+      }, 800);
     });
+    
+    // 单独处理radio按钮点击
+    radio.addEventListener('click', (e) => {
+      // 保存答案
+      answers[`q${currentQuestion}`] = radio.id;
+      updateSelectedStyles();
+      
+      // 自动前进
+      setTimeout(() => {
+        if (currentQuestion < totalQuestions) {
+          currentQuestion++;
+          showCurrentQuestion();
+        } else {
+          // 如果是最後一題，顯示結果
+          if (resultsSection) {
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            createConfetti();
+          }
+        }
+      }, 800);
+    });
+  });
+  
+  // 更新选中样式
+  function updateSelectedStyles() {
+    // 只更新當前問題的選項樣式
+    const currentQuestionElement = questions[currentQuestion - 1];
+    if (currentQuestionElement) {
+      currentQuestionElement.querySelectorAll('.option-item').forEach(item => {
+        if (item.querySelector('input[type="radio"]').checked) {
+          item.classList.add('selected');
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+    }
+  }
+  
+  // 创建彩色纸屑效果
+  function createConfetti() {
+    const colors = ['#4a6fa5', '#6d9bc3', '#ff7e5f', '#28a745', '#ffc107'];
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = `${Math.random() * 100}%`;
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.width = `${Math.random() * 8 + 4}px`;
+      confetti.style.height = confetti.style.width;
+      confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      confetti.style.animationDelay = `${Math.random() * 2}s`;
+      document.body.appendChild(confetti);
+      
+      // 动画结束后移除元素
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.remove();
+        }
+      }, 6000);
+    }
+  }
+  
+  // 事件监听
+  if (nextBtn) nextBtn.addEventListener('click', () => nextQuestion('manual'));
+  if (prevBtn) prevBtn.addEventListener('click', prevQuestion);
+  if (retryBtn) retryBtn.addEventListener('click', retryTest);
+  if (scienceBtn) {
+    scienceBtn.addEventListener('click', () => {
+      if (scienceModal) scienceModal.style.display = 'flex';
+    });
+  }
+  if (closeModal) {
+    closeModal.addEventListener('click', () => {
+      if (scienceModal) scienceModal.style.display = 'none';
+    });
+  }
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => {
+      if (scienceModal) scienceModal.style.display = 'none';
+    });
+  }
+  
+  // 点击模态框外部关闭
+  window.addEventListener('click', (e) => {
+    if (e.target === scienceModal && scienceModal) {
+      scienceModal.style.display = 'none';
+    }
+  });
+  
+  // 初始化
+  updateProgress();
+  showCurrentQuestion();
+});
