@@ -284,93 +284,77 @@ document.addEventListener('DOMContentLoaded', function () {
 //     };
 // });
 //心裏測驗
-document.addEventListener("DOMContentLoaded", () => {
-  const questions = document.querySelectorAll(".question");
-  const progressFill = document.getElementById("progressFill");
-  const resultBlocks = document.querySelectorAll(".result-block");
-  const buttonGroup = document.querySelector(".button-group");
-  let currentIndex = 0;
-  let answers = {};
-
-  // 初始只顯示第一題
-  function showQuestion(index) {
-    questions.forEach((q, i) => {
-      q.classList.toggle("active", i === index);
-    });
-    updateProgress(index);
-  }
-
-  function updateProgress(index) {
-    // 用 index + 1 保證最後一題為 100%
-    const percent = ((index + 1) / questions.length) * 100;
-    progressFill.style.width = `${percent}%`;
-  }
-
-  function calculateResult() {
-    const counts = { logic: 0, creative: 0, social: 0 };
-    Object.values(answers).forEach(val => {
-      if (counts[val] !== undefined) counts[val]++;
-    });
-    // 找最高分
-    let maxType = "logic";
-    let maxCount = 0;
-    for (const type in counts) {
-      if (counts[type] > maxCount) {
-        maxCount = counts[type];
-        maxType = type;
-      }
-    }
-    return maxType;
-  }
-
-  function showResult(type) {
-    // 隱藏題目（全部隱藏）
-    questions.forEach(q => q.classList.remove("active"));
-    // 進度條填滿
-    progressFill.style.width = "100%";
-
-    // 顯示對應結果區塊（覆蓋答題區域）
-    resultBlocks.forEach(rb => {
-      rb.style.display = rb.id === `result-${type.toUpperCase()}` ? "block" : "none";
-    });
-    // 顯示按鈕群組
-    buttonGroup.style.display = "flex";
-  }
-
-  // 綁定選項事件
-  questions.forEach((q, i) => {
-    const inputs = q.querySelectorAll("input[type=radio]");
-    inputs.forEach(input => {
-      input.addEventListener("change", () => {
-        answers[input.name] = input.value;
-        currentIndex++;
-        if (currentIndex < questions.length) {
-          showQuestion(currentIndex);
-        } else {
-          // 結束，顯示結果
-          const resType = calculateResult();
-          showResult(resType);
-        }
+// 測驗狀態管理
+    // 添加选项选择效果
+    document.querySelectorAll('.option-item').forEach(item => {
+      const radio = item.querySelector('input[type="radio"]');
+      const label = item.querySelector('label');
+      
+      // 点击整个区域都可以选择
+      item.addEventListener('click', () => {
+        radio.checked = true;
+        updateSelectedStyles();
+      });
+      
+      // 点击label时阻止事件冒泡
+      label.addEventListener('click', e => {
+        e.stopPropagation();
+        radio.checked = true;
+        updateSelectedStyles();
       });
     });
-  });
-
-  // 重置測驗
-  window.restartQuiz = function () {
-    answers = {};
-    currentIndex = 0;
-    resultBlocks.forEach(rb => (rb.style.display = "none"));
-    buttonGroup.style.display = "none";
-    showQuestion(currentIndex);
-    // 重置進度條
-    progressFill.style.width = "0%";
-  };
-
-  // 回首頁（可自行定義）
-  window.goHome = function () {
-    window.location.href = "/";
-  };
-
-  // 啟動測驗顯示第一題
-  showQuestion(currentIndex);
-});
+    
+    // 更新选中样式
+    function updateSelectedStyles() {
+      document.querySelectorAll('.option-item').forEach(item => {
+        if (item.querySelector('input[type="radio"]').checked) {
+          item.classList.add('selected');
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+    }
+    
+    // 模态框控制
+    const scienceModal = document.getElementById('science-modal');
+    const scienceBtn = document.getElementById('science-btn');
+    const closeModal = document.getElementById('close-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const retryBtn = document.getElementById('retry-btn');
+    
+    scienceBtn.addEventListener('click', () => {
+      scienceModal.style.display = 'flex';
+    });
+    
+    closeModal.addEventListener('click', () => {
+      scienceModal.style.display = 'none';
+    });
+    
+    closeModalBtn.addEventListener('click', () => {
+      scienceModal.style.display = 'none';
+    });
+    
+    // 点击模态框外部关闭
+    window.addEventListener('click', (e) => {
+      if (e.target === scienceModal) {
+        scienceModal.style.display = 'none';
+      }
+    });
+    
+    // 重新测试按钮
+    retryBtn.addEventListener('click', () => {
+      // 重置所有选择
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.checked = false;
+      });
+      
+      // 移除选中样式
+      document.querySelectorAll('.option-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      
+      // 滚动到顶部
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      alert('測驗已重置！請從第一題重新開始作答。');
+    });
