@@ -2112,7 +2112,7 @@ body.menu-open {
 
   .about1 {
     position: relative; // 確保在背景圖片之上
-    z-index: 2; // 確保在背景圖片之上
+    z-index: 2; 
     width: 550px;
     max-width: 90%;
     height: auto;
@@ -2120,7 +2120,7 @@ body.menu-open {
     background: rgba(214, 202, 202, 0.15);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    /* 兼容性 */
+    
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -2137,7 +2137,7 @@ body.menu-open {
       height: auto;
       margin-bottom: 5px;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-      /* 給 Logo 增加輕微陰影 */
+      
     }
 
     &-text {
@@ -2153,10 +2153,10 @@ body.menu-open {
 
     &-text2 {
       font-size: 17px;
-      /* ⭐ 內容文字字體稍微增大 */
+     
 
       margin-bottom: 10px;
-      /* ⭐ 調整與按鈕的間距 */
+     
       word-wrap: break-word;
       width: 100%;
       @extend %article-text-style;
@@ -2174,14 +2174,14 @@ body.menu-open {
 @media (max-width: 1023px) {
   .letter1 {
     padding: 50px 50px;
-    /* ⭐ 調整 padding */
+    
     min-height: 480px;
 
     .about1 {
       width: 500px;
-      /* ⭐ 調整寬度 */
+     
       padding: 30px;
-      /* ⭐ 調整內邊距 */
+      
       gap: 20px;
 
       .love45 {
@@ -2213,34 +2213,34 @@ body.menu-open {
 // 手機設備 (通常是 767px 及以下)
 @media (max-width: 767px) {
   .letter1 {
-    // ⭐ 手機上內容區塊垂直置中
+    
     justify-content: center;
-    /* ⭐ 讓 .about1 在水平方向居中 */
+   
     align-items: center;
     padding: 40px 20px;
-    /* ⭐ 調整 padding */
+   
     min-height: 400px;
-    /* ⭐ 降低最小高度 */
+   
 
     .about1 {
       width: 95%;
-      /* ⭐ 讓卡片佔據大部分寬度 */
+     
       max-width: 400px;
-      /* ⭐ 限制最大寬度，防止過寬 */
+      
       padding: 25px;
-      /* ⭐ 調整內邊距 */
+     
       gap: 15px;
-      /* ⭐ 縮小間距 */
+      
 
       .love45 {
         width: 60px;
-        /* ⭐ 再次縮小 Logo */
+       
       }
 
       &-text {
         font-size: 24px;
 
-        /* ⭐ 標題字體再縮小 */
+      
         &::after {
           bottom: -6px;
           width: 40px;
@@ -2250,7 +2250,7 @@ body.menu-open {
 
       &-text2 {
         font-size: 14px;
-        /* ⭐ 內容文字字體再縮小 */
+        
         line-height: 1.6;
         margin-bottom: 5px;
       }
