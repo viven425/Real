@@ -3340,14 +3340,6 @@ p {
       flex-wrap: wrap;
     }
     
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: var(--dark);
-      color: white;
-      font-size: 0.9rem;
-    }
-    
     @media (max-width: 768px) {
       .button-group {
         flex-direction: column;
