@@ -82,6 +82,23 @@ function setActiveNav(clickedBtn) {
 }
 
 // 心理測驗變數
+// 測驗系統初始化
+// 測驗系統初始化
+function initQuizSystem() {
+    console.log('測驗系統已初始化');
+    setupQuestionListeners();
+    updateUI();
+}// 按鈕
+function setActiveNav(clickedBtn) {
+    // 移除所有按鈕的 active 類別
+    const allBtns = document.querySelectorAll('.center-nav-btn');
+    allBtns.forEach(btn => btn.classList.remove('active'));
+    
+    // 為點擊的按鈕添加 active 類別
+    clickedBtn.classList.add('active');
+}
+
+// 心理測驗變數
 let currentQuestion = 1;
 const totalQuestions = 10;
 const answers = {};
@@ -205,11 +222,21 @@ function initImageChanger() {
         
         // 延遲後跳轉到測驗
         setTimeout(() => {
-            // 隱藏圖片區域
+            // 隱藏圖片區域，但保持其他元素可見
             document.getElementById('imageSection').style.display = 'none';
             
             // 顯示測驗區域
-            document.getElementById('quizSection').style.display = 'block';
+            const quizSection = document.getElementById('quizSection');
+            quizSection.style.display = 'block';
+            
+            // 平滑滾動到測驗區域
+            quizSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start' 
+            });
+            
+            // 重新組織測驗區域的HTML結構
+            reorganizeQuizLayout();
             
             console.log('已跳轉到測驗區域');
         }, 1500);
@@ -229,9 +256,39 @@ function initImageChanger() {
     }
 }
 
-// 測驗系統初始化
-function initQuizSystem() {
-    console.log('測驗系統已初始化');
+// 重新組織測驗佈局
+function reorganizeQuizLayout() {
+    const quizWrapper = document.querySelector('.quiz-wrapper');
+    if (!quizWrapper) {
+        console.error('找不到 quiz-wrapper');
+        return;
+    }
+
+    // 不重建HTML，直接使用現有結構並添加容器
+    const questions = quizWrapper.querySelectorAll('.question');
+    const progressContainer = quizWrapper.querySelector('.progress-container');
+    const progressText = quizWrapper.querySelector('.progress-text');
+    const quizIntro = quizWrapper.querySelector('.quiz-intro');
+
+    // 創建問題容器
+    const questionsContainer = document.createElement('div');
+    questionsContainer.className = 'questions-container';
+
+    // 將所有問題移動到問題容器中
+    questions.forEach(question => {
+        questionsContainer.appendChild(question);
+    });
+
+    // 重新排列元素順序：標題 -> 問題容器 -> 進度條 -> 進度文字
+    quizWrapper.innerHTML = '';
+    quizWrapper.appendChild(quizIntro);
+    quizWrapper.appendChild(questionsContainer);
+    quizWrapper.appendChild(progressContainer);
+    quizWrapper.appendChild(progressText);
+
+    console.log('測驗佈局已重新組織');
+    
+    // 重新初始化測驗功能
     setupQuestionListeners();
     updateUI();
 }
