@@ -42,26 +42,27 @@
   </section>
 
    <!-- 圖片切換區域 -->
-  <div class="image-section" id="imageSection">
-    <div class="image-changer">
-      <div class="image-display">
-        <!-- 模擬圖片，可以替換為真實圖片 -->
-        <div class="current-image" style="background: linear-gradient(45deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">圖片 1 - 測驗前</div>
-        <div class="current-image" style="background: linear-gradient(45deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">圖片 2 - 準備開始</div>
-        <div class="image-placeholder">準備開始心理測驗<br>發現你的潛能</div>
-      </div>
-      <button class="change-image-button" id="startButton">點擊開始吧</button>
+ <div class="image-section" id="imageSection">
+  <div class="image-changer">
+    <div class="image-display">
+      <img src="/img/before.svg" alt="測驗前情境圖" class="current-image active">
+      <img src="/img/after.svg" alt="準備開始測驗圖" class="current-image">
+
+      <div class="image-placeholder">準備開始心理測驗<br>發現你的潛能</div>
     </div>
+    <button class="change-image-button" id="startButton">點擊開始吧</button>
+  </div>
+</div>
 
    <!-- 測驗區域 -->
-  <div class="quiz-section" id="quizSection">
+  <div class="quiz-section" id="quizSection" style="display: none;">
     <div class="quiz-wrapper">
       <div class="quiz-intro">
         <h1>探索你的潛能</h1>
         <p>完成心理測驗，獲得最適合你的科系推薦</p>
       </div>
 
-  <    <!-- 問題1 -->
+      <!-- 問題1 -->
       <div class="question active" id="q1">
         <h2>1. 當面對一個複雜的問題時，你通常會？</h2>
         <label data-question="1" data-answer="A">

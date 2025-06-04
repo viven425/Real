@@ -2296,7 +2296,7 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
 
 .center-nav-btn.active {
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  color: var(--white-color);
+  color: #1E1E1E;
   border-color: var(--primary);
   transform: translateY(-3px);
   box-shadow: 0 15px 35px rgba(121, 46, 46, 0.3);
@@ -2321,19 +2321,13 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
 .image-display {
   width: 100%;
   max-width: 800px;
-  height: 500px;
+  padding-bottom: 56.25%;
   overflow: hidden;
   position: relative;
   border-radius: 25px;
   box-shadow: 0 20px 40px rgba(121, 46, 46, 0.15);
   transition: transform 0.3s ease;
   background: linear-gradient(45deg, var(--secondary-bg), var(--primary-light));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white-color);
-  font-size: 1.5rem;
-  font-weight: 600;
 }
 
 .image-display:hover {
@@ -2353,6 +2347,7 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
 
 .current-image.active {
   opacity: 1;
+  display: block;
 }
 
 .image-placeholder {
@@ -2368,6 +2363,7 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
 
 .image-placeholder.hidden {
   opacity: 0;
+  pointer-events: none; /* 隱藏時禁用鼠標事件 */
 }
 
 .change-image-button {

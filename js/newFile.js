@@ -567,426 +567,603 @@ document.addEventListener('DOMContentLoaded', () => {
 // 第二頁
 // 調試函數
      // 全局變數
-    let currentImageIndex = 0;
-    let currentQuestion = 1;
-    let answers = {};
-    let isQuizStarted = false;
-    let hasHovered = false;
-    const totalQuestions = 10;
-    
-    // 調試函數
-    function debug(msg) {
-        console.log('DEBUG:', msg);
-    }
-    
-    // 頁面載入完成後執行
-    document.addEventListener('DOMContentLoaded', function() {
-        debug('頁面載入完成');
-        
-        // 設置按鈕事件
-        setupButtonEvents();
-        
-        // 設置選項點擊事件
-        setupQuestionEvents();
-        
-        // 初始化第一張圖片
-        const images = document.querySelectorAll('.current-image');
-        if (images.length > 0) {
-            images[0].classList.add('active');
-        }
-    });
-    
+let currentImageIndex = 0;
+let currentQuestion = 1;
+let answers = {};
+let isQuizStarted = false;
+let hasHovered = false; // 追蹤是否至少懸停過一次，用於按鈕文字狀態
+const totalQuestions = 10;
+
+// 調試函數
+function debug(msg) {
+    console.log('DEBUG:', msg);
+}
+
+// 頁面載入完成後執行
+document.addEventListener('DOMContentLoaded', function() {
+    debug('頁面載入完成');
+
     // 設置按鈕事件
-    function setupButtonEvents() {
-        const button = document.getElementById('startButton');
-        const placeholder = document.querySelector('.image-placeholder');
-        
-        // 鼠標懸停事件 - 切換到圖片2
-        button.addEventListener('mouseenter', function() {
-            if (!isQuizStarted) {
-                debug('鼠標懸停，切換到圖片2');
-                changeImageTo(1); // 切換到第二張圖片
-                placeholder.classList.add('hidden');
-                if (!hasHovered) {
-                    this.textContent = '開始測驗';
-                    hasHovered = true;
-                }
-            }
+    setupButtonEvents();
+
+    // 設置選項點擊事件 (使用事件委託)
+    setupQuestionEvents();
+
+    // 初始化第一張圖片
+    const images = document.querySelectorAll('.current-image');
+    if (images.length > 0) {
+        images[0].classList.add('active');
+        debug('第一張圖片已設定為活動狀態');
+    } else {
+        debug('警告: 未找到 .current-image 元素');
+    }
+
+    // 處理「我瞭解了」按鈕（如果這個按鈕存在且需要處理）
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function() {
+            this.style.display = 'none'; // 隱藏按鈕本身
+            debug('「我瞭解了」按鈕被點擊');
         });
-        
-        // 鼠標離開事件 - 回到圖片1
-        button.addEventListener('mouseleave', function() {
-            if (!isQuizStarted) {
-                debug('鼠標離開，回到圖片1');
-                changeImageTo(0); // 回到第一張圖片
-                if (!hasHovered) {
-                    placeholder.classList.remove('hidden');
-                    this.textContent = '點擊開始吧';
-                } else {
-                    placeholder.classList.add('hidden');
-                }
-            }
-        });
-        
-        // 點擊事件 - 開始測驗
-        button.addEventListener('click', function() {
-            debug('按鈕被點擊');
-            if (!isQuizStarted) {
-                // 確保切換到圖片2
-                changeImageTo(1);
-                placeholder.classList.add('hidden');
+    }
+});
+
+// 設置按鈕事件 (startButton 的 hover 和 click 邏輯)
+function setupButtonEvents() {
+    const button = document.getElementById('startButton');
+    const placeholder = document.querySelector('.image-placeholder');
+
+    if (!button || !placeholder) {
+        debug('錯誤: 未找到 #startButton 或 .image-placeholder 元素');
+        return;
+    }
+
+    // 使用 onXXX 屬性來確保事件監聽器在重置時能夠正確更新
+    button.onmouseenter = function() {
+        if (!isQuizStarted) {
+            debug('鼠標懸停，切換到圖片2');
+            changeImageTo(1); // 切換到第二張圖片
+            placeholder.classList.add('hidden');
+            if (!hasHovered) {
                 this.textContent = '開始測驗';
                 hasHovered = true;
-                isQuizStarted = true;
-                
-                // 稍作延遲再開始測驗
-                setTimeout(() => {
-                    startQuiz();
-                }, 600);
             }
-        });
-    }
-    
-    // 切換到指定圖片
-    function changeImageTo(index) {
-        const images = document.querySelectorAll('.current-image');
-        if (images.length > index) {
-            // 隱藏所有圖片
-            images.forEach(img => img.classList.remove('active'));
-            // 顯示指定圖片
-            images[index].classList.add('active');
-            currentImageIndex = index;
-            debug(`切換到圖片 ${index + 1}`);
         }
-    }
-    
-    // 圖片切換功能
-    function changeImage() {
-        debug('切換圖片');
-        const images = document.querySelectorAll('.current-image');
-        
-        if (images.length > 0) {
-            images[currentImageIndex].classList.remove('active');
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            images[currentImageIndex].classList.add('active');
+    };
+
+    button.onmouseleave = function() {
+        if (!isQuizStarted) {
+            debug('鼠標離開，回到圖片1');
+            changeImageTo(0); // 回到第一張圖片
+            if (!hasHovered) { // 只有在從未懸停過的情況下才顯示提示文字
+                placeholder.classList.remove('hidden');
+                this.textContent = '點擊開始吧';
+            } else { // 否則，保持圖片隱藏，按鈕文字為「開始測驗」
+                placeholder.classList.add('hidden');
+            }
         }
-    }
-    
-    // 開始測驗
-    function startQuiz() {
-        debug('開始測驗');
-        
-        const imageSection = document.getElementById('imageSection');
-        const quizSection = document.getElementById('quizSection');
-        
-        // 添加淡出效果到圖片區域
-        imageSection.style.opacity = '0';
-        imageSection.style.transform = 'translateY(-20px)';
-        
-        setTimeout(() => {
-            // 隱藏圖片區域，顯示測驗區域
-            imageSection.style.display = 'none';
-            quizSection.style.display = 'block';
-            
-            // 重置測驗區域樣式
-            quizSection.style.opacity = '0';
-            quizSection.style.transform = 'translateY(20px)';
-            
-            // 確保從第1題開始
-            currentQuestion = 1;
-            showQuestion(1);
-            updateProgress();
-            
-            // 淡入測驗區域
+    };
+
+    button.onclick = function() {
+        debug('按鈕被點擊');
+        if (!isQuizStarted) {
+            // 確保切換到圖片2
+            changeImageTo(1);
+            placeholder.classList.add('hidden');
+            this.textContent = '開始測驗'; // 確保點擊後仍顯示「開始測驗」
+            hasHovered = true; // 點擊也算懸停過一次
+            isQuizStarted = true;
+
+            // 稍作延遲再開始測驗，提供視覺過渡時間
             setTimeout(() => {
-                quizSection.style.opacity = '1';
-                quizSection.style.transform = 'translateY(0)';
-            }, 100);
-            
-        }, 400);
-    }
-    
-    // 顯示指定問題
-    function showQuestion(questionNum) {
-        // 隱藏所有問題
-        document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
-        
-        // 顯示指定問題
-        const targetQuestion = document.getElementById('q' + questionNum);
-        if (targetQuestion) {
-            targetQuestion.classList.add('active');
-            debug(`顯示第${questionNum}題`);
+                startQuiz();
+            }, 600);
         }
+    };
+}
+
+// 切換到指定圖片
+function changeImageTo(index) {
+    const images = document.querySelectorAll('.current-image');
+    if (images.length > index) {
+        images.forEach(img => img.classList.remove('active'));
+        images[index].classList.add('active');
+        currentImageIndex = index;
+        debug(`切換到圖片 ${index + 1}`);
+    } else {
+        debug(`錯誤: 無法切換到圖片 ${index + 1}，索引超出範圍`);
     }
-    
-    // 設置問題選項事件
-    function setupQuestionEvents() {
-        // 使用事件委託處理選項點擊
-        document.addEventListener('click', function(e) {
-            const label = e.target.closest('label[data-question]');
-            if (label) {
-                e.preventDefault();
-                const question = label.dataset.question;
-                const answer = label.dataset.answer;
-                debug(`選擇答案: 第${question}題 = ${answer}`);
-                selectAnswer(question, answer, label);
-            }
-        });
+}
+
+// 開始測驗 (圖片區域淡出，測驗區域淡入)
+function startQuiz() {
+    debug('開始測驗');
+    const imageSection = document.getElementById('imageSection');
+    const quizSection = document.getElementById('quizSection');
+
+    if (!imageSection || !quizSection) {
+        debug('錯誤: 未找到 imageSection 或 quizSection 元素');
+        return;
     }
-    
-    // 選擇答案
-    function selectAnswer(question, answer, element) {
-        debug(`答案選擇: 第${question}題 = ${answer}`);
-        
-        // 防止重複觸發
-        if (element.classList.contains('selected')) {
-            debug('選項已被選中，忽略重複點擊');
-            return;
-        }
-        
-        // 清除同組選中狀態
-        const questionDiv = element.closest('.question');
-        questionDiv.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
-        
-        // 設置選中狀態
-        element.classList.add('selected');
-        element.querySelector('input').checked = true;
-        
-        // 保存答案
-        answers[question] = answer;
-        debug(`當前答案: ${JSON.stringify(answers)}`);
-        
-        // 短暫延遲後跳轉到下一題
-        setTimeout(() => {
-            if (currentQuestion < totalQuestions) {
-                debug(`從第${currentQuestion}題跳轉到第${currentQuestion + 1}題`);
-                nextQuestion();
-            } else {
-                debug('最後一題，顯示結果');
-                showResults();
-            }
-        }, 500);
-    }
-    
-    // 下一題
-    function nextQuestion() {
-        if (currentQuestion < totalQuestions) {
-            currentQuestion++;
-            showQuestion(currentQuestion);
-            updateProgress();
-        }
-    }
-    
-    // 更新進度條
-    function updateProgress() {
-        const percentage = (currentQuestion / totalQuestions) * 100;
-        const progressBar = document.querySelector('.progress-bar');
-        const progressText = document.querySelector('.progress-text');
-        
-        if (progressBar) {
-            progressBar.style.width = percentage + '%';
-        }
-        
-        if (progressText) {
-            progressText.textContent = `第 ${currentQuestion} 題 / 共 ${totalQuestions} 題 (${Math.round(percentage)}%)`;
-        }
-        
-        debug(`進度更新: ${currentQuestion}/${totalQuestions} (${Math.round(percentage)}%)`);
-    }
-    
-    // 顯示結果
-    function showResults() {
-        debug('顯示結果');
-        
-        // 隱藏問題區域，顯示結果
-        document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
-        
-        // 分析答案
-        let countA = 0, countB = 0, countC = 0;
-        Object.values(answers).forEach(answer => {
-            if (answer === 'A') countA++;
-            else if (answer === 'B') countB++;
-            else if (answer === 'C') countC++;
-        });
-        
-        debug(`統計結果: A=${countA}, B=${countB}, C=${countC}`);
-        
-        // 創建結果顯示
-        createResultDisplay(countA, countB, countC);
-    }
-    
-    // 創建結果顯示
-    function createResultDisplay(countA, countB, countC) {
-        let primary, secondary, tertiary;
-        
-        // 根據答案統計確定推薦科系
-        if (countA >= countB && countA >= countC) {
-            primary = {
-                major: '資訊工程學系',
-                desc: '你具備出色的邏輯與分析能力，對科技與創新有高度興趣，善於解決複雜問題。這種特質非常適合資訊工程、數據科學、統計分析或軟體開發等領域。',
-                icon: 'fas fa-laptop-code'
-            };
-            secondary = {
-                major: '數學系',
-                desc: '你的邏輯思維和問題解決能力也適合純數學領域的研究與應用。',
-                icon: 'fas fa-calculator'
-            };
-            tertiary = {
-                major: '統計學系', 
-                desc: '數據分析和統計建模也是你可以考慮的方向。',
-                icon: 'fas fa-chart-bar'
-            };
-        } else if (countB >= countC) {
-            primary = {
-                major: '設計學系',
-                desc: '你具有豐富的創意與藝術美感，善於視覺表達和創新思考。這種特質適合視覺設計、多媒體藝術、產品設計或數位內容創作等方向。',
-                icon: 'fas fa-palette'
-            };
-            secondary = {
-                major: '藝術學系',
-                desc: '純藝術創作能讓你的創造力得到充分發揮。',
-                icon: 'fas fa-paint-brush'
-            };
-            tertiary = {
-                major: '傳播學系',
-                desc: '媒體與傳播也是展現創意的絕佳平台。',
-                icon: 'fas fa-broadcast-tower'
-            };
-        } else {
-            primary = {
-                major: '心理學系',
-                desc: '你善於觀察與理解他人，具有敏銳的洞察力和同理心。這種特質使你在心理學、人力資源管理、教育諮詢或社會工作等領域具有優勢。',
-                icon: 'fas fa-brain'
-            };
-            secondary = {
-                major: '社會工作學系',
-                desc: '你的人際溝通能力適合幫助他人解決問題的工作。',
-                icon: 'fas fa-hands-helping'
-            };
-            tertiary = {
-                major: '教育學系',
-                desc: '教育和輔導也是發揮你人際技能的好選擇。',
-                icon: 'fas fa-chalkboard-teacher'
-            };
-        }
-        
-        // 插入結果HTML
-        const quizWrapper = document.querySelector('.quiz-wrapper');
-        quizWrapper.innerHTML = `
-            <div class="quiz-intro">
-                <h1>測驗結果分析</h1>
-                <p>根據你的回答，我們為你推薦以下科系</p>
-            </div>
-            
-            <div class="result-card">
-                <h3><i class="${primary.icon}"></i> 最佳推薦科系：${primary.major} <span class="badge">最匹配</span></h3>
-                <p>${primary.desc}</p>
-            </div>
-            
-            <div class="result-card">
-                <h3><i class="${secondary.icon}"></i> 次要建議：${secondary.major} <span class="badge">高度相關</span></h3>
-                <p>${secondary.desc}</p>
-            </div>
-            
-            <div class="result-card">
-                <h3><i class="${tertiary.icon}"></i> 次要建議：${tertiary.major} <span class="badge">可考慮</span></h3>
-                <p>${tertiary.desc}</p>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <button class="btn" onclick="retryQuiz()">
-                    <i class="fas fa-redo"></i> 重新測試
-                </button>
-                <button class="view-majors-btn" onclick="showMajorsInfo()">
-                    <i class="fas fa-info-circle"></i> 了解更多科系
-                </button>
-            </div>
-        `;
-    }
-    
-    // 重新測試
-    function retryQuiz() {
-        debug('重新開始測驗');
-        
-        // 重置變數
-        currentQuestion = 1;
-        currentImageIndex = 0;
-        answers = {};
-        isQuizStarted = false;
-        hasHovered = false;
-        
-        // 平滑過渡到圖片區域
-        const quizSection = document.getElementById('quizSection');
-        const imageSection = document.getElementById('imageSection');
-        
-        // 添加淡出效果
+
+    // 添加淡出效果到圖片區域
+    imageSection.style.opacity = '0';
+    imageSection.style.transform = 'translateY(-20px)';
+    imageSection.style.pointerEvents = 'none'; // 避免點擊圖片區域
+
+    setTimeout(() => {
+        // 隱藏圖片區域，顯示測驗區域
+        imageSection.style.display = 'none';
+        quizSection.style.display = 'block';
+
+        // 重置測驗區域樣式 (確保從隱藏狀態淡入)
         quizSection.style.opacity = '0';
         quizSection.style.transform = 'translateY(20px)';
-        
+
+        // 確保從第1題開始
+        currentQuestion = 1;
+        showQuestion(1);
+        updateProgress();
+
+        // 淡入測驗區域
         setTimeout(() => {
-            // 隱藏測驗區域，顯示圖片區域
-            quizSection.style.display = 'none';
-            imageSection.style.display = 'block';
-            
-            // 重置圖片和按鈕狀態
-            resetImageSection();
-            
-            // 淡入圖片區域
-            setTimeout(() => {
-                imageSection.style.opacity = '1';
-                imageSection.style.transform = 'translateY(0)';
-            }, 100);
-            
-        }, 300);
+            quizSection.style.opacity = '1';
+            quizSection.style.transform = 'translateY(0)';
+        }, 100);
+    }, 400);
+}
+
+// 顯示指定問題
+function showQuestion(questionNum) {
+    document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+    const targetQuestion = document.getElementById('q' + questionNum);
+    if (targetQuestion) {
+        targetQuestion.classList.add('active');
+        debug(`顯示第${questionNum}題`);
+    } else {
+        debug(`錯誤: 未找到第${questionNum}題`);
     }
-    
-    // 重置圖片區域
-    function resetImageSection() {
-        const images = document.querySelectorAll('.current-image');
-        const placeholder = document.querySelector('.image-placeholder');
-        const button = document.getElementById('startButton');
-        const imageSection = document.getElementById('imageSection');
-        
-        // 重置圖片狀態
-        images.forEach(img => img.classList.remove('active'));
-        if (images.length > 0) {
-            images[0].classList.add('active'); // 顯示第一張圖片
+}
+
+// 設置問題選項事件 (使用事件委託，處理所有問題的點擊)
+function setupQuestionEvents() {
+    // 由於是事件委託，只需要綁定一次到 document
+    document.addEventListener('click', function(e) {
+        // 確保點擊的是 <label> 元素本身，而不是其子元素（如 <input>）
+        const label = e.target.closest('label[data-question]');
+        if (label) {
+            e.preventDefault(); // 阻止 label 內 radio 的預設行為
+            const questionId = label.dataset.question; // 獲取問題 ID
+            const answer = label.dataset.answer; // 獲取答案
+
+            // 確保只處理當前顯示的問題的選項
+            const currentActiveQuestionDiv = document.getElementById('q' + currentQuestion);
+            if (currentActiveQuestionDiv && label.closest('#q' + currentQuestion)) {
+                selectAnswer(questionId, answer, label);
+            } else {
+                debug('點擊的選項不屬於當前顯示的問題或未找到當前問題元素');
+            }
         }
-        
-        // 重置文字和按鈕
-        placeholder.classList.remove('hidden');
-        button.textContent = '點擊開始吧';
-        
-        // 重置樣式
+    });
+}
+
+// 選擇答案並進行處理
+function selectAnswer(question, answer, element) {
+    debug(`答案選擇: 第${question}題 = ${answer}`);
+
+    // 清除同組選中狀態
+    const questionDiv = element.closest('.question');
+    if (questionDiv) {
+        questionDiv.querySelectorAll('label').forEach(l => {
+            l.classList.remove('selected');
+            // 同步 radio 的 checked 狀態，雖然 CSS 邏輯主要依賴 .selected
+            l.querySelector('input[type="radio"]').checked = false;
+        });
+    }
+
+    // 設置選中狀態
+    element.classList.add('selected');
+    element.querySelector('input[type="radio"]').checked = true; // 確保 radio 被選中
+
+    // 保存答案
+    answers[question] = answer;
+    debug(`當前答案: ${JSON.stringify(answers)}`);
+
+    // 短暫延遲後跳轉到下一題或顯示結果
+    setTimeout(() => {
+        if (parseInt(question) < totalQuestions) { // 使用 parseInt 確保數字比較
+            debug(`從第${question}題跳轉到第${parseInt(question) + 1}題`);
+            nextQuestion();
+        } else {
+            debug('最後一題，顯示結果');
+            showResults();
+        }
+    }, 500);
+}
+
+// 跳轉到下一題
+function nextQuestion() {
+    if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+        updateProgress();
+    }
+}
+
+// 更新進度條視覺和文字
+function updateProgress() {
+    const percentage = (currentQuestion / totalQuestions) * 100;
+    const progressBar = document.querySelector('.progress-bar');
+    const progressText = document.querySelector('.progress-text');
+
+    if (progressBar) {
+        progressBar.style.width = percentage + '%';
+    } else {
+        debug('錯誤: 未找到 .progress-bar 元素');
+    }
+
+    if (progressText) {
+        progressText.textContent = `第 ${currentQuestion} 題 / 共 ${totalQuestions} 題 (${Math.round(percentage)}%)`;
+    } else {
+        debug('錯誤: 未找到 .progress-text 元素');
+    }
+
+    debug(`進度更新: ${currentQuestion}/${totalQuestions} (${Math.round(percentage)}%)`);
+}
+
+// 顯示結果頁面
+function showResults() {
+    debug('顯示結果');
+
+    const quizWrapper = document.querySelector('.quiz-wrapper');
+    if (!quizWrapper) {
+        debug('錯誤: 未找到 .quiz-wrapper 元素');
+        return;
+    }
+
+    // 分析答案
+    let countA = 0, countB = 0, countC = 0;
+    Object.values(answers).forEach(answer => {
+        if (answer === 'A') countA++;
+        else if (answer === 'B') countB++;
+        else if (answer === 'C') countC++;
+    });
+
+    debug(`統計結果: A=${countA}, B=${countB}, C=${countC}`);
+
+    // 動態生成結果顯示
+    createResultDisplay(countA, countB, countC);
+}
+
+// 創建結果顯示的 HTML 內容
+function createResultDisplay(countA, countB, countC) {
+    let primary, secondary, tertiary;
+
+    // 根據答案統計確定推薦科系
+    if (countA >= countB && countA >= countC) {
+        primary = {
+            major: '資訊工程學系',
+            desc: '你具備出色的邏輯與分析能力，對科技與創新有高度興趣，善於解決複雜問題。這種特質非常適合資訊工程、數據科學、統計分析或軟體開發等領域。',
+            icon: 'fas fa-laptop-code'
+        };
+        secondary = {
+            major: '數學系',
+            desc: '你的邏輯思維和問題解決能力也適合純數學領域的研究與應用。',
+            icon: 'fas fa-calculator'
+        };
+        tertiary = {
+            major: '統計學系',
+            desc: '數據分析和統計建模也是你可以考慮的方向。',
+            icon: 'fas fa-chart-bar'
+        };
+    } else if (countB >= countC) {
+        primary = {
+            major: '設計學系',
+            desc: '你具有豐富的創意與藝術美感，善於視覺表達和創新思考。這種特質適合視覺設計、多媒體藝術、產品設計或數位內容創作等方向。',
+            icon: 'fas fa-palette'
+        };
+        secondary = {
+            major: '藝術學系',
+            desc: '純藝術創作能讓你的創造力得到充分發揮。',
+            icon: 'fas fa-paint-brush'
+        };
+        tertiary = {
+            major: '傳播學系',
+            desc: '媒體與傳播也是展現創意的絕佳平台。',
+            icon: 'fas fa-broadcast-tower'
+        };
+    } else {
+        primary = {
+            major: '心理學系',
+            desc: '你善於觀察與理解他人，具有敏銳的洞察力和同理心。這種特質使你在心理學、人力資源管理、教育諮詢或社會工作等領域具有優勢。',
+            icon: 'fas fa-brain'
+        };
+        secondary = {
+            major: '社會工作學系',
+            desc: '你的人際溝通能力適合幫助他人解決問題的工作。',
+            icon: 'fas fa-hands-helping'
+        };
+        tertiary = {
+            major: '教育學系',
+            desc: '教育和輔導也是發揮你人際技能的好選擇。',
+            icon: 'fas fa-chalkboard-teacher'
+        };
+    }
+
+    const quizWrapper = document.querySelector('.quiz-wrapper');
+    quizWrapper.innerHTML = `
+        <div class="quiz-intro">
+            <h1>測驗結果分析</h1>
+            <p>根據你的回答，我們為你推薦以下科系</p>
+        </div>
+
+        <div class="result-card">
+            <h3><i class="${primary.icon}"></i> 最佳推薦科系：${primary.major} <span class="badge">最匹配</span></h3>
+            <p>${primary.desc}</p>
+        </div>
+
+        <div class="result-card">
+            <h3><i class="${secondary.icon}"></i> 次要建議：${secondary.major} <span class="badge">高度相關</span></h3>
+            <p>${secondary.desc}</p>
+        </div>
+
+        <div class="result-card">
+            <h3><i class="${tertiary.icon}"></i> 次要建議：${tertiary.major} <span class="badge">可考慮</span></h3>
+            <p>${tertiary.desc}</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn" onclick="retryQuiz()">
+                <i class="fas fa-redo"></i> 重新測試
+            </button>
+            <button class="view-majors-btn" onclick="showMajorsInfo()">
+                <i class="fas fa-info-circle"></i> 了解更多科系
+            </button>
+        </div>
+    `;
+}
+
+// 重新測試 (重置狀態並回到初始圖片頁面)
+function retryQuiz() {
+    debug('重新開始測驗');
+
+    // 重置變數
+    currentQuestion = 1;
+    currentImageIndex = 0;
+    answers = {};
+    isQuizStarted = false;
+    hasHovered = false;
+
+    const quizSection = document.getElementById('quizSection');
+    const imageSection = document.getElementById('imageSection');
+    const startButton = document.getElementById('startButton');
+    const placeholder = document.querySelector('.image-placeholder');
+    const quizWrapper = document.querySelector('.quiz-wrapper'); // 獲取 quizWrapper 元素
+
+    if (!quizSection || !imageSection || !startButton || !placeholder || !quizWrapper) {
+        debug('錯誤: retryQuiz 無法找到所有必要元素');
+        return;
+    }
+
+    // 添加淡出效果
+    quizSection.style.opacity = '0';
+    quizSection.style.transform = 'translateY(20px)';
+    quizSection.style.pointerEvents = 'none'; // 避免點擊測驗區域
+
+    setTimeout(() => {
+        // **核心修正：重置 quizWrapper 的內容為初始測驗介面**
+        // 這是因為 showResults 修改了 innerHTML，所以需要復原
+        quizWrapper.innerHTML = `
+            <div class="quiz-intro">
+                <h1>探索你的潛能</h1>
+                <p>完成心理測驗，獲得最適合你的科系推薦</p>
+            </div>
+            <div class="question active" id="q1">
+                <h2>1. 當面對一個複雜的問題時，你通常會？</h2>
+                <label data-question="1" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    分析問題的邏輯結構，尋找最佳解決方案
+                </label>
+                <label data-question="1" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    用創意思維尋找獨特的解決方法
+                </label>
+                <label data-question="1" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    與他人討論，聽取不同觀點
+                </label>
+            </div>
+            <div class="question" id="q2">
+                <h2>2. 你最喜歡的學習方式是？</h2>
+                <label data-question="2" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    透過實驗和數據分析理解概念
+                </label>
+                <label data-question="2" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    透過視覺化和創作表達學習
+                </label>
+                <label data-question="2" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    透過小組討論和互動學習
+                </label>
+            </div>
+            <div class="question" id="q3">
+                <h2>3. 你理想的工作環境是？</h2>
+                <label data-question="3" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    安靜的辦公室，可以專注思考
+                </label>
+                <label data-question="3" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    充滿創意氛圍的工作室
+                </label>
+                <label data-question="3" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    開放式空間，便於團隊合作
+                </label>
+            </div>
+            <div class="question" id="q4">
+                <h2>4. 你最擅長的是？</h2>
+                <label data-question="4" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    邏輯推理和數據分析
+                </label>
+                <label data-question="4" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    創意發想和藝術表達
+                </label>
+                <label data-question="4" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    人際溝通和團隊協調
+                </label>
+            </div>
+            <div class="question" id="q5">
+                <h2>5. 你喜歡的休閒活動是？</h2>
+                <label data-question="5" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    閱讀科技或學術文章
+                </label>
+                <label data-question="5" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    繪畫、攝影或手工創作
+                </label>
+                <label data-question="5" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    與朋友聚會或參加社交活動
+                </label>
+            </div>
+            <div class="question" id="q6">
+                <h2>6. 你認為最重要的能力是？</h2>
+                <label data-question="6" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    分析和解決問題的能力
+                </label>
+                <label data-question="6" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    創新和想像力
+                </label>
+                <label data-question="6" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    理解他人和同理心
+                </label>
+            </div>
+            <div class="question" id="q7">
+                <h2>7. 你的理想職業特質是？</h2>
+                <label data-question="7" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    需要高度技術和專業知識
+                </label>
+                <label data-question="7" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    充滿創意和變化性
+                </label>
+                <label data-question="7" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    能幫助他人和社會
+                </label>
+            </div>
+            <div class="question" id="q8">
+                <h2>8. 在小組作業中，你通常扮演什麼角色？</h2>
+                <label data-question="8" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    技術專家，負責分析和執行
+                </label>
+                <label data-question="8" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    創意發想者，提供新點子
+                </label>
+                <label data-question="8" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    協調者，維持團隊和諧
+                </label>
+            </div>
+            <div class="question" id="q9">
+                <h2>9. 你最感興趣的課外讀物是？</h2>
+                <label data-question="9" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    科技趨勢和技術文章
+                </label>
+                <label data-question="9" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    藝術設計和創意雜誌
+                </label>
+                <label data-question="9" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    心理學和人文社會書籍
+                </label>
+            </div>
+            <div class="question" id="q10">
+                <h2>10. 你希望自己的工作能帶來什麼影響？</h2>
+                <label data-question="10" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    推動科技進步和創新
+                </label>
+                <label data-question="10" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    創造美麗和啟發人心的作品
+                </label>
+                <label data-question="10" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    幫助他人成長和解決問題
+                </label>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="progress-text">第 1 題 / 共 10 題 (10%)</div>
+        `;
+
+        // 隱藏測驗區域，顯示圖片區域
+        quizSection.style.display = 'none';
+        imageSection.style.display = 'block';
+        imageSection.style.pointerEvents = 'auto'; // 允許點擊圖片區域
+
+        // 重置圖片區域的視覺狀態
+        resetImageSectionVisuals();
+
+        // 淡入圖片區域
+        setTimeout(() => {
+            imageSection.style.opacity = '1';
+            imageSection.style.transform = 'translateY(0)';
+        }, 100);
+
+        // **重要：重新綁定問題選項事件，因為 innerHTML 被重置了**
+        // `setupQuestionEvents()` 內部使用了事件委託，所以再次調用它確保新生成的元素能被監聽到。
+        setupQuestionEvents();
+
+    }, 300);
+}
+
+// 重置圖片區域的視覺狀態 (不涉及事件重新綁定)
+function resetImageSectionVisuals() {
+    const images = document.querySelectorAll('.current-image');
+    const placeholder = document.querySelector('.image-placeholder');
+    const button = document.getElementById('startButton');
+
+    if (!images.length || !placeholder || !button) {
+        debug('錯誤: resetImageSectionVisuals 無法找到所有必要元素');
+        return;
+    }
+
+    // 重置圖片狀態
+    images.forEach(img => img.classList.remove('active'));
+    images[0].classList.add('active'); // 顯示第一張圖片
+
+    // 重置文字和按鈕
+    placeholder.classList.remove('hidden');
+    button.textContent = '點擊開始吧';
+
+    // 重置圖片區域的樣式
+    const imageSection = document.getElementById('imageSection');
+    if (imageSection) {
         imageSection.style.opacity = '0';
         imageSection.style.transform = 'translateY(20px)';
         imageSection.style.transition = 'all 0.5s ease';
-        
-        // 清除舊的事件監聽器並重新設置
-        const newButton = button.cloneNode(true);
-        button.parentNode.replaceChild(newButton, button);
-        
-        // 重新設置事件（需要重新獲取按鈕元素）
-        setTimeout(() => {
-            setupButtonEvents();
-        }, 100);
     }
-    
-    // 顯示科系信息
-    function showMajorsInfo() {
-        alert('這裡可以顯示更多科系信息的詳細內容！');
-    }
-    
-    // 導航相關函數
-    function toggleMenu() {
-        const menu = document.getElementById('menu');
-        menu.classList.toggle('active');
-    }
-    
-    function setActiveNav(clickedBtn) {
-        document.querySelectorAll('.center-nav-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        clickedBtn.classList.add('active');
-        debug(`導航切換到: ${clickedBtn.textContent}`);
-    }
+}
+
+// 顯示科系信息（保持不變）
+function showMajorsInfo() {
+    alert('這裡可以顯示更多科系信息的詳細內容！');
+}
