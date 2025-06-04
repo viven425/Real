@@ -89,8 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('DOMContentLoaded', function() {
             // 獲取DOM元素
             const startButton = document.getElementById('startButton');
-            const beforeImage = document.getElementById('beforeImage');
-            const afterImage = document.getElementById('afterImage');
+            const images = document.querySelectorAll('.current-image');
+            const beforeImage = images[0]; // 第一張圖片
+            const afterImage = images[1];  // 第二張圖片
             const imageDisplay = document.getElementById('imageDisplay');
             
             let isHovering = false;
@@ -98,6 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('DOM已加載，開始綁定事件');
             console.log('startButton:', startButton);
+            console.log('beforeImage:', beforeImage);
+            console.log('afterImage:', afterImage);
+            console.log('images 數量:', images.length);
+
+            // 檢查元素是否存在
+            if (!startButton) {
+                console.error('startButton 未找到');
+                return;
+            }
+            if (!beforeImage || !afterImage) {
+                console.error('圖片元素未找到', { beforeImage, afterImage });
+                return;
+            }
 
             // 鼠標懸停換圖功能
             startButton.addEventListener('mouseenter', function() {
@@ -126,18 +140,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 切換到第二張圖片
             function switchToAfterImage() {
-                console.log('切換到第二張圖片，beforeImage active:', beforeImage.classList.contains('active'));
-                beforeImage.classList.remove('active');
-                afterImage.classList.add('active');
-                console.log('切換後，afterImage active:', afterImage.classList.contains('active'));
+                console.log('切換到第二張圖片');
+                if (beforeImage && afterImage) {
+                    beforeImage.classList.remove('active');
+                    afterImage.classList.add('active');
+                    console.log('切換後，afterImage active:', afterImage.classList.contains('active'));
+                }
             }
 
             // 切換到第一張圖片
             function switchToBeforeImage() {
-                console.log('切換到第一張圖片，afterImage active:', afterImage.classList.contains('active'));
-                afterImage.classList.remove('active');
-                beforeImage.classList.add('active');
-                console.log('切換後，beforeImage active:', beforeImage.classList.contains('active'));
+                console.log('切換到第一張圖片');
+                if (beforeImage && afterImage) {
+                    afterImage.classList.remove('active');
+                    beforeImage.classList.add('active');
+                    console.log('切換後，beforeImage active:', beforeImage.classList.contains('active'));
+                }
             }
 
             // 開始答題功能
@@ -146,7 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 hasStarted = true;
                 
                 // 顯示加載動畫
-                imageDisplay.classList.add('loading');
+                if (imageDisplay) {
+                    imageDisplay.classList.add('loading');
+                }
                 
                 // 改變按鈕狀態
                 startButton.classList.add('starting');
@@ -157,7 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // 模擬加載過程
                 setTimeout(() => {
-                    imageDisplay.classList.remove('loading');
+                    if (imageDisplay) {
+                        imageDisplay.classList.remove('loading');
+                    }
                     
                     // 這裡可以添加跳轉到答題頁面的邏輯
                     alert('開始答題！\n\n在這裡可以跳轉到答題頁面或載入題目。');
@@ -176,11 +198,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // 圖片加載錯誤處理
-            beforeImage.addEventListener('error', function() {
-                console.log('第一張圖片加載失敗');
-            });
+            if (beforeImage) {
+                beforeImage.addEventListener('error', function() {
+                    console.log('第一張圖片加載失敗');
+                });
+            }
 
-            afterImage.addEventListener('error', function() {
-                console.log('第二張圖片加載失敗');
-            });
+            if (afterImage) {
+                afterImage.addEventListener('error', function() {
+                    console.log('第二張圖片加載失敗');
+                });
+            }
         });
