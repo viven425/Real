@@ -750,7 +750,10 @@ function gotoDepartmentIntro() {
     window.location.href = 'department-intro.html';
 }
 
- // 卡片點擊處理函數
+
+ // 卡片點擊處理函數最後
+
+        // 卡片點擊處理函數
         function goToDetail(department) {
             console.log('跳轉到科系詳情頁:', department);
             // 可以根據不同科系跳轉到不同頁面

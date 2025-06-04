@@ -3698,7 +3698,17 @@ footer {
 .page-header {
   text-align: center;
   margin: 10px;
-}
+      font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-light-grey);
+
+  h1 {    
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text-dark-grey);
+}}
+
+
 
 .cards-container {
   display: flex;
@@ -3869,3 +3879,246 @@ footer {
     }
   }
 }
+
+//學係
+   .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 15px 35px rgba(121, 46, 46, 0.15),
+                0 5px 15px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(121, 46, 46, 0.25),
+                0 10px 25px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .card-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: rgba(121, 46, 46, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.8s;
+        }
+
+        .card:hover .card-image::before {
+            transform: translateX(100%);
+        }
+
+        .card-image i {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 20px rgba(121, 46, 46, 0.4);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .card:hover .card-image i {
+            transform: scale(1.15) rotate(5deg);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+        }
+
+        /* 為每個科系設定主題相關的顏色，但保持與網站色調協調 */
+        .cs i { color: #e6cccc; text-shadow: 0 0 20px #792e2e; }
+        .business i { color: #f0d6d6; text-shadow: 0 0 20px #792e2e; }
+        .medical i { color: #ffffff; text-shadow: 0 0 20px #a73d3d; }
+        .architecture i { color: #e6cccc; text-shadow: 0 0 20px #792e2e; }
+        .language i { color: #f0d6d6; text-shadow: 0 0 20px #792e2e; }
+        .mechanical i { color: #ffffff; text-shadow: 0 0 20px #a73d3d; }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-content h2 {
+            color: var(--text-dark-grey);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .card-content p {
+            color: var(--text-light-grey);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .card-button {
+            background: rgba(121, 46, 46, 0.3);
+            backdrop-filter: blur(10px);
+            color: var(--white-color);
+            border: 1px solid rgba(121, 46, 46, 0.4);
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            align-self: flex-start;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-button:hover {
+            background: rgba(121, 46, 46, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(121, 46, 46, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(121, 46, 46, 0.6);
+        }
+
+        .card-button i {
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .card-button:hover i {
+            transform: translateX(5px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-dark-grey);
+        }
+
+        .header h1 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--text-dark-grey);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: var(--text-light-grey);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .card-image {
+                height: 180px;
+                font-size: 3.5rem;
+            }
+            
+            .card-content {
+                padding: 25px;
+            }
+            
+            .card-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .card-button {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 10px;
+            }
+            
+            .card-image {
+                height: 160px;
+                font-size: 3rem;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+        }
+
+        /* 增加一些閃爍動畫 */
+        @keyframes shimmer {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        .card:hover .card-image i {
+            animation: shimmer 2s ease-in-out infinite;
+        }
