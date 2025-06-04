@@ -84,6 +84,10 @@ function setActiveNav(clickedBtn) {
 // 心理測驗變數
 // 測驗系統初始化
 // 測驗系統初始化
+// 測驗系統初始化
+// 測驗系統初始化
+// 測驗系統初始化
+// 測驗系統初始化
 function initQuizSystem() {
     console.log('測驗系統已初始化');
     setupQuestionListeners();
@@ -125,10 +129,13 @@ const results = {
 // 等待DOM完全加載
 document.addEventListener('DOMContentLoaded', function() {
     // 圖片切換功能初始化
-    initImageChanger();
+    const imageChanger = initImageChanger();
     
     // 測驗功能初始化
     initQuizSystem();
+    
+    // 將圖片切換器存儲為全局變量供其他函數使用
+    window.imageChangerInstance = imageChanger;
 });
 
 // 圖片切換功能
@@ -137,7 +144,7 @@ function initImageChanger() {
     const images = document.querySelectorAll('.current-image');
     const beforeImage = images[0]; // 第一張圖片
     const afterImage = images[1];  // 第二張圖片
-    const imageDisplay = document.getElementById('imageDisplay');
+    const imageDisplay = document.querySelector('.image-display');
     
     let isHovering = false;
     let hasStarted = false;
@@ -146,43 +153,20 @@ function initImageChanger() {
     console.log('startButton:', startButton);
     console.log('beforeImage:', beforeImage);
     console.log('afterImage:', afterImage);
-    console.log('images 數量:', images.length);
 
     // 檢查元素是否存在
     if (!startButton) {
         console.error('startButton 未找到');
-        return;
+        return null;
     }
     if (!beforeImage || !afterImage) {
         console.error('圖片元素未找到', { beforeImage, afterImage });
-        return;
+        return null;
     }
 
-    // 鼠標懸停換圖功能
-    startButton.addEventListener('mouseenter', function() {
-        console.log('鼠標進入按鈕，hasStarted:', hasStarted);
-        if (!hasStarted) {
-            isHovering = true;
-            switchToAfterImage();
-        }
-    });
-
-    startButton.addEventListener('mouseleave', function() {
-        console.log('鼠標離開按鈕，hasStarted:', hasStarted);
-        if (!hasStarted) {
-            isHovering = false;
-            switchToBeforeImage();
-        }
-    });
-
-    // 點擊開始答題功能
-    startButton.addEventListener('click', function() {
-        console.log('按鈕被點擊');
-        if (!hasStarted) {
-            startQuiz();
-            hasStarted = true;
-        }
-    });
+    // 移除舊的事件監聽器（防止重複綁定）
+    const newStartButton = startButton.cloneNode(true);
+    startButton.parentNode.replaceChild(newStartButton, startButton);
 
     // 切換到第二張圖片
     function switchToAfterImage() {
@@ -190,7 +174,6 @@ function initImageChanger() {
         if (beforeImage && afterImage) {
             beforeImage.classList.remove('active');
             afterImage.classList.add('active');
-            console.log('切換後，afterImage active:', afterImage.classList.contains('active'));
         }
     }
 
@@ -200,13 +183,38 @@ function initImageChanger() {
         if (beforeImage && afterImage) {
             afterImage.classList.remove('active');
             beforeImage.classList.add('active');
-            console.log('切換後，beforeImage active:', beforeImage.classList.contains('active'));
         }
     }
 
+    // 鼠標懸停換圖功能
+    newStartButton.addEventListener('mouseenter', function() {
+        console.log('鼠標進入按鈕，hasStarted:', hasStarted);
+        if (!hasStarted) {
+            isHovering = true;
+            switchToAfterImage();
+        }
+    });
+
+    newStartButton.addEventListener('mouseleave', function() {
+        console.log('鼠標離開按鈕，hasStarted:', hasStarted);
+        if (!hasStarted) {
+            isHovering = false;
+            switchToBeforeImage();
+        }
+    });
+
+    // 點擊開始答題功能
+    newStartButton.addEventListener('click', function() {
+        console.log('按鈕被點擊');
+        if (!hasStarted) {
+            hasStarted = true; // 設置為已開始狀態
+            startQuiz();
+        }
+    });
+
     // 開始答題功能
     function startQuiz() {
-        console.log('開始測驗，準備跳轉到測驗區域');
+        console.log('開始測驗，準備切換到測驗內容');
         
         // 顯示加載動畫
         if (imageDisplay) {
@@ -214,31 +222,38 @@ function initImageChanger() {
         }
         
         // 改變按鈕狀態
-        startButton.classList.add('starting');
-        startButton.textContent = '準備中...';
+        newStartButton.classList.add('starting');
+        newStartButton.textContent = '準備中...';
         
         // 確保顯示第二張圖片
         switchToAfterImage();
         
-        // 延遲後跳轉到測驗
+        // 延遲後在原位置切換內容
         setTimeout(() => {
-            // 隱藏圖片區域，但保持其他元素可見
-            document.getElementById('imageSection').style.display = 'none';
-            
-            // 顯示測驗區域
+            // 在原來的圖片區域顯示測驗內容
+            const imageSection = document.getElementById('imageSection');
             const quizSection = document.getElementById('quizSection');
-            quizSection.style.display = 'block';
             
-            // 平滑滾動到測驗區域
-            quizSection.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start' 
-            });
+            // 將測驗內容移動到圖片區域的位置
+            const imageChanger = imageSection.querySelector('.image-changer');
+            const quizWrapper = quizSection.querySelector('.quiz-wrapper');
             
-            // 重新組織測驗區域的HTML結構
-            reorganizeQuizLayout();
-            
-            console.log('已跳轉到測驗區域');
+            if (imageChanger && quizWrapper) {
+                // 隱藏圖片內容，在同一位置顯示測驗
+                imageChanger.style.display = 'none';
+                
+                // 將測驗包裝器移動到圖片區域
+                imageSection.appendChild(quizWrapper);
+                quizWrapper.style.display = 'block';
+                
+                // 隱藏原來的測驗區域
+                quizSection.style.display = 'none';
+                
+                // 重新組織測驗佈局
+                reorganizeQuizLayout();
+                
+                console.log('已在原位置切換到測驗內容');
+            }
         }, 1500);
     }
 
@@ -254,6 +269,14 @@ function initImageChanger() {
             console.log('第二張圖片加載失敗');
         });
     }
+
+    // 返回函數供外部使用
+    return {
+        switchToAfterImage,
+        switchToBeforeImage,
+        hasStarted: () => hasStarted,
+        setHasStarted: (value) => { hasStarted = value; }
+    };
 }
 
 // 重新組織測驗佈局
@@ -264,14 +287,33 @@ function reorganizeQuizLayout() {
         return;
     }
 
-    // 不重建HTML，直接使用現有結構並添加容器
-    const questions = quizWrapper.querySelectorAll('.question');
+    // 檢查是否已經有 questions-container，避免重複創建
+    let questionsContainer = quizWrapper.querySelector('.questions-container');
+    
+    if (questionsContainer) {
+        console.log('questions-container 已存在，清理後重新組織');
+        // 如果已存在，先清理
+        questionsContainer.remove();
+    }
+    
+    // 獲取現有元素
+    const questions = Array.from(quizWrapper.querySelectorAll('.question'));
     const progressContainer = quizWrapper.querySelector('.progress-container');
     const progressText = quizWrapper.querySelector('.progress-text');
     const quizIntro = quizWrapper.querySelector('.quiz-intro');
 
-    // 創建問題容器
-    const questionsContainer = document.createElement('div');
+    console.log('找到問題數量:', questions.length);
+
+    // 重置所有問題狀態
+    questions.forEach((question, index) => {
+        question.classList.remove('active', 'prev');
+        if (index === 0) {
+            question.classList.add('active');
+        }
+    });
+
+    // 創建新的問題容器
+    questionsContainer = document.createElement('div');
     questionsContainer.className = 'questions-container';
 
     // 將所有問題移動到問題容器中
@@ -279,12 +321,14 @@ function reorganizeQuizLayout() {
         questionsContainer.appendChild(question);
     });
 
-    // 重新排列元素順序：標題 -> 問題容器 -> 進度條 -> 進度文字
+    // 清空並重新排列 quiz-wrapper
     quizWrapper.innerHTML = '';
-    quizWrapper.appendChild(quizIntro);
+    
+    // 按正確順序添加元素
+    if (quizIntro) quizWrapper.appendChild(quizIntro);
     quizWrapper.appendChild(questionsContainer);
-    quizWrapper.appendChild(progressContainer);
-    quizWrapper.appendChild(progressText);
+    if (progressContainer) quizWrapper.appendChild(progressContainer);
+    if (progressText) quizWrapper.appendChild(progressText);
 
     console.log('測驗佈局已重新組織');
     
@@ -295,6 +339,13 @@ function reorganizeQuizLayout() {
 
 // 設置問題選項監聽器
 function setupQuestionListeners() {
+    // 先移除舊的監聽器，避免重複綁定
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        const newRadio = radio.cloneNode(true);
+        radio.parentNode.replaceChild(newRadio, radio);
+    });
+
+    // 重新綁定事件監聽器
     document.querySelectorAll('input[type="radio"]').forEach(radio => {
         radio.addEventListener('change', function() {
             const questionNum = this.name.substring(1);
@@ -304,6 +355,7 @@ function setupQuestionListeners() {
             updateSelectedStyle(this);
             
             console.log('答案已記錄:', answers);
+            console.log('當前題號:', currentQuestion);
             
             // 自動切換到下一題（延遲0.5秒讓用戶看到選擇效果）
             setTimeout(() => {
@@ -315,6 +367,8 @@ function setupQuestionListeners() {
             }, 500);
         });
     });
+    
+    console.log('問題監聽器已重新設置');
 }
 
 // 更新選中的樣式
@@ -425,7 +479,11 @@ function showResults() {
                         ${result.departments.map(dept => `<div class="department-item">${dept}</div>`).join('')}
                     </div>
                 </div>
-                <button class="restart-btn" onclick="restartQuiz()">重新測驗</button>
+                <div class="result-buttons">
+                    <button class="restart-btn" onclick="restartQuiz()">重新測驗</button>
+                    <button class="school-btn" onclick="goToSchoolIntro()">學校介紹</button>
+                    <button class="department-btn" onclick="gotoDepartmentIntro()">科系介紹</button>
+                </div>
             </div>
         `;
     }
@@ -435,13 +493,219 @@ function showResults() {
 function restartQuiz() {
     console.log('重新開始測驗');
     
-    // 重置變數
+    // 重置所有變數
     currentQuestion = 1;
     Object.keys(answers).forEach(key => delete answers[key]);
     
-    // 顯示圖片區域，隱藏測驗區域
-    document.getElementById('imageSection').style.display = 'block';
-    document.getElementById('quizSection').style.display = 'none';
+    // 找到相關元素
+    const imageSection = document.getElementById('imageSection');
+    const quizSection = document.getElementById('quizSection');
+    const imageChanger = imageSection.querySelector('.image-changer');
+    
+    // 檢查測驗包裝器在哪裡並移回原位
+    let quizWrapper = imageSection.querySelector('.quiz-wrapper');
+    if (quizWrapper) {
+        // 如果在圖片區域，移回quiz-section
+        quizSection.appendChild(quizWrapper);
+        console.log('測驗包裝器已移回quiz-section');
+    }
+    
+    // 重新獲取移動後的元素
+    quizWrapper = quizSection.querySelector('.quiz-wrapper');
+    
+    // 重置測驗區域的HTML結構到原始狀態
+    if (quizWrapper) {
+        quizWrapper.innerHTML = `
+            <div class="quiz-intro">
+                <h1>探索你的潛能</h1>
+                <p>完成心理測驗，獲得最適合你的科系推薦</p>
+            </div>
+
+            <!-- 問題1 -->
+            <div class="question active" id="q1">
+                <h2>1. 當面對一個複雜的問題時，你通常會？</h2>
+                <label data-question="1" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    分析問題的邏輯結構，尋找最佳解決方案
+                </label>
+                <label data-question="1" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    用創意思維尋找獨特的解決方法
+                </label>
+                <label data-question="1" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    與他人討論，聽取不同觀點
+                </label>
+            </div>
+
+            <!-- 問題2 -->
+            <div class="question" id="q2">
+                <h2>2. 你最喜歡的學習方式是？</h2>
+                <label data-question="2" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    透過實驗和數據分析理解概念
+                </label>
+                <label data-question="2" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    透過視覺化和創作表達學習
+                </label>
+                <label data-question="2" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    透過小組討論和互動學習
+                </label>
+            </div>
+
+            <!-- 問題3 -->
+            <div class="question" id="q3">
+                <h2>3. 你理想的工作環境是？</h2>
+                <label data-question="3" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    安靜的辦公室，可以專注思考
+                </label>
+                <label data-question="3" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    充滿創意氛圍的工作室
+                </label>
+                <label data-question="3" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    開放式空間，便於團隊合作
+                </label>
+            </div>
+
+            <!-- 問題4 -->
+            <div class="question" id="q4">
+                <h2>4. 你最擅長的是？</h2>
+                <label data-question="4" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    邏輯推理和數據分析
+                </label>
+                <label data-question="4" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    創意發想和藝術表達
+                </label>
+                <label data-question="4" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    人際溝通和團隊協調
+                </label>
+            </div>
+
+            <!-- 問題5 -->
+            <div class="question" id="q5">
+                <h2>5. 你喜歡的休閒活動是？</h2>
+                <label data-question="5" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    閱讀科技或學術文章
+                </label>
+                <label data-question="5" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    繪畫、攝影或手工創作
+                </label>
+                <label data-question="5" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    與朋友聚會或參加社交活動
+                </label>
+            </div>
+
+            <!-- 問題6 -->
+            <div class="question" id="q6">
+                <h2>6. 你認為最重要的能力是？</h2>
+                <label data-question="6" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    分析和解決問題的能力
+                </label>
+                <label data-question="6" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    創新和想像力
+                </label>
+                <label data-question="6" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    理解他人和同理心
+                </label>
+            </div>
+
+            <!-- 問題7 -->
+            <div class="question" id="q7">
+                <h2>7. 你的理想職業特質是？</h2>
+                <label data-question="7" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    需要高度技術和專業知識
+                </label>
+                <label data-question="7" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    充滿創意和變化性
+                </label>
+                <label data-question="7" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    能幫助他人和社會
+                </label>
+            </div>
+
+            <!-- 問題8 -->
+            <div class="question" id="q8">
+                <h2>8. 在小組作業中，你通常扮演什麼角色？</h2>
+                <label data-question="8" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    技術專家，負責分析和執行
+                </label>
+                <label data-question="8" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    創意發想者，提供新點子
+                </label>
+                <label data-question="8" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    協調者，維持團隊和諧
+                </label>
+            </div>
+
+            <!-- 問題9 -->
+            <div class="question" id="q9">
+                <h2>9. 你最感興趣的課外讀物是？</h2>
+                <label data-question="9" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    科技趨勢和技術文章
+                </label>
+                <label data-question="9" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    藝術設計和創意雜誌
+                </label>
+                <label data-question="9" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    心理學和人文社會書籍
+                </label>
+            </div>
+
+            <!-- 問題10 -->
+            <div class="question" id="q10">
+                <h2>10. 你希望自己的工作能帶來什麼影響？</h2>
+                <label data-question="10" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    推動科技進步和創新
+                </label>
+                <label data-question="10" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    創造美麗和啟發人心的作品
+                </label>
+                <label data-question="10" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    幫助他人成長和解決問題
+                </label>
+            </div>
+
+            <!-- 進度條 -->
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="progress-text">第 1 題 / 共 10 題 (10%)</div>
+        `;
+    }
+    
+    // 隱藏測驗區域
+    quizSection.style.display = 'none';
+    
+    // 顯示圖片區域
+    if (imageChanger) {
+        imageChanger.style.display = 'flex';
+    }
     
     // 重置圖片切換狀態
     const images = document.querySelectorAll('.current-image');
@@ -455,10 +719,21 @@ function restartQuiz() {
     }
     
     if (startButton) {
-        startButton.classList.remove('starting');
+        startButton.classList.remove('starting', 'loading');
         startButton.textContent = '點擊開始吧';
     }
     
-    // 重新初始化
-    location.reload(); // 簡單的重新加載頁面
+    // 清除加載狀態
+    const imageDisplay = document.querySelector('.image-display');
+    if (imageDisplay) {
+        imageDisplay.classList.remove('loading');
+    }
+    
+    // 重新初始化圖片切換功能
+    setTimeout(() => {
+        window.imageChangerInstance = initImageChanger();
+        console.log('圖片切換功能已重新初始化');
+    }, 100);
+    
+    console.log('已完全重置到初始狀態');
 }
