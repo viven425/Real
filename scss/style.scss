@@ -3627,7 +3627,9 @@ footer {
     font-weight: 500;
 }
 
-.restart-btn {
+.restart-btn.restart-btn,
+.school-btn,
+.department-btn {
     background: linear-gradient(145deg, var(--primary, #792e2e), #8b3535);
     color: var(--white-color, #ffffff);
     border: none;
@@ -3639,7 +3641,9 @@ footer {
     transition: all 0.3s ease;
 }
 
-.restart-btn:hover {
+.restart-btn,
+.school-btn,
+.department-btn:hover {
     background: linear-gradient(145deg, #8b3535, var(--primary, #792e2e));
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(121, 46, 46, 0.3);
