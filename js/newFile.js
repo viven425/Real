@@ -737,3 +737,40 @@ function restartQuiz() {
     
     console.log('已完全重置到初始狀態');
 }
+
+// 學校介紹按鈕功能
+function goToSchoolIntro() {
+    console.log('跳轉到學校介紹頁面');
+    window.location.href = 'school.html';
+}
+
+// 科系介紹按鈕功能  
+function gotoDepartmentIntro() {
+    console.log('跳轉到科系介紹頁面');
+    window.location.href = 'department-intro.html';
+}
+
+ // 卡片點擊處理函數
+        function goToDetail(department) {
+            console.log('跳轉到科系詳情頁:', department);
+            // 可以根據不同科系跳轉到不同頁面
+            // window.location.href = `department-detail.html?dept=${department}`;
+            alert(`即將跳轉到 ${department} 科系詳情頁`);
+        }
+
+        // 添加卡片動畫效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            // 為卡片添加進入動畫
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(40px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.320, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心理測驗平台 - Début Rêve</title>
+  <link rel="stylesheet" href="/css/style.min.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- nav -->
+  <header class="nav-wrapper">
+    <nav class="nav-bar">
+      <button class="hamburger-icon" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul class="menu">
+        <li class="menu-item"><a href="#news" class="menu-link-item">留學攻略</a></li>
+        <li class="menu-item"><a href="#service" class="menu-link-item">最新消息</a></li>
+        <li class="menu-item"><a href="#about" class="menu-link-item">關於我們</a></li>
+        <li class="menu-item"><a href="#contact" class="menu-link-item">會員登錄</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="overlay"></div>
+
+  <!-- logo區 -->
+  <section class="logo-wrapper">
+    <a href="/index.html/style.html" id="debut" class="logo">Début Rêve</a>
+  </section>
+
+<!-- 中央導航按鈕 -->
+    <div class="center-navigation">
+      <button class="center-nav-btn active" onclick="setActiveNav(this)">探索自己</button>
+      <button class="center-nav-btn" onclick="setActiveNav(this)">學校介紹</button>
+      <button class="center-nav-btn" onclick="setActiveNav(this)">科系介紹</button>
+    </div>
+  </section>
+
+   <div class="header">
+        <h1>大学科系探索</h1>
+        <p>选择适合自己的学术道路，开启未来职业生涯。探索各领域的特色与发展方向。</p>
+    </div>
+    
+    <div class="container">
+        <!-- 卡片 1: 資訊工程學系 -->
+        <div class="card">
+            <div class="card-image cs">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="card-content">
+                <h2>資訊工程學系</h2>
+                <p>專注於計算機科學與軟體開發，培養學生在人工智慧、大數據、網路安全等領域的專業能力。</p>
+                <button class="card-button">
+                    了解更多 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 卡片 2: 商業管理學系 -->
+        <div class="card">
+            <div class="card-image business">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="card-content">
+                <h2>商業管理學系</h2>
+                <p>培養具備全球視野的商業領導人才，課程涵蓋市場行銷、財務管理、人力資源、策略規劃等領域。</p>
+                <button class="card-button">
+                    了解更多 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 卡片 3: 醫學系 -->
+        <div class="card">
+            <div class="card-image medical">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="card-content">
+                <h2>醫學系</h2>
+                <p>培養具備專業知識與人文關懷的醫療人才，課程涵蓋基礎醫學、臨床醫學與醫療倫理。</p>
+                <button class="card-button">
+                    了解更多 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 卡片 4: 建築學系 -->
+        <div class="card">
+            <div class="card-image architecture">
+                <i class="fas fa-drafting-compass"></i>
+            </div>
+            <div class="card-content">
+                <h2>建築學系</h2>
+                <p>融合藝術創作與工程技術，培養學生設計兼具美學與功能的建築空間。</p>
+                <button class="card-button">
+                    了解更多 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 卡片 5: 外國語文學系 -->
+        <div class="card">
+            <div class="card-image language">
+                <i class="fas fa-language"></i>
+            </div>
+            <div class="card-content">
+                <h2>外國語文學系</h2>
+                <p>培養具備跨文化溝通能力的語言專業人才，課程包含語言訓練、文學欣賞、翻譯技巧與文化研究。</p>
+                <button class="card-button">
+                    了解更多 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 卡片 6: 機械工程學系 -->
+        <div class="card">
+            <div class="card-image mechanical">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <div class="card-content">
+                <h2>機械工程學系</h2>
+                <p>培養設計與製造機械系統的專業人才，課程涵蓋熱力學、材料科學、機械設計、自動控制等領域。</p>
+                <button class="card-button">
+                    了解更多 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/newFile.js"></script>
+</body>
+
+</html>
