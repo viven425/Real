@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>心理測驗平台 - Début Rêve</title>
   <link rel="stylesheet" href="/css/style.min.css" />
-  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- 導覽列 -->
+  <!-- nav -->
   <header class="nav-wrapper">
     <nav class="nav-bar">
       <button class="hamburger-icon" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
   </header>
   <div class="overlay"></div>
 
-  <!-- Logo 區 -->
+  <!-- logo區 -->
   <section class="logo-wrapper">
     <a href="/index.html/style.html" id="debut">Début Rêve</a>
   </section>
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <!-- 側邊欄 -->
+  <!-- 旁邊導覽列 -->
   <div class="sidebar-navigation">
     <h3 class="sidebar-heading">分區</h3>
     <ul class="sidebar-menu">
@@ -54,12 +54,11 @@
     </ul>
   </div>
 
-  <!-- 浮動按鈕 -->
   <div class="floating-sidebar-toggle" id="sidebarToggle">
     <i class="fas fa-bars"></i>
   </div>
 
-  <!-- 心理測驗內容區 -->
+  <!-- 心理測驗區域 -->
   <div class="container">
     <div class="page-section intro-section">
       <div class="logo">Début Rêve</div>
@@ -67,128 +66,54 @@
       <p class="subtitle">完成心理測驗，獲得最適合你的科系推薦</p>
     </div>
 
-    <!-- 問題區塊：Q1 ~ Q10 -->
-    <div class="questions-container">
-      <div class="page-section question" id="q1">
-        <h2>你更傾向於？</h2>
-        <label><input type="radio" name="q1" value="A"> 分析問題，找出邏輯與解決方法</label>
-        <label><input type="radio" name="q1" value="B"> 發揮創意，提出新點子</label>
-        <label><input type="radio" name="q1" value="C"> 與他人互動，建立連結</label>
-      </div>
+    <!-- 題目區塊（略，請參考上方原始碼，從問題1到問題10） -->
+    <!-- 可插入所有的題目區塊（問題1~10） -->
 
-      <div class="page-section question" id="q2">
-        <h2>你在團隊中通常扮演什麼角色？</h2>
-        <label><input type="radio" name="q2" value="A"> 分析數據與規劃流程</label>
-        <label><input type="radio" name="q2" value="B"> 激發創意與設計內容</label>
-        <label><input type="radio" name="q2" value="C"> 協調人際、促進合作</label>
-      </div>
-
-      <div class="page-section question" id="q3">
-        <h2>你最常使用哪種思考方式？</h2>
-        <label><input type="radio" name="q3" value="A"> 邏輯推理與理性分析</label>
-        <label><input type="radio" name="q3" value="B"> 視覺想像與抽象創造</label>
-        <label><input type="radio" name="q3" value="C"> 情境模擬與感同身受</label>
-      </div>
-
-      <div class="page-section question" id="q4">
-        <h2>以下哪個課程最吸引你？</h2>
-        <label><input type="radio" name="q4" value="A"> 程式設計與資料分析</label>
-        <label><input type="radio" name="q4" value="B"> 設計思考與視覺藝術</label>
-        <label><input type="radio" name="q4" value="C"> 溝通技巧與心理學</label>
-      </div>
-
-      <div class="page-section question" id="q5">
-        <h2>你更喜歡的活動是？</h2>
-        <label><input type="radio" name="q5" value="A"> 解開數獨或邏輯謎題</label>
-        <label><input type="radio" name="q5" value="B"> 畫畫、寫作或創作內容</label>
-        <label><input type="radio" name="q5" value="C"> 與朋友聊天或參加社交活動</label>
-      </div>
-
-      <div class="page-section question" id="q6">
-        <h2>你通常怎麼解決問題？</h2>
-        <label><input type="radio" name="q6" value="A"> 收集資料，系統分析</label>
-        <label><input type="radio" name="q6" value="B"> 以創意思維找到突破點</label>
-        <label><input type="radio" name="q6" value="C"> 倾聽他人、整合多方意見</label>
-      </div>
-
-      <div class="page-section question" id="q7">
-        <h2>哪種學習方式最適合你？</h2>
-        <label><input type="radio" name="q7" value="A"> 看影片或操作範例</label>
-        <label><input type="radio" name="q7" value="B"> 透過創作學習</label>
-        <label><input type="radio" name="q7" value="C"> 與人討論、角色扮演</label>
-      </div>
-
-      <div class="page-section question" id="q8">
-        <h2>你對未來工作最大的期望是？</h2>
-        <label><input type="radio" name="q8" value="A"> 持續進步，精通技能</label>
-        <label><input type="radio" name="q8" value="B"> 有彈性與創造空間</label>
-        <label><input type="radio" name="q8" value="C"> 能幫助他人、與人連結</label>
-      </div>
-
-      <div class="page-section question" id="q9">
-        <h2>朋友怎麼形容你？</h2>
-        <label><input type="radio" name="q9" value="A"> 理性又可靠</label>
-        <label><input type="radio" name="q9" value="B"> 有創意又有想法</label>
-        <label><input type="radio" name="q9" value="C"> 熱情且善於傾聽</label>
-      </div>
-
-      <div class="page-section question" id="q10">
-        <h2>你對未來最大的期待是？</h2>
-        <label><input type="radio" name="q10" value="A"> 成為技術專家</label>
-        <label><input type="radio" name="q10" value="B"> 創造有趣作品</label>
-        <label><input type="radio" name="q10" value="C"> 幫助更多人</label>
-      </div>
-    </div>
-
-    <!-- 進度條 -->
     <div class="progress-container">
       <div class="progress-bar" style="width: 100%;"></div>
     </div>
     <div class="progress-info">
+      <span>第 10 題 / 共 10 題</span>
       <span>100%</span>
     </div>
 
-    <!-- 操作按鈕 -->
     <div class="button-group">
       <button class="nav-btn"><i class="fas fa-arrow-left"></i> 上一題</button>
       <button class="btn primary">看結果 <i class="fas fa-star"></i></button>
     </div>
 
-    <!-- 結果區 -->
     <div class="page-section recommendations-section">
       <h2 style="text-align: center; margin-bottom: 30px;">測驗結果分析</h2>
 
       <div class="recommendation">
-        <h3><i class="fas fa-medal"></i> 最佳推薦科系：資訊工程學系
-          <span class="recommendation-badge primary-badge">最匹配</span>
-        </h3>
+        <h3><i class="fas fa-medal"></i> 最佳推薦科系：資訊工程學系 <span class="recommendation-badge primary-badge">最匹配</span></h3>
         <p>你具備出色的邏輯與分析能力，對科技與創新有高度興趣，善於解決複雜問題。這種特質非常適合資訊工程、數據科學、統計分析或軟體開發等領域。</p>
       </div>
 
       <div class="recommendation">
-        <h3><i class="fas fa-lightbulb"></i> 次要建議：心理學系
-          <span class="recommendation-badge secondary-badge">高度相關</span>
-        </h3>
-        <p>你善於觀察與理解他人，具有敏銳的洞察力和同理心。</p>
+        <h3><i class="fas fa-lightbulb"></i> 次要建議：心理學系 <span class="recommendation-badge secondary-badge">高度相關</span></h3>
+        <p>你善於觀察與理解他人，具有敏銳的洞察力和同理心。這使你在人際相關領域如心理學、人資、教育等非常有優勢。</p>
       </div>
 
       <div class="recommendation">
-        <h3><i class="fas fa-palette"></i> 次要建議：設計學系
-          <span class="recommendation-badge accent-badge">創意領域</span>
-        </h3>
-        <p>你具有豐富的創意與藝術美感，善於視覺表達和創新思考。</p>
+        <h3><i class="fas fa-palette"></i> 次要建議：設計學系 <span class="recommendation-badge accent-badge">創意領域</span></h3>
+        <p>你具有豐富的創意與藝術美感，善於視覺表達與創新思考。這些特質非常適合設計、多媒體或數位創作方向。</p>
       </div>
 
       <div class="result-actions">
-        <button class="btn secondary" id="retry-btn"><i class="fas fa-redo"></i> 重新測試</button>
-        <button class="btn accent" id="science-btn"><i class="fas fa-flask"></i> 瞭解科學依據</button>
+        <button class="btn secondary" id="retry-btn">
+          <i class="fas fa-redo"></i> 重新測試
+        </button>
+        <button class="btn accent" id="science-btn">
+          <i class="fas fa-flask"></i> 瞭解科學依據
+        </button>
       </div>
     </div>
-
-    <button class="btn primary" style="width: 100%; margin-top: 20px;" id="close-modal-btn">
-      <i class="fas fa-check"></i> 我瞭解了
-    </button>
   </div>
+
+  <button class="btn primary" style="width: 100%; margin-top: 20px;" id="close-modal-btn">
+    <i class="fas fa-check"></i> 我瞭解了
+  </button>
 
   <script src="/js/newFile.js"></script>
 </body>

@@ -563,3 +563,430 @@ document.addEventListener('DOMContentLoaded', () => {
 //   updateProgress();
 //   showCurrentQuestion();
 // });
+
+// 第二頁
+// 調試函數
+     // 全局變數
+    let currentImageIndex = 0;
+    let currentQuestion = 1;
+    let answers = {};
+    let isQuizStarted = false;
+    let hasHovered = false;
+    const totalQuestions = 10;
+    
+    // 調試函數
+    function debug(msg) {
+        console.log('DEBUG:', msg);
+    }
+    
+    // 頁面載入完成後執行
+    document.addEventListener('DOMContentLoaded', function() {
+        debug('頁面載入完成');
+        
+        // 設置按鈕事件
+        setupButtonEvents();
+        
+        // 設置選項點擊事件
+        setupQuestionEvents();
+        
+        // 初始化第一張圖片
+        const images = document.querySelectorAll('.current-image');
+        if (images.length > 0) {
+            images[0].classList.add('active');
+        }
+    });
+    
+    // 設置按鈕事件
+    function setupButtonEvents() {
+        const button = document.getElementById('startButton');
+        const placeholder = document.querySelector('.image-placeholder');
+        
+        // 鼠標懸停事件 - 切換到圖片2
+        button.addEventListener('mouseenter', function() {
+            if (!isQuizStarted) {
+                debug('鼠標懸停，切換到圖片2');
+                changeImageTo(1); // 切換到第二張圖片
+                placeholder.classList.add('hidden');
+                if (!hasHovered) {
+                    this.textContent = '開始測驗';
+                    hasHovered = true;
+                }
+            }
+        });
+        
+        // 鼠標離開事件 - 回到圖片1
+        button.addEventListener('mouseleave', function() {
+            if (!isQuizStarted) {
+                debug('鼠標離開，回到圖片1');
+                changeImageTo(0); // 回到第一張圖片
+                if (!hasHovered) {
+                    placeholder.classList.remove('hidden');
+                    this.textContent = '點擊開始吧';
+                } else {
+                    placeholder.classList.add('hidden');
+                }
+            }
+        });
+        
+        // 點擊事件 - 開始測驗
+        button.addEventListener('click', function() {
+            debug('按鈕被點擊');
+            if (!isQuizStarted) {
+                // 確保切換到圖片2
+                changeImageTo(1);
+                placeholder.classList.add('hidden');
+                this.textContent = '開始測驗';
+                hasHovered = true;
+                isQuizStarted = true;
+                
+                // 稍作延遲再開始測驗
+                setTimeout(() => {
+                    startQuiz();
+                }, 600);
+            }
+        });
+    }
+    
+    // 切換到指定圖片
+    function changeImageTo(index) {
+        const images = document.querySelectorAll('.current-image');
+        if (images.length > index) {
+            // 隱藏所有圖片
+            images.forEach(img => img.classList.remove('active'));
+            // 顯示指定圖片
+            images[index].classList.add('active');
+            currentImageIndex = index;
+            debug(`切換到圖片 ${index + 1}`);
+        }
+    }
+    
+    // 圖片切換功能
+    function changeImage() {
+        debug('切換圖片');
+        const images = document.querySelectorAll('.current-image');
+        
+        if (images.length > 0) {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+    }
+    
+    // 開始測驗
+    function startQuiz() {
+        debug('開始測驗');
+        
+        const imageSection = document.getElementById('imageSection');
+        const quizSection = document.getElementById('quizSection');
+        
+        // 添加淡出效果到圖片區域
+        imageSection.style.opacity = '0';
+        imageSection.style.transform = 'translateY(-20px)';
+        
+        setTimeout(() => {
+            // 隱藏圖片區域，顯示測驗區域
+            imageSection.style.display = 'none';
+            quizSection.style.display = 'block';
+            
+            // 重置測驗區域樣式
+            quizSection.style.opacity = '0';
+            quizSection.style.transform = 'translateY(20px)';
+            
+            // 確保從第1題開始
+            currentQuestion = 1;
+            showQuestion(1);
+            updateProgress();
+            
+            // 淡入測驗區域
+            setTimeout(() => {
+                quizSection.style.opacity = '1';
+                quizSection.style.transform = 'translateY(0)';
+            }, 100);
+            
+        }, 400);
+    }
+    
+    // 顯示指定問題
+    function showQuestion(questionNum) {
+        // 隱藏所有問題
+        document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+        
+        // 顯示指定問題
+        const targetQuestion = document.getElementById('q' + questionNum);
+        if (targetQuestion) {
+            targetQuestion.classList.add('active');
+            debug(`顯示第${questionNum}題`);
+        }
+    }
+    
+    // 設置問題選項事件
+    function setupQuestionEvents() {
+        // 使用事件委託處理選項點擊
+        document.addEventListener('click', function(e) {
+            const label = e.target.closest('label[data-question]');
+            if (label) {
+                e.preventDefault();
+                const question = label.dataset.question;
+                const answer = label.dataset.answer;
+                debug(`選擇答案: 第${question}題 = ${answer}`);
+                selectAnswer(question, answer, label);
+            }
+        });
+    }
+    
+    // 選擇答案
+    function selectAnswer(question, answer, element) {
+        debug(`答案選擇: 第${question}題 = ${answer}`);
+        
+        // 防止重複觸發
+        if (element.classList.contains('selected')) {
+            debug('選項已被選中，忽略重複點擊');
+            return;
+        }
+        
+        // 清除同組選中狀態
+        const questionDiv = element.closest('.question');
+        questionDiv.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+        
+        // 設置選中狀態
+        element.classList.add('selected');
+        element.querySelector('input').checked = true;
+        
+        // 保存答案
+        answers[question] = answer;
+        debug(`當前答案: ${JSON.stringify(answers)}`);
+        
+        // 短暫延遲後跳轉到下一題
+        setTimeout(() => {
+            if (currentQuestion < totalQuestions) {
+                debug(`從第${currentQuestion}題跳轉到第${currentQuestion + 1}題`);
+                nextQuestion();
+            } else {
+                debug('最後一題，顯示結果');
+                showResults();
+            }
+        }, 500);
+    }
+    
+    // 下一題
+    function nextQuestion() {
+        if (currentQuestion < totalQuestions) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+            updateProgress();
+        }
+    }
+    
+    // 更新進度條
+    function updateProgress() {
+        const percentage = (currentQuestion / totalQuestions) * 100;
+        const progressBar = document.querySelector('.progress-bar');
+        const progressText = document.querySelector('.progress-text');
+        
+        if (progressBar) {
+            progressBar.style.width = percentage + '%';
+        }
+        
+        if (progressText) {
+            progressText.textContent = `第 ${currentQuestion} 題 / 共 ${totalQuestions} 題 (${Math.round(percentage)}%)`;
+        }
+        
+        debug(`進度更新: ${currentQuestion}/${totalQuestions} (${Math.round(percentage)}%)`);
+    }
+    
+    // 顯示結果
+    function showResults() {
+        debug('顯示結果');
+        
+        // 隱藏問題區域，顯示結果
+        document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+        
+        // 分析答案
+        let countA = 0, countB = 0, countC = 0;
+        Object.values(answers).forEach(answer => {
+            if (answer === 'A') countA++;
+            else if (answer === 'B') countB++;
+            else if (answer === 'C') countC++;
+        });
+        
+        debug(`統計結果: A=${countA}, B=${countB}, C=${countC}`);
+        
+        // 創建結果顯示
+        createResultDisplay(countA, countB, countC);
+    }
+    
+    // 創建結果顯示
+    function createResultDisplay(countA, countB, countC) {
+        let primary, secondary, tertiary;
+        
+        // 根據答案統計確定推薦科系
+        if (countA >= countB && countA >= countC) {
+            primary = {
+                major: '資訊工程學系',
+                desc: '你具備出色的邏輯與分析能力，對科技與創新有高度興趣，善於解決複雜問題。這種特質非常適合資訊工程、數據科學、統計分析或軟體開發等領域。',
+                icon: 'fas fa-laptop-code'
+            };
+            secondary = {
+                major: '數學系',
+                desc: '你的邏輯思維和問題解決能力也適合純數學領域的研究與應用。',
+                icon: 'fas fa-calculator'
+            };
+            tertiary = {
+                major: '統計學系', 
+                desc: '數據分析和統計建模也是你可以考慮的方向。',
+                icon: 'fas fa-chart-bar'
+            };
+        } else if (countB >= countC) {
+            primary = {
+                major: '設計學系',
+                desc: '你具有豐富的創意與藝術美感，善於視覺表達和創新思考。這種特質適合視覺設計、多媒體藝術、產品設計或數位內容創作等方向。',
+                icon: 'fas fa-palette'
+            };
+            secondary = {
+                major: '藝術學系',
+                desc: '純藝術創作能讓你的創造力得到充分發揮。',
+                icon: 'fas fa-paint-brush'
+            };
+            tertiary = {
+                major: '傳播學系',
+                desc: '媒體與傳播也是展現創意的絕佳平台。',
+                icon: 'fas fa-broadcast-tower'
+            };
+        } else {
+            primary = {
+                major: '心理學系',
+                desc: '你善於觀察與理解他人，具有敏銳的洞察力和同理心。這種特質使你在心理學、人力資源管理、教育諮詢或社會工作等領域具有優勢。',
+                icon: 'fas fa-brain'
+            };
+            secondary = {
+                major: '社會工作學系',
+                desc: '你的人際溝通能力適合幫助他人解決問題的工作。',
+                icon: 'fas fa-hands-helping'
+            };
+            tertiary = {
+                major: '教育學系',
+                desc: '教育和輔導也是發揮你人際技能的好選擇。',
+                icon: 'fas fa-chalkboard-teacher'
+            };
+        }
+        
+        // 插入結果HTML
+        const quizWrapper = document.querySelector('.quiz-wrapper');
+        quizWrapper.innerHTML = `
+            <div class="quiz-intro">
+                <h1>測驗結果分析</h1>
+                <p>根據你的回答，我們為你推薦以下科系</p>
+            </div>
+            
+            <div class="result-card">
+                <h3><i class="${primary.icon}"></i> 最佳推薦科系：${primary.major} <span class="badge">最匹配</span></h3>
+                <p>${primary.desc}</p>
+            </div>
+            
+            <div class="result-card">
+                <h3><i class="${secondary.icon}"></i> 次要建議：${secondary.major} <span class="badge">高度相關</span></h3>
+                <p>${secondary.desc}</p>
+            </div>
+            
+            <div class="result-card">
+                <h3><i class="${tertiary.icon}"></i> 次要建議：${tertiary.major} <span class="badge">可考慮</span></h3>
+                <p>${tertiary.desc}</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn" onclick="retryQuiz()">
+                    <i class="fas fa-redo"></i> 重新測試
+                </button>
+                <button class="view-majors-btn" onclick="showMajorsInfo()">
+                    <i class="fas fa-info-circle"></i> 了解更多科系
+                </button>
+            </div>
+        `;
+    }
+    
+    // 重新測試
+    function retryQuiz() {
+        debug('重新開始測驗');
+        
+        // 重置變數
+        currentQuestion = 1;
+        currentImageIndex = 0;
+        answers = {};
+        isQuizStarted = false;
+        hasHovered = false;
+        
+        // 平滑過渡到圖片區域
+        const quizSection = document.getElementById('quizSection');
+        const imageSection = document.getElementById('imageSection');
+        
+        // 添加淡出效果
+        quizSection.style.opacity = '0';
+        quizSection.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            // 隱藏測驗區域，顯示圖片區域
+            quizSection.style.display = 'none';
+            imageSection.style.display = 'block';
+            
+            // 重置圖片和按鈕狀態
+            resetImageSection();
+            
+            // 淡入圖片區域
+            setTimeout(() => {
+                imageSection.style.opacity = '1';
+                imageSection.style.transform = 'translateY(0)';
+            }, 100);
+            
+        }, 300);
+    }
+    
+    // 重置圖片區域
+    function resetImageSection() {
+        const images = document.querySelectorAll('.current-image');
+        const placeholder = document.querySelector('.image-placeholder');
+        const button = document.getElementById('startButton');
+        const imageSection = document.getElementById('imageSection');
+        
+        // 重置圖片狀態
+        images.forEach(img => img.classList.remove('active'));
+        if (images.length > 0) {
+            images[0].classList.add('active'); // 顯示第一張圖片
+        }
+        
+        // 重置文字和按鈕
+        placeholder.classList.remove('hidden');
+        button.textContent = '點擊開始吧';
+        
+        // 重置樣式
+        imageSection.style.opacity = '0';
+        imageSection.style.transform = 'translateY(20px)';
+        imageSection.style.transition = 'all 0.5s ease';
+        
+        // 清除舊的事件監聽器並重新設置
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+        
+        // 重新設置事件（需要重新獲取按鈕元素）
+        setTimeout(() => {
+            setupButtonEvents();
+        }, 100);
+    }
+    
+    // 顯示科系信息
+    function showMajorsInfo() {
+        alert('這裡可以顯示更多科系信息的詳細內容！');
+    }
+    
+    // 導航相關函數
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    }
+    
+    function setActiveNav(clickedBtn) {
+        document.querySelectorAll('.center-nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        clickedBtn.classList.add('active');
+        debug(`導航切換到: ${clickedBtn.textContent}`);
+    }
