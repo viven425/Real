@@ -30,84 +30,212 @@
 
   <!-- logo區 -->
   <section class="logo-wrapper">
-    <a href="/index.html/style.html" id="debut">Début Rêve</a>
+    <a href="/index.html/style.html" id="debut" class="logo">Début Rêve</a>
   </section>
 
-  <!-- 卡通人物換圖區 -->
-  <div class="image-changer">
-    <div class="image-display">
-      <img src="../img/before.svg" alt="Before Image" class="current-image active">
-      <img src="../img/after.svg" alt="After Image" class="current-image">
+<!-- 中央導航按鈕 -->
+    <div class="center-navigation">
+      <button class="center-nav-btn active" onclick="setActiveNav(this)">探索自己</button>
+      <button class="center-nav-btn" onclick="setActiveNav(this)">學校介紹</button>
+      <button class="center-nav-btn" onclick="setActiveNav(this)">科系介紹</button>
     </div>
-    <div class="button-container">
-      <button class="change-image-button">點擊開始吧</button>
-    </div>
-  </div>
+  </section>
 
-  <!-- 旁邊導覽列 -->
-  <div class="sidebar-navigation">
-    <h3 class="sidebar-heading">分區</h3>
-    <ul class="sidebar-menu">
-      <li><button class="sidebar-button">探索自己</button></li>
-      <li><button class="sidebar-button">學校介紹</button></li>
-      <li><button class="sidebar-button">科系介紹</button></li>
-    </ul>
-  </div>
-
-  <div class="floating-sidebar-toggle" id="sidebarToggle">
-    <i class="fas fa-bars"></i>
-  </div>
-
-  <!-- 心理測驗區域 -->
-  <div class="container">
-    <div class="page-section intro-section">
-      <div class="logo">Début Rêve</div>
-      <h1>探索你的潛能</h1>
-      <p class="subtitle">完成心理測驗，獲得最適合你的科系推薦</p>
+   <!-- 圖片切換區域 -->
+  <div class="image-section" id="imageSection">
+    <div class="image-changer">
+      <div class="image-display">
+        <!-- 模擬圖片，可以替換為真實圖片 -->
+        <div class="current-image" style="background: linear-gradient(45deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">圖片 1 - 測驗前</div>
+        <div class="current-image" style="background: linear-gradient(45deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">圖片 2 - 準備開始</div>
+        <div class="image-placeholder">準備開始心理測驗<br>發現你的潛能</div>
+      </div>
+      <button class="change-image-button" id="startButton">點擊開始吧</button>
     </div>
 
-    <!-- 題目區塊（略，請參考上方原始碼，從問題1到問題10） -->
-    <!-- 可插入所有的題目區塊（問題1~10） -->
-
-    <div class="progress-container">
-      <div class="progress-bar" style="width: 100%;"></div>
-    </div>
-    <div class="progress-info">
-      <span>第 10 題 / 共 10 題</span>
-      <span>100%</span>
-    </div>
-
-    <div class="button-group">
-      <button class="nav-btn"><i class="fas fa-arrow-left"></i> 上一題</button>
-      <button class="btn primary">看結果 <i class="fas fa-star"></i></button>
-    </div>
-
-    <div class="page-section recommendations-section">
-      <h2 style="text-align: center; margin-bottom: 30px;">測驗結果分析</h2>
-
-      <div class="recommendation">
-        <h3><i class="fas fa-medal"></i> 最佳推薦科系：資訊工程學系 <span class="recommendation-badge primary-badge">最匹配</span></h3>
-        <p>你具備出色的邏輯與分析能力，對科技與創新有高度興趣，善於解決複雜問題。這種特質非常適合資訊工程、數據科學、統計分析或軟體開發等領域。</p>
+   <!-- 測驗區域 -->
+  <div class="quiz-section" id="quizSection">
+    <div class="quiz-wrapper">
+      <div class="quiz-intro">
+        <h1>探索你的潛能</h1>
+        <p>完成心理測驗，獲得最適合你的科系推薦</p>
       </div>
 
-      <div class="recommendation">
-        <h3><i class="fas fa-lightbulb"></i> 次要建議：心理學系 <span class="recommendation-badge secondary-badge">高度相關</span></h3>
-        <p>你善於觀察與理解他人，具有敏銳的洞察力和同理心。這使你在人際相關領域如心理學、人資、教育等非常有優勢。</p>
+  <    <!-- 問題1 -->
+      <div class="question active" id="q1">
+        <h2>1. 當面對一個複雜的問題時，你通常會？</h2>
+        <label data-question="1" data-answer="A">
+          <input type="radio" name="q1" value="A">
+          分析問題的邏輯結構，尋找最佳解決方案
+        </label>
+        <label data-question="1" data-answer="B">
+          <input type="radio" name="q1" value="B">
+          用創意思維尋找獨特的解決方法
+        </label>
+        <label data-question="1" data-answer="C">
+          <input type="radio" name="q1" value="C">
+          與他人討論，聽取不同觀點
+        </label>
       </div>
 
-      <div class="recommendation">
-        <h3><i class="fas fa-palette"></i> 次要建議：設計學系 <span class="recommendation-badge accent-badge">創意領域</span></h3>
-        <p>你具有豐富的創意與藝術美感，善於視覺表達與創新思考。這些特質非常適合設計、多媒體或數位創作方向。</p>
+      <!-- 問題2 -->
+      <div class="question" id="q2">
+        <h2>2. 你最喜歡的學習方式是？</h2>
+        <label data-question="2" data-answer="A">
+          <input type="radio" name="q2" value="A">
+          透過實驗和數據分析理解概念
+        </label>
+        <label data-question="2" data-answer="B">
+          <input type="radio" name="q2" value="B">
+          透過視覺化和創作表達學習
+        </label>
+        <label data-question="2" data-answer="C">
+          <input type="radio" name="q2" value="C">
+          透過小組討論和互動學習
+        </label>
       </div>
 
-      <div class="result-actions">
-        <button class="btn secondary" id="retry-btn">
-          <i class="fas fa-redo"></i> 重新測試
-        </button>
-        <button class="btn accent" id="science-btn">
-          <i class="fas fa-flask"></i> 瞭解科學依據
-        </button>
+      <!-- 問題3 -->
+      <div class="question" id="q3">
+        <h2>3. 你理想的工作環境是？</h2>
+        <label data-question="3" data-answer="A">
+          <input type="radio" name="q3" value="A">
+          安靜的辦公室，可以專注思考
+        </label>
+        <label data-question="3" data-answer="B">
+          <input type="radio" name="q3" value="B">
+          充滿創意氛圍的工作室
+        </label>
+        <label data-question="3" data-answer="C">
+          <input type="radio" name="q3" value="C">
+          開放式空間，便於團隊合作
+        </label>
       </div>
+
+      <!-- 問題4 -->
+      <div class="question" id="q4">
+        <h2>4. 你最擅長的是？</h2>
+        <label data-question="4" data-answer="A">
+          <input type="radio" name="q4" value="A">
+          邏輯推理和數據分析
+        </label>
+        <label data-question="4" data-answer="B">
+          <input type="radio" name="q4" value="B">
+          創意發想和藝術表達
+        </label>
+        <label data-question="4" data-answer="C">
+          <input type="radio" name="q4" value="C">
+          人際溝通和團隊協調
+        </label>
+      </div>
+
+      <!-- 問題5 -->
+      <div class="question" id="q5">
+        <h2>5. 你喜歡的休閒活動是？</h2>
+        <label data-question="5" data-answer="A">
+          <input type="radio" name="q5" value="A">
+          閱讀科技或學術文章
+        </label>
+        <label data-question="5" data-answer="B">
+          <input type="radio" name="q5" value="B">
+          繪畫、攝影或手工創作
+        </label>
+        <label data-question="5" data-answer="C">
+          <input type="radio" name="q5" value="C">
+          與朋友聚會或參加社交活動
+        </label>
+      </div>
+
+      <!-- 問題6 -->
+      <div class="question" id="q6">
+        <h2>6. 你認為最重要的能力是？</h2>
+        <label data-question="6" data-answer="A">
+          <input type="radio" name="q6" value="A">
+          分析和解決問題的能力
+        </label>
+        <label data-question="6" data-answer="B">
+          <input type="radio" name="q6" value="B">
+          創新和想像力
+        </label>
+        <label data-question="6" data-answer="C">
+          <input type="radio" name="q6" value="C">
+          理解他人和同理心
+        </label>
+      </div>
+
+      <!-- 問題7 -->
+      <div class="question" id="q7">
+        <h2>7. 你的理想職業特質是？</h2>
+        <label data-question="7" data-answer="A">
+          <input type="radio" name="q7" value="A">
+          需要高度技術和專業知識
+        </label>
+        <label data-question="7" data-answer="B">
+          <input type="radio" name="q7" value="B">
+          充滿創意和變化性
+        </label>
+        <label data-question="7" data-answer="C">
+          <input type="radio" name="q7" value="C">
+          能幫助他人和社會
+        </label>
+      </div>
+
+      <!-- 問題8 -->
+      <div class="question" id="q8">
+        <h2>8. 在小組作業中，你通常扮演什麼角色？</h2>
+        <label data-question="8" data-answer="A">
+          <input type="radio" name="q8" value="A">
+          技術專家，負責分析和執行
+        </label>
+        <label data-question="8" data-answer="B">
+          <input type="radio" name="q8" value="B">
+          創意發想者，提供新點子
+        </label>
+        <label data-question="8" data-answer="C">
+          <input type="radio" name="q8" value="C">
+          協調者，維持團隊和諧
+        </label>
+      </div>
+
+      <!-- 問題9 -->
+      <div class="question" id="q9">
+        <h2>9. 你最感興趣的課外讀物是？</h2>
+        <label data-question="9" data-answer="A">
+          <input type="radio" name="q9" value="A">
+          科技趨勢和技術文章
+        </label>
+        <label data-question="9" data-answer="B">
+          <input type="radio" name="q9" value="B">
+          藝術設計和創意雜誌
+        </label>
+        <label data-question="9" data-answer="C">
+          <input type="radio" name="q9" value="C">
+          心理學和人文社會書籍
+        </label>
+      </div>
+
+      <!-- 問題10 -->
+      <div class="question" id="q10">
+        <h2>10. 你希望自己的工作能帶來什麼影響？</h2>
+        <label data-question="10" data-answer="A">
+          <input type="radio" name="q10" value="A">
+          推動科技進步和創新
+        </label>
+        <label data-question="10" data-answer="B">
+          <input type="radio" name="q10" value="B">
+          創造美麗和啟發人心的作品
+        </label>
+        <label data-question="10" data-answer="C">
+          <input type="radio" name="q10" value="C">
+          幫助他人成長和解決問題
+        </label>
+      </div>
+
+      <!-- 進度條 -->
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+      <div class="progress-text">第 1 題 / 共 10 題 (10%)</div>
     </div>
   </div>
 

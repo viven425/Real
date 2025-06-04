@@ -2284,7 +2284,7 @@ footer .dr-footer-bottom .dr-footer-bottom-content .dr-disclaimer {
 }
 
 .center-nav-btn:hover {
-  color: var(--white-color);
+  color: #1E1E1E;
   transform: translateY(-3px);
   box-shadow: 0 15px 35px rgba(121, 46, 46, 0.25);
   border-color: var(--primary);
