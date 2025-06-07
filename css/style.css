@@ -4253,4 +4253,68 @@ body.menu-open .overlay {
   .content-blockabout p {
     font-size: 0.95rem;
   }
+}
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #1E1E1E;
+}
+.login-container h2 {
+  color: #792e2e;
+  margin-bottom: 20px;
+}
+.login-container .avatar-wrapper img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #792e2e;
+  margin-bottom: 20px;
+}
+.login-container .form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.login-container .form-group label {
+  display: block;
+  font-weight: bold;
+  color: #4a5568;
+  margin-bottom: 5px;
+}
+.login-container .form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cb7575;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.login-container .submit-btn {
+  background-color: #792e2e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.login-container .submit-btn:hover {
+  background-color: #542020;
+}
+.login-container .extra-links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.login-container .extra-links a {
+  color: #792e2e;
+  text-decoration: none;
+}
+.login-container .extra-links a:hover {
+  text-decoration: underline;
 }/*# sourceMappingURL=style.css.map */

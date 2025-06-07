@@ -4579,3 +4579,78 @@ body.menu-open {
                 font-size: 0.95rem;
             }
         }
+
+
+        //會員登錄
+ .login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: $white-color;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: $text-dark-grey;
+
+  h2 {
+    color: $primary;
+    margin-bottom: 20px;
+  }
+
+  .avatar-wrapper img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $primary;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    text-align: left;
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-weight: bold;
+      color: $text-light-grey;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid lighten($primary, 30%);
+      border-radius: 8px;
+      font-size: 14px;
+    }
+  }
+
+  .submit-btn {
+    background-color: $primary;
+    color: $white-color;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($primary, 10%);
+    }
+  }
+
+  .extra-links {
+    margin-top: 15px;
+    font-size: 14px;
+    a {
+      color: $primary;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
