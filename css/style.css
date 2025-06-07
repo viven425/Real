@@ -2550,7 +2550,6 @@ body.menu-open .overlay {
 /* 響應式設計 */
 @media (max-width: 768px) {
   .center-navigation {
-    flex-direction: column;
     gap: 15px;
     padding: 20px;
     border-radius: 25px;
@@ -3606,6 +3605,21 @@ body.menu-open .overlay {
     font-size: 14px;
   }
 }
+.header h1 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--text-dark-grey);
+}
+
+.header p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: var(--text-light-grey);
+}
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
