@@ -2292,234 +2292,451 @@ body.menu-open {
   }
 }
 
-// foooter
-footer {
-  background-color: $secondary-bg;
-  color: $primary;
-  font-family: 'Noto Sans TC', sans-serif;
-  padding: 50px 20px 30px;
-  box-sizing: border-box;
-
-  a {
-    color: #000000;
-    text-decoration: none;
-    transition: color 0.3s ease;
-
-    &:hover,
-    &:focus {
-      color: #463e3e;
-      text-decoration: underline;
-    }
-  }
-
-  .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    // 聯絡資訊欄
-    .footer-contact {
-      flex: 1 1 350px;
-      min-width: 280px;
-
-      .dr-footer-heading {
-        font-weight: 700;
-        font-size: 1.4rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 3px solid #000000;
-        padding-bottom: 8px;
-      }
-
-      ul {
-        list-style: none;
-        padding: 0;
-
-        li {
-          display: flex;
-          align-items: center;
-          margin-bottom: 1rem;
-          font-size: 1rem;
-
-          .dr-icon-placeholder {
-            margin-right: 14px;
-            font-size: 1.5rem;
-            line-height: 1;
-            width: 30px;
+     /* footer 推到底部 */
+        .main-content {
+            flex: 1;
+            padding: 50px;
             text-align: center;
-            color: #4b5058;
-          }
-
-          a.dr-contact-link {
-            color: #2a2e31;
-            font-weight: 600;
-          }
+            color: #4a5568;
         }
-      }
-    }
 
-    // Logo 滾動區
-    .footer-logo-marquee {
-      flex: 1 1 450px;
-      min-width: 300px;
-      overflow: hidden;
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 20px;
+        /* Footer 容器 */
+        .footer-wrapper {
+            width: 100%;
+        }
 
-      .logo-scroll-wrapper {
-        display: flex;
-        gap: 50px;
-        animation: scrollLeft 25s linear infinite;
+        /* 上層 Footer */
+        .footer-upper {
+            background-color: #e6cccc;
+            padding: 50px 0 40px;
+            position: relative;
+        }
 
-        a {
-          display: block;
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+        }
 
-          img.footer-logo {
-            max-height: 60px;
-            object-fit: contain;
-            filter: brightness(0.8);
-            transition: filter 0.3s ease;
-
-            &:hover {
-              filter: brightness(1);
+        /* 觸控友好的點擊區域 */
+        @media (max-width: 768px) {
+            .footer-nav-link {
+                display: inline-block;
+                padding: 8px 12px;
+                margin: -8px -12px;
             }
-          }
-        }
-      }
-    }
 
-    // 三欄網站導航
-    .dr-footer-section {
-      width: 100%;
-      margin-top: 60px;
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
-      .dr-footer-column {
-        flex: 1 1 30%;
-        min-width: 220px;
-
-        .dr-footer-heading {
-          font-weight: 700;
-          font-size: 1.3rem;
-          margin-bottom: 1rem;
-          border-bottom: 3px solid #000000;
-          padding-bottom: 6px;
-        }
-
-        ul {
-          list-style: none;
-          padding: 0;
-
-          li {
-            margin-bottom: 0.9rem;
-
-            a.dr-footer-link {
-              font-size: 1rem;
-              display: block;
-              padding: 4px 0;
-
-              &:hover {
-                color: #5599ff;
-              }
+            .social-link {
+                -webkit-tap-highlight-color: transparent;
             }
-          }
         }
-      }
-    }
-  }
 
-  // 底部版權區
-  .dr-footer-bottom {
-    margin-top: 80px;
-    border-top: 1px solid #333;
-    padding-top: 25px;
-
-    .dr-footer-bottom-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      font-size: 0.9rem;
-      color: #000000;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-
-      div {
-        margin-bottom: 5px;
-      }
-
-      .dr-legal-links {
-        display: flex;
-        gap: 25px;
-
-        a.dr-bottom-link {
-          color: #666;
-          font-weight: 500;
-          transition: color 0.3s;
-
-          &:hover {
-            color: #7a403f;
-          }
+        /* 左側導航區域 */
+        .footer-nav {
+            display: flex;
+            gap: 80px;
+            flex: 1;
         }
-      }
 
-      .dr-disclaimer {
-        flex-basis: 100%;
-        margin-top: 12px;
-        color: #555;
-        font-style: italic;
-      }
-    }
-  }
-
-  // 滾動動畫
-  @keyframes scrollLeft {
-    0% {
-      transform: translateX(0);
-    }
-
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  // 響應式
-  @media screen and (max-width: 900px) {
-    .footer-container {
-      flex-direction: column;
-      gap: 50px;
-
-      .footer-contact,
-      .footer-logo-marquee {
-        flex-basis: 100%;
-        min-width: 100%;
-      }
-
-      .dr-footer-section {
-        flex-direction: column;
-
-        .dr-footer-column {
-          flex-basis: 100%;
-          min-width: 100%;
+        .footer-nav-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
-      }
-    }
 
-    .dr-footer-bottom-content {
-      flex-direction: column;
-      gap: 15px;
-      text-align: center;
-    }
-  }
-}
+        .footer-nav-link {
+            color: #1E1E1E;
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-nav-link:hover {
+            color: #792e2e;
+            transform: translateX(5px);
+        }
+
+        .footer-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #792e2e;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 右側品牌區域 */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 30px;
+        }
+
+        /* 品牌頭部（名稱和社交圖標） */
+        .brand-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 300;
+            color: #792e2e;
+            font-family: $font-logo;
+            letter-spacing: 1px;
+        }
+
+        /* 社交媒體圖標 */
+        .social-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-link {
+            color: #1E1E1E;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .social-link:hover {
+            background-color: #792e2e;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* 觸控設備優化 */
+        @media (hover: none) {
+            .social-link:active {
+                background-color: #792e2e;
+                color: #ffffff;
+                transform: scale(0.95);
+            }
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* 聯絡資訊 */
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item a {
+            color: #4a5568;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #792e2e;
+        }
+
+        .address-info {
+            color: #4a5568;
+            font-size: 14px;
+        }
+
+        /* 下層 Footer */
+        .footer-lower {
+            background-color: #792e2e;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .copyright {
+            color: #e6cccc;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* 響應式設計 */
+        /* 平板設備 */
+        @media (max-width: 968px) {
+            .footer-container {
+                padding: 0 30px;
+            }
+
+            .footer-nav {
+                gap: 50px;
+            }
+
+            .footer-brand {
+                min-width: 280px;
+            }
+
+            .brand-name {
+                font-size: 26px;
+            }
+        }
+
+        /* 小平板和大手機 */
+        @media (max-width: 768px) {
+            .footer-upper {
+                padding: 40px 0 30px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 50px;
+                padding: 0 20px;
+            }
+
+            /* 導航區域在平板上改為2x2網格 */
+            .footer-nav {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                width: 100%;
+            }
+
+            .footer-nav-column {
+                align-items: flex-start;
+            }
+
+            /* 品牌區域居中 */
+            .footer-brand {
+                align-items: center;
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid rgba(121, 46, 46, 0.2);
+                padding-top: 40px;
+            }
+
+            .brand-header {
+                align-items: center;
+            }
+
+            .footer-contact {
+                align-items: center;
+            }
+        }
+
+        /* 手機設備 */
+        @media (max-width: 480px) {
+            .footer-upper {
+                padding: 30px 0 25px;
+            }
+
+            /* 導航改為 2x2 網格 */
+            .footer-nav {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 25px 20px;
+                width: 100%;
+            }
+
+            .footer-nav-column {
+                align-items: flex-start;
+                gap: 10px;
+                text-align: left;
+            }
+
+            /* 確保"會員登錄"單獨一欄時居中 */
+            .footer-nav-column:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                text-align: center;
+                align-items: center;
+            }
+
+            .footer-nav-link {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
+
+            /* 調整hover效果為點擊效果 */
+            .footer-nav-link:hover {
+                transform: none;
+                background-color: rgba(121, 46, 46, 0.1);
+                border-radius: 4px;
+            }
+
+            .footer-nav-link::after {
+                display: none;
+            }
+
+            /* 品牌區域 */
+            .brand-name {
+                font-size: 22px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 36px;
+                height: 36px;
+            }
+
+            .social-link svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            /* 聯絡資訊 */
+            .footer-contact {
+                gap: 10px;
+                font-size: 13px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            /* 底部版權 */
+            .footer-lower {
+                padding: 15px 10px;
+            }
+
+            .copyright {
+                font-size: 12px;
+            }
+        }
+
+        /* 超小設備 */
+        @media (max-width: 360px) {
+            .footer-container {
+                padding: 0 15px;
+            }
+
+            .footer-nav {
+                gap: 20px 15px;
+            }
+
+            .brand-name {
+                font-size: 20px;
+            }
+
+            .footer-nav-link {
+                font-size: 13px;
+                padding: 4px 8px;
+            }
+        }
+
+        /* 極小設備 (iPhone SE 等) */
+        @media (max-width: 320px) {
+            .footer-nav {
+                gap: 15px 10px;
+            }
+
+            .footer-nav-link {
+                font-size: 12px;
+                padding: 3px 6px;
+            }
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .social-link {
+                width: 32px;
+                height: 32px;
+            }
+
+            .social-link svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        /* 動畫效果 - 只在桌面版啟用 */
+        @media (min-width: 769px) {
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .footer-nav-column {
+                animation: fadeInUp 0.6s ease-out;
+            }
+
+            .footer-nav-column:nth-child(2) {
+                animation-delay: 0.1s;
+            }
+
+            .footer-nav-column:nth-child(3) {
+                animation-delay: 0.2s;
+            }
+
+            .footer-nav-column:nth-child(4) {
+                animation-delay: 0.3s;
+            }
+
+            .footer-brand {
+                animation: fadeInUp 0.6s ease-out;
+                animation-delay: 0.4s;
+            }
+        }
+          /* 極小設備 (iPhone SE 等) */
+        @media (max-width: 320px) {
+            .footer-nav {
+                gap: 15px 10px;
+            }
+
+            .footer-nav-link {
+                font-size: 12px;
+                padding: 3px 6px;
+            }
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .social-link {
+                width: 32px;
+                height: 32px;
+            }
+
+            .social-link svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
 
 /* 圖片切換區域 */
 /* 中央按鈕導航 */
