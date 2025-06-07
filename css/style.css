@@ -4254,67 +4254,72 @@ body.menu-open .overlay {
     font-size: 0.95rem;
   }
 }
-.login-container {
-  max-width: 400px;
-  margin: 50px auto;
+.service-register-form {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #e6cccc;
   padding: 30px;
-  background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
   color: #1E1E1E;
 }
-.login-container h2 {
+.service-register-form h2 {
+  text-align: center;
   color: #792e2e;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
-.login-container .avatar-wrapper img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #792e2e;
-  margin-bottom: 20px;
+.service-register-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-.login-container .form-group {
-  text-align: left;
-  margin-bottom: 20px;
+.service-register-form .form-row {
+  display: flex;
+  gap: 16px;
 }
-.login-container .form-group label {
-  display: block;
-  font-weight: bold;
-  color: #4a5568;
-  margin-bottom: 5px;
+.service-register-form .form-row .service-form-group {
+  flex: 1;
 }
-.login-container .form-group input {
-  width: 100%;
+.service-register-form .service-form-group {
+  display: flex;
+  flex-direction: column;
+}
+.service-register-form .service-form-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.service-register-form .service-form-group input, .service-register-form .service-form-group select {
   padding: 10px;
   border: 1px solid #cb7575;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 14px;
 }
-.login-container .submit-btn {
+.service-register-form .service-form-group input:focus, .service-register-form .service-form-group select:focus {
+  border-color: #792e2e;
+  outline: none;
+}
+.service-register-form .service-form-group input::placeholder, .service-register-form .service-form-group select::placeholder {
+  color: #4a5568;
+}
+.service-register-form .service-checkbox-group {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.service-register-form .service-checkbox-group input {
+  margin-right: 8px;
+  accent-color: #792e2e;
+}
+.service-register-form .service-submit-btn {
+  padding: 12px;
   background-color: #792e2e;
   color: #ffffff;
+  font-size: 15px;
   border: none;
-  border-radius: 8px;
-  padding: 12px;
-  width: 100%;
-  font-size: 16px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
-.login-container .submit-btn:hover {
-  background-color: #542020;
-}
-.login-container .extra-links {
-  margin-top: 15px;
-  font-size: 14px;
-}
-.login-container .extra-links a {
-  color: #792e2e;
-  text-decoration: none;
-}
-.login-container .extra-links a:hover {
-  text-decoration: underline;
+.service-register-form .service-submit-btn:hover {
+  background-color: #5b2323;
 }/*# sourceMappingURL=style.css.map */

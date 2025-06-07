@@ -46,44 +46,81 @@
         <a href="index.html" id="debut">Debut Reve</a>
     </section>
 
-    <main>
-
-        <div class="register-container">
-            <h2>會員註冊</h2>
-
-            <!-- 頭像上傳區塊 -->
-            <div class="avatar-wrapper">
-                <img id="avatarPreview" src="https://via.placeholder.com/120x120.png?text=頭像" alt="頭像" />
-                <label for="avatarInput">📷</label>
-                <input type="file" id="avatarInput" accept="image/*" capture="user" />
+    <main class="service-register-form">
+        <h2>會員註冊表單</h2>
+        
+        <form action="/register" method="POST">
+            <div class="service-form-group">
+                <label for="firstName">名字：</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="請輸入您的名字">
             </div>
-
-            <form action="/register" method="POST">
-                <div class="form-group">
-                    <label for="email">電子信箱</label>
-                    <input type="email" id="email" name="email" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">手機號碼</label>
-                    <input type="tel" id="phone" name="phone" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="name">姓名</label>
-                    <input type="text" id="name" name="name" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="password">密碼</label>
-                    <input type="password" id="password" name="password" required />
-                </div>
-
-                <button type="submit" class="submit-btn">註冊</button>
-            </form>
-        </div>
+            
+            <div class="service-form-group">
+                <label for="lastName">姓氏：</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="請輸入您的姓氏">
+            </div>
+            
+            <div class="service-form-group">
+                <label for="gender">性別：</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>請選擇性別</option>
+                    <option value="female">女性</option>
+                    <option value="male">男性</option>
+                    <option value="other">生理男</option>
+                    <option value="other">生理女</option>
+                </select>
+            </div>
+            
+            <div class="service-form-group">
+                <label for="dob">出生日期：</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            
+            <div class="service-form-group">
+                <label for="passport">護照號碼：</label>
+                <input type="text" id="passport" name="passport" required placeholder="請輸入護照號碼">
+            </div>
+            
+            <div class="service-form-group">
+                <label for="email">電子郵件：</label>
+                <input type="email" id="email" name="email" required placeholder="請輸入電子郵件">
+            </div>
+            
+            <div class="service-form-group">
+                <label for="phone">聯絡電話：</label>
+                <input type="tel" id="phone" name="phone" required placeholder="請輸入聯絡電話">
+            </div>
+            
+            <div class="service-form-group">
+                <label for="country">國籍：</label>
+                <select id="country" name="country" required>
+                    <option value="" disabled selected>請選擇國家</option>
+                    <option value="tw">台灣</option>
+                    <option value="jp">緬甸</option>
+                    <option value="hk">香港</option>
+                    <option value="mo">澳門</option>
+                    <option value="cn">中國</option>
+                    <option value="us">美國</option>
+                    <option value="uk">英國</option>
+                    <option value="ca">加拿大</option>
+                    <option value="au">澳洲</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+            
+            <div class="service-form-group">
+                <label for="password">密碼：</label>
+                <input type="password" id="password" name="password" required placeholder="請設定密碼">
+            </div>
+            
+            <div class="service-checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">我已閱讀並同意《使用條款》與《隱私政策》</label>
+            </div>
+            
+            <button type="submit" class="service-submit-btn">註冊</button>
+        </form>
     </main>
-
 
 
 

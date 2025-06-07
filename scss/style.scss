@@ -4582,75 +4582,86 @@ body.menu-open {
 
 
         //會員登錄
- .login-container {
-  max-width: 400px;
-  margin: 50px auto;
+      // 主區塊樣式
+.service-register-form {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: $secondary-bg;
   padding: 30px;
-  background-color: $white-color;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
   color: $text-dark-grey;
 
   h2 {
+    text-align: center;
     color: $primary;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
-  .avatar-wrapper img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid $primary;
-    margin-bottom: 20px;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
-  .form-group {
-    text-align: left;
-    margin-bottom: 20px;
+  .form-row {
+    display: flex;
+    gap: 16px;
+
+    .service-form-group {
+      flex: 1;
+    }
+  }
+
+  .service-form-group {
+    display: flex;
+    flex-direction: column;
 
     label {
-      display: block;
-      font-weight: bold;
-      color: $text-light-grey;
-      margin-bottom: 5px;
+      font-size: 14px;
+      margin-bottom: 6px;
     }
 
-    input {
-      width: 100%;
+    input, select {
       padding: 10px;
       border: 1px solid lighten($primary, 30%);
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 14px;
+
+      &:focus {
+        border-color: $primary;
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $text-light-grey;
+      }
     }
   }
 
-  .submit-btn {
+  .service-checkbox-group {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    input {
+      margin-right: 8px;
+      accent-color: $primary;
+    }
+  }
+
+  .service-submit-btn {
+    padding: 12px;
     background-color: $primary;
     color: $white-color;
+    font-size: 15px;
     border: none;
-    border-radius: 8px;
-    padding: 12px;
-    width: 100%;
-    font-size: 16px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: darken($primary, 10%);
-    }
-  }
-
-  .extra-links {
-    margin-top: 15px;
-    font-size: 14px;
-    a {
-      color: $primary;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
+      background-color: darken($primary, 8%);
     }
   }
 }
