@@ -4029,7 +4029,7 @@ body.menu-open .overlay {
 }
 
 .containerabout section > h2 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   margin-bottom: 3rem;
   text-align: center;
   color: #792e2e;
@@ -4217,7 +4217,7 @@ body.menu-open .overlay {
     font-size: 1.1rem;
   }
   .containerabout section > h2 {
-    font-size: 2rem;
+    font-size: 1rem;
   }
   .content-blockabout {
     gap: 15px;
