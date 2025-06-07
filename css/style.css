@@ -4048,7 +4048,7 @@ body.menu-open .overlay {
 }
 
 /* 為什麼選擇台灣 - Flexbox 布局 */
-.content-block {
+.content-blockabout {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -4066,13 +4066,13 @@ body.menu-open .overlay {
   background: #ffffff;
 }
 
-.content-block div:hover {
+.content-blockabout div:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   border-color: #d4a5a5;
 }
 
-.content-block img {
+.content-blockabout img {
   max-width: 100%;
   height: auto;
   display: block;
@@ -4080,7 +4080,7 @@ body.menu-open .overlay {
   border-radius: 5px;
 }
 
-.content-block h3 {
+.content-blockabout h3 {
   color: #1E1E1E;
   margin-bottom: 10px;
 }
