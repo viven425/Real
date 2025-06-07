@@ -3605,19 +3605,33 @@ body.menu-open .overlay {
     font-size: 14px;
   }
 }
-.header h1 {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  font-weight: 700;
-  color: var(--text-dark-grey);
+/* 通用標題 */
+.page-header {
+  display: flex;
+  flex-direction: column; /* 確保垂直排列 */
+  align-items: center; /* 水平居中 */
+  gap: 10px; /* 元素間垂直間距 */
 }
 
-.header p {
+.page-header h1 {
+  font-size: 1rem;
+  margin: 0; /* 清除默認邊距 */
+  padding: 0;
+  font-weight: 700;
+  color: var(--text-dark-grey);
+  text-align: center; /* 文字居中 */
+  width: 100%; /* 撐滿容器寬度 */
+}
+
+.page-header p {
   font-size: 1.2rem;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0; /* 清除默認邊距 */
+  padding: 0;
   line-height: 1.6;
   color: var(--text-light-grey);
+  text-align: center; /* 文字居中 */
+  width: 100%; /* 撐滿容器寬度 */
 }
 
 .cards-container {
@@ -3979,4 +3993,94 @@ body.menu-open .overlay {
 }
 .card:hover .card-image i {
   animation: shimmer 2s ease-in-out infinite;
+}
+
+.register-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+}
+.register-container .avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #e0e0e0;
+  cursor: pointer;
+}
+.register-container .avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.register-container .avatar-wrapper label {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #4a6cf7;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+.register-container .avatar-wrapper label:hover {
+  background: #3a5af5;
+}
+.register-container .avatar-wrapper input[type=file] {
+  display: none;
+}
+.register-container form .form-group {
+  margin-bottom: 20px;
+}
+.register-container form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+.register-container form .form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+.register-container form .form-group input:focus {
+  outline: none;
+  border-color: #4a6cf7;
+  box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
+}
+.register-container form .submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.register-container form .submit-btn:hover {
+  background-color: #3a5af5;
 }/*# sourceMappingURL=style.css.map */
