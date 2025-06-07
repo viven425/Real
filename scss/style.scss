@@ -2906,6 +2906,7 @@ body.menu-open {
             min-width: 200px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(121, 46, 46, 0.3);
+            margin: 25px;
         }
 
         .change-image-button::before {
@@ -2967,7 +2968,7 @@ body.menu-open {
 
         /* 按鈕文字變化動畫 */
         .change-image-button.starting {
-            background: linear-gradient(145deg, #4a9d4a, #5cb85c);
+            background: linear-gradient(145deg, #e49696, #802b2b);
             pointer-events: none;
         }
 
@@ -3912,190 +3913,115 @@ body.menu-open {
 
 //學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok學校卡片okok
 
-.page-header {
-  text-align: center;
-  margin: 10px;
-      font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-light-grey);
-
-  h1 {    
-    margin-bottom: 10px;
-    font-weight: 700;
-    color: var(--text-dark-grey);
-}}
-
-
-
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: $space-s; // 更緊湊的間距
-  max-width: 1080px;
-  margin: $space-x-a;
-  padding: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
 }
 
-// 大學卡片樣式精簡化
+/* === 卡片主體 === */
 .university-card {
-  background-color: $white-color;
-  border-radius: $radius-l;
-  box-shadow: 0 4px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  width: calc(33.3333% - #{calc($gap * 2 / 3)});
-  min-width: 240px;
-  max-width: 300px;
   display: flex;
   flex-direction: column;
-  transition: transform $speed-fast ease, box-shadow $speed-fast ease;
-  cursor: pointer;
-  border: $border-s $grey-border;
-  margin: 10px;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px;
-  }
-
-  .card-image-wrapper {
-    height: 150px;
-    overflow: hidden;
-    position: relative;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform $speed-slow ease;
-    }
-  }
-
-  &:hover .card-image-wrapper img {
-    transform: scale(1.03);
-  }
-
-  .card-content {
-    padding: $space-s;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card-title {
-    font-size: 0.85rem;
-    color: $primary;
-    margin-top: 0;
-    margin-bottom: 25px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  .card-location {
-    font-size: 0.75rem;
-    color: $color-grey;
-    margin-bottom: 25px;
-    font-weight: 500;
-  }
-
-  .card-description {
-    font-size: 0.8rem;
-    color: $text-light-grey;
-    margin-bottom: $space-s;
-    flex-grow: 1;
-    line-height: 1.4;
-  }
-
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 25px;
-    border-top: $border-s $grey-border;
-
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-
-      .tag {
-        background-color: $category-bg;
-        color: $category-text;
-        font-size: 0.65rem;
-        padding: 3px 6px;
-        border-radius: $radius-ex;
-        white-space: nowrap;
-      }
-    }
-
-    .card-link {
-      text-decoration: none;
-      color: $primary;
-      font-weight: 600;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      transition: color $speed-fast ease;
-
-      &:hover {
-        color: $color-lesser4;
-      }
-
-      i {
-        margin-left: 5px;
-        font-size: 0.7rem;
-        transition: transform $speed-fast ease;
-      }
-
-      &:hover i {
-        transform: translateX(2px);
-      }
-    }
-  }
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-// 響應式設計
-@media (#{$media-lg}) {
-  .university-card {
-    width: calc(50% - #{$space-m});
-  }
+.university-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
-@media (#{$media-md}) {
-  .cards-container {
-    padding: $space-s;
-    gap: $space-s;
-  }
-
-  .university-card {
-    width: 100%;
-    max-width: 400px;
-    margin: $space-x-a;
-
-    .card-title {
-      font-size: 1rem;
-    }
-
-    .card-footer {
-      flex-direction: row;
-      gap: 25px;
-    }
-  }
+.card-image-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-@media (#{$media-sm}) {
-  .university-card {
-    min-width: 220px;
-
-    .card-image-wrapper {
-      height: 130px;
-    }
-
-    .card-content {
-      padding: 25px;
-    }
-  }
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
+
+.university-card:hover .card-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-location {
+  font-size: 0.9rem;
+  color: #4a5568; /* $text-light-grey */
+  font-weight: 500;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1E1E1E; /* $text-dark-grey */
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #4a5568; /* $text-light-grey */
+  line-height: 1.6;
+}
+
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: #e6cccc; /* $secondary-bg */
+  color: #792e2e; /* $primary */
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.tag:hover {
+  background: #d4b1b1;
+}
+
+.card-link {
+  align-self: flex-start;
+  color: #792e2e; /* $primary */
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.3s;
+}
+
+.card-link:hover {
+  color: #a94444;
+}
+
 
 //學係
    .container {
