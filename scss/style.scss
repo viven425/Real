@@ -4583,85 +4583,277 @@ body.menu-open {
 
         //會員登錄
       // 主區塊樣式
-.service-register-form {
-  max-width: 600px;
-  margin: 40px auto;
-  background-color: $secondary-bg;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  font-family: sans-serif;
-  color: $text-dark-grey;
+     .service-register-form {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(121, 46, 46, 0.15);
+            padding: 40px;
+            width: 100%;
+            max-width: 1200px;
+            font-family: 'LXGW WenKai Mono TC', sans-serif;
+            margin: 0 auto;
+        }
 
-  h2 {
-    text-align: center;
-    color: $primary;
-    margin-bottom: 24px;
-  }
+        .service-register-form h2 {
+            text-align: center;
+            color: #1E1E1E;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            position: relative;
+            font-family: 'LXGW WenKai Mono TC', sans-serif;
+        }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+        .service-register-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #792e2e, #a53e3e);
+            border-radius: 2px;
+        }
 
-  .form-row {
-    display: flex;
-    gap: 16px;
+        .service-register-form form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            align-items: start;
+        }
 
-    .service-form-group {
-      flex: 1;
-    }
-  }
+        .service-form-group {
+            display: flex;
+            flex-direction: column;
+        }
 
-  .service-form-group {
-    display: flex;
-    flex-direction: column;
+        .service-form-group label {
+            font-weight: 500;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
 
-    label {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
+        .service-form-group input,
+        .service-form-group select {
+            padding: 12px 16px;
+            border: 2px solid #e6cccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            color: #1E1E1E;
+        }
 
-    input, select {
-      padding: 10px;
-      border: 1px solid lighten($primary, 30%);
-      border-radius: 6px;
-      font-size: 14px;
+        /* 日期輸入框特殊樣式 */
+        .service-form-group input[type="date"] {
+            position: relative;
+            font-family: 'LXGW WenKai Mono TC', sans-serif;
+        }
 
-      &:focus {
-        border-color: $primary;
-        outline: none;
-      }
+        .service-form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            padding: 4px;
+            margin-left: 8px;
+        }
 
-      &::placeholder {
-        color: $text-light-grey;
-      }
-    }
-  }
+        .service-form-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 0.7;
+        }
 
-  .service-checkbox-group {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
+        .service-form-group input[type="date"]::-webkit-datetime-edit {
+            color: #1E1E1E;
+        }
 
-    input {
-      margin-right: 8px;
-      accent-color: $primary;
-    }
-  }
+        .service-form-group input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+            background: transparent;
+        }
 
-  .service-submit-btn {
-    padding: 12px;
-    background-color: $primary;
-    color: $white-color;
-    font-size: 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+        .service-form-group input[type="date"]::-webkit-datetime-edit-text {
+            color: #4a5568;
+            padding: 0 2px;
+        }
 
-    &:hover {
-      background-color: darken($primary, 8%);
-    }
-  }
-}
+        .service-form-group input[type="date"]::-webkit-datetime-edit-month-field,
+        .service-form-group input[type="date"]::-webkit-datetime-edit-day-field,
+        .service-form-group input[type="date"]::-webkit-datetime-edit-year-field {
+            background: transparent;
+            color: #1E1E1E;
+            border: none;
+            padding: 2px;
+        }
+
+        .service-form-group input[type="date"]::-webkit-datetime-edit-month-field:focus,
+        .service-form-group input[type="date"]::-webkit-datetime-edit-day-field:focus,
+        .service-form-group input[type="date"]::-webkit-datetime-edit-year-field:focus {
+            background-color: rgba(121, 46, 46, 0.1);
+            outline: none;
+            border-radius: 2px;
+        }
+
+        .service-form-group input:focus {
+            outline: none;
+            border-color: #792e2e;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(121, 46, 46, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .service-form-group select:focus {
+            outline: none;
+            border-color: #792e2e;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(121, 46, 46, 0.1);
+        }
+
+        .service-form-group input:hover:not(:focus) {
+            border-color: #792e2e;
+            background-color: #ffffff;
+        }
+
+        .service-form-group select:hover:not(:focus) {
+            border-color: #792e2e;
+            background-color: #ffffff;
+        }
+
+        .service-form-group input::placeholder {
+            color: #4a5568;
+            font-size: 14px;
+        }
+
+        .service-form-group select {
+            cursor: pointer;
+        }
+
+        .service-form-group select option {
+            padding: 8px;
+        }
+
+        .service-checkbox-group {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+            padding: 20px;
+            background: #e6cccc;
+            border-radius: 10px;
+            border: 1px solid #792e2e;
+        }
+
+        .service-checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #792e2e;
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        .service-checkbox-group label {
+            color: #4a5568;
+            font-size: 14px;
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .service-checkbox-group label:hover {
+            color: #1E1E1E;
+        }
+
+        .service-submit-btn {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #792e2e 0%, #a53e3e 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .service-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(121, 46, 46, 0.3);
+            background: linear-gradient(135deg, #6b2626 0%, #8f3636 100%);
+        }
+
+        .service-submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(121, 46, 46, 0.2);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 1024px) {
+            .service-register-form form {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-register-form form {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        @media (max-height: 800px) {
+            .service-register-form {
+                padding: 25px;
+                margin: 10px auto;
+            }
+            
+            .service-register-form h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                font-family: 'LXGW WenKai Mono TC', sans-serif;
+            }
+            
+            .service-register-form form {
+                gap: 18px;
+            }
+            
+            .service-form-group input,
+            .service-form-group select {
+                padding: 10px 14px;
+            }
+            
+            .service-checkbox-group {
+                padding: 15px;
+                margin-top: 10px;
+            }
+            
+            .service-submit-btn {
+                padding: 14px 28px;
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-register-form {
+                padding: 20px 15px;
+            }
+            
+            .service-register-form h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .service-form-group input,
+            .service-form-group select {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .service-submit-btn {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+        }
