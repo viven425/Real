@@ -2738,9 +2738,7 @@ body.menu-open {
             }
         }
 
-/* 圖片切換區域 */
 /* 中央按鈕導航 */
-/* --- 圖片切換區域 (Image Section) --- */
 .center-navigation {
   display: flex;
   justify-content: center;
@@ -4855,5 +4853,486 @@ body.menu-open {
             .service-submit-btn {
                 padding: 12px 24px;
                 font-size: 15px;
+            }
+        }
+
+        //最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息
+         .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        /* 第一區：雜誌風格 - 目前活動 */
+        .magazine-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .magazine-main {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(121, 46, 46, 0.1);
+            transform: rotate(-1deg);
+            transition: all 0.4s ease;
+        }
+
+        .magazine-main:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .magazine-cover {
+            background: linear-gradient(135deg, #792e2e, #a53e3e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .magazine-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .magazine-logo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .magazine-issue {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .magazine-feature {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+            z-index: 2;
+            position: relative;
+        }
+
+        .magazine-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .magazine-article {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(121, 46, 46, 0.1);
+            transform: rotate(1deg);
+            transition: all 0.3s ease;
+        }
+
+        .magazine-article:hover {
+            transform: rotate(0deg);
+        }
+
+        .magazine-article:nth-child(even) {
+            transform: rotate(-0.5deg);
+        }
+
+        .magazine-category {
+            background: #e6cccc;
+            color: #792e2e;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .magazine-article h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1E1E1E;
+        }
+
+        .magazine-article p {
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        /* 第二區：報紙風格 - 重要活動 */
+        .newspaper-style {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(121, 46, 46, 0.1);
+            border: 3px solid #1E1E1E;
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .newspaper-style::before {
+            content: '留學生重要資訊';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1E1E1E;
+            color: white;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 3px double #1E1E1E;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .newspaper-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1E1E1E;
+        }
+
+        .newspaper-date {
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .newspaper-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding-top: 25px;
+        }
+
+        .newspaper-column {
+            border-right: 2px solid #ddd;
+            padding-right: 20px;
+        }
+
+        .newspaper-column:last-child {
+            border-right: none;
+        }
+
+        .newspaper-article {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .newspaper-article:last-child {
+            border-bottom: none;
+        }
+
+        .newspaper-article h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            color: #1E1E1E;
+        }
+
+        .newspaper-article p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #4a5568;
+            text-align: justify;
+        }
+
+        /* 第三區：滑動卡片風格 - 圖片展示 */
+        .slider-style {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 20px 60px rgba(121, 46, 46, 0.1);
+            margin-bottom: 80px;
+        }
+
+        .slider-header {
+            text-align: center;
+            padding: 30px;
+            border-bottom: 2px solid #e6cccc;
+        }
+
+        .slider-header h2 {
+            font-size: 24px;
+            color: #1E1E1E;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .slider-header p {
+            color: #4a5568;
+            font-size: 16px;
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .slider-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: linear-gradient(135deg, #e6cccc, #f2e6e6);
+            border-radius: 16px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #4a5568;
+            box-shadow: 0 10px 30px rgba(121, 46, 46, 0.1);
+        }
+
+        .slider-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1E1E1E;
+        }
+
+        .slider-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .slider-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(121, 46, 46, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: #792e2e;
+            transform: scale(1.3);
+        }
+
+        .slider-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            color: #792e2e;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(121, 46, 46, 0.2);
+        }
+
+        .slider-arrows:hover {
+            background: #792e2e;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-prev {
+            left: 20px;
+        }
+
+        .slider-next {
+            right: 20px;
+        }
+
+        /* 第四區：立體卡片牆 - 學校項目 */
+        .projects-section h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #1E1E1E;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .card-wall {
+            perspective: 1000px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .wall-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(121, 46, 46, 0.1);
+            transform-style: preserve-3d;
+            transition: all 0.6s ease;
+            cursor: pointer;
+            border: 1px solid rgba(121, 46, 46, 0.1);
+        }
+
+        .wall-card:hover {
+            transform: rotateY(8deg) rotateX(5deg) translateZ(20px);
+            box-shadow: 0 25px 50px rgba(121, 46, 46, 0.2);
+        }
+
+        .wall-card:nth-child(even):hover {
+            transform: rotateY(-8deg) rotateX(5deg) translateZ(20px);
+        }
+
+        .wall-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1E1E1E;
+        }
+
+        .wall-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .wall-link {
+            color: #792e2e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .wall-link:hover {
+            border-bottom-color: #792e2e;
+            color: #a53e3e;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 1024px) {
+            .magazine-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .newspaper-columns {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .magazine-section {
+                grid-template-columns: 1fr;
+            }
+
+            .magazine-cover {
+                padding: 30px 20px;
+                min-height: 300px;
+            }
+
+            .magazine-feature {
+                font-size: 22px;
+            }
+
+            .newspaper-columns {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .newspaper-column {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 20px;
+            }
+
+            .newspaper-column:last-child {
+                border-bottom: none;
+            }
+
+            .slider-slide {
+                padding: 30px 20px;
+            }
+
+            .slider-image {
+                height: 200px;
+            }
+
+            .card-wall {
+                grid-template-columns: 1fr;
+            }
+
+            .slider-arrows {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+          /* 動畫效果 */
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
