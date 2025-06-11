@@ -39,44 +39,37 @@
     </header>
 
     <main>
-<div class="overlay"></div>
+        <div class="overlay"></div>
 
-    <!-- logo區 -->
-    <section class="logo-wrapper">
-        <a href="index.html" id="debut">Debut Reve</a>
-        <section class="banner1">
+        <!-- logo區 -->
+        <section class="logo-wrapper">
+            <a href="index.html" id="debut">Debut Reve</a>
+            <section class="banner1">
+            </section>
         </section>
-    </section>
 
- <div class="container">
-        <!-- 第一區：雜誌風格 - 目前活動 -->
+        <!-- 第一區：雜誌風格 - 只保留主要banner -->
         <div class="section magazine-section fade-in">
             <div class="magazine-main">
                 <div class="magazine-cover">
-                    <div class="magazine-logo">校園活動月刊</div>
-                    <div class="magazine-issue">2025年6月號 • 第36期</div>
-                    <div class="magazine-feature">掌握留學先機<br>線上語言課程開課</div>
+                    <!-- 自定義圖片位置 - 你可以替換這些圖片 -->
+                    <div class="custom-image image-1"></div>
+                    <div class="custom-image image-2"></div>
+                    <div class="custom-image image-3"></div>
+                    <div class="custom-image image-4"></div>
+                    <div class="custom-image image-5"></div>
+
+                    <!-- 文字內容層 -->
+                    <div class="magazine-logo"
+                        style="z-index: 10; position: relative; text-shadow: 3px 3px 6px rgba(0,0,0,0.7); font-size: 24px; font-weight: 800;">
+                        校園活動月刊</div>
+                    <div class="magazine-issue"
+                        style="z-index: 10; position: relative; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-size: 16px;">
+                        2025年6月號 • 第36期</div>
+                    <div class="magazine-feature"
+                        style="z-index: 10; position: relative; text-shadow: 3px 3px 6px rgba(0,0,0,0.7); font-size: 32px; font-weight: 800; margin-top: 20px;">
+                        掌握留學先機<br>🌟 線上語言課程開課 🌟</div>
                 </div>
-            </div>
-            
-            <div class="magazine-sidebar">
-                <article class="magazine-article">
-                    <span class="magazine-category">就業展覽</span>
-                    <h4>2025 校園徵才博覽會</h4>
-                    <p>提供最新台灣企業職缺資訊，助你順利銜接學業與職場，畢業後留台就業機會...</p>
-                </article>
-                
-                <article class="magazine-article">
-                    <span class="magazine-category">學長姐分享</span>
-                    <h4>台灣留學心得分享</h4>
-                    <p>聽聽過來人的寶貴經驗，少走彎路，更快適應台灣生活與學習環境...</p>
-                </article>
-                
-                <article class="magazine-article">
-                    <span class="magazine-category">生活指南</span>
-                    <h4>台灣美食探索指南</h4>
-                    <p>從夜市到巷弄，帶你品嚐台灣的獨特風味，讓留學生活更美味精彩...</p>
-                </article>
             </div>
         </div>
 
@@ -86,7 +79,7 @@
                 <h1 class="newspaper-title">留學生重要資訊</h1>
                 <p class="newspaper-date">2025年6月8日 星期日 • 第1234期</p>
             </div>
-            
+
             <div class="newspaper-columns">
                 <div class="newspaper-column">
                     <article class="newspaper-article">
@@ -102,7 +95,7 @@
                         <p>請全體留學生注意生活安全，了解台灣當地法規，共同維護良好的學習環境...</p>
                     </article>
                 </div>
-                
+
                 <div class="newspaper-column">
                     <article class="newspaper-article">
                         <h4>台灣留學生獎學金申請</h4>
@@ -117,7 +110,7 @@
                         <p>留學生圖書館使用須知，開放時間為週一至週五上午8:00至下午5:00...</p>
                     </article>
                 </div>
-                
+
                 <div class="newspaper-column">
                     <article class="newspaper-article">
                         <h4>台灣留學簽證續簽</h4>
@@ -135,46 +128,7 @@
             </div>
         </div>
 
-        <!-- 第三區：滑動卡片風格 - 校園圖片展示 -->
-        <div class="section slider-style fade-in">
-            <div class="slider-header">
-                <h2>留學生活風光</h2>
-                <p>記錄在台灣的美好時光</p>
-            </div>
-            
-            <div class="slider-container" id="sliderContainer">
-                <div class="slider-slide">
-                    <div class="slider-image">台灣夜市美食</div>
-                    <h3 class="slider-title">台灣美食探索</h3>
-                    <p class="slider-description">從夜市到巷弄，帶你品嚐台灣的獨特風味，讓留學生活更美味。發現地道小吃的魅力。</p>
-                </div>
-                <div class="slider-slide">
-                    <div class="slider-image">校園徵才活動</div>
-                    <h3 class="slider-title">校園徵才博覽會</h3>
-                    <p class="slider-description">2025年度校園徵才博覽會，提供最新台灣企業職缺資訊，助你順利銜接學業與職場。</p>
-                </div>
-                <div class="slider-slide">
-                    <div class="slider-image">留學生活場景</div>
-                    <h3 class="slider-title">留學生活體驗</h3>
-                    <p class="slider-description">真實的台灣留學生活體驗分享，學長姐的寶貴經驗與建議，幫助你更快適應新環境。</p>
-                </div>
-                <div class="slider-slide">
-                    <div class="slider-image">迎新活動現場</div>
-                    <h3 class="slider-title">迎新活動精彩瞬間</h3>
-                    <p class="slider-description">新學生迎新活動與社團介紹，快速融入校園生活，結交新朋友，豐富你的課餘時光。</p>
-                </div>
-            </div>
-            
-            <button class="slider-arrows slider-prev" onclick="changeSlide(-1)">‹</button>
-            <button class="slider-arrows slider-next" onclick="changeSlide(1)">›</button>
-            
-            <div class="slider-nav">
-                <div class="slider-dot active" onclick="currentSlide(1)"></div>
-                <div class="slider-dot" onclick="currentSlide(2)"></div>
-                <div class="slider-dot" onclick="currentSlide(3)"></div>
-                <div class="slider-dot" onclick="currentSlide(4)"></div>
-            </div>
-        </div>
+     
 
         <!-- 第四區：立體卡片牆 - 學校項目 -->
         <div class="section projects-section fade-in">
@@ -185,43 +139,43 @@
                     <p class="wall-description">足不出戶也能輕鬆提升語文能力，為你的留學之路做好萬全準備，掌握留學先機。</p>
                     <a href="#" class="wall-link">立即報名 →</a>
                 </article>
-                
+
                 <article class="wall-card">
                     <h3 class="wall-title">簽證辦理服務</h3>
                     <p class="wall-description">台灣留學簽證申請最全流程與注意事項，詳細步驟解析，助你輕鬆搞定簽證，無憂來台。</p>
                     <a href="#" class="wall-link">了解流程 →</a>
                 </article>
-                
+
                 <article class="wall-card">
                     <h3 class="wall-title">獎學金申請指導</h3>
                     <p class="wall-description">2025台灣留學生獎學金申請指南，別讓經濟成為阻礙！了解各類獎學金申請資格與流程。</p>
                     <a href="#" class="wall-link">申請資訊 →</a>
                 </article>
-                
+
                 <article class="wall-card">
                     <h3 class="wall-title">就業輔導服務</h3>
                     <p class="wall-description">提供專業的職涯規劃諮詢，協助留學生探索在台就業機會，規劃未來發展方向。</p>
                     <a href="#" class="wall-link">預約諮詢 →</a>
                 </article>
-                
+
                 <article class="wall-card">
                     <h3 class="wall-title">生活適應指導</h3>
                     <p class="wall-description">幫助新來台留學生快速適應台灣生活，從飲食文化到日常習慣，全方位生活指南。</p>
                     <a href="#" class="wall-link">生活指南 →</a>
                 </article>
-                
+
                 <article class="wall-card">
                     <h3 class="wall-title">學長姐經驗分享</h3>
                     <p class="wall-description">台灣留學心得分享，學長姐的真實體驗與建議，聽聽過來人的寶貴經驗，少走彎路。</p>
                     <a href="#" class="wall-link">經驗分享 →</a>
                 </article>
-                
+
                 <article class="wall-card">
                     <h3 class="wall-title">住宿安排服務</h3>
                     <p class="wall-description">提供學校宿舍及校外租屋資訊，協助留學生找到安全舒適的居住環境。</p>
                     <a href="#" class="wall-link">住宿資訊 →</a>
                 </article>
-                
+
                 <article class="wall-card">
                     <h3 class="wall-title">文化交流活動</h3>
                     <p class="wall-description">舉辦豐富的文化交流活動，促進國際學生之間的友誼，體驗多元文化魅力。</p>
@@ -229,7 +183,7 @@
                 </article>
             </div>
         </div>
-    </div>
+        </div>
 
 
 
@@ -272,95 +226,98 @@
 
 
 
-     <!-- Footer -->
-    <footer class="footer-wrapper">
-        <!-- 上層 Footer -->
-        <div class="footer-upper">
-            <div class="footer-container">
-                <!-- 左側導航 -->
-                <nav class="footer-nav">
-                    <div class="footer-nav-column">
-                        <a href="unknow.html" class="footer-nav-link">留學攻略</a>
-                        <a href="unknow.html" class="footer-nav-link">探索自己</a>
-                        <a href="school.html" class="footer-nav-link">學校介紹</a>
-                        <a href="product.html" class="footer-nav-link">學校申請</a>
-                    </div>
-                    <div class="footer-nav-column">
-                        <a href="news.html" class="footer-nav-link">最新消息</a>
-                        <a href="/news/category/online-courses" class="footer-nav-link">線上課程</a>
-                        <a href="/news/category/job-fairs" class="footer-nav-link">就業展覽會</a>
-                        <a href="/news/category/senior-sharing" class="footer-nav-link">學長姐分享</a>
-                        <a href="/news/category/tourism" class="footer-nav-link">台灣旅遊景點</a>
-                        <a href="/news/category/offline-activities" class="footer-nav-link">線下活動</a>
-                    </div>
-                    <div class="footer-nav-column">
-                        <a href="about.html" class="footer-nav-link">關於我們</a>
-                        <a href="/about#faq" class="footer-nav-link">常見問題</a>
-                    </div>
-                    <div class="footer-nav-column">
-                        <a href="service.html" class="footer-nav-link">會員登錄</a>
-                    </div>
-                </nav>
-
-                <!-- 右側品牌 -->
-                <div class="footer-brand">
-                    <!-- 品牌名稱和社交圖標 -->
-                    <div class="brand-header">
-                        <h2 class="brand-name">Début Rêve</h2>
-                        <div class="social-links">
-                            <!-- X (Twitter) -->
-                            <a href="#" class="social-link" aria-label="X">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                </svg>
-                            </a>
-                            <!-- Instagram -->
-                            <a href="#" class="social-link" aria-label="Instagram">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
-                                </svg>
-                            </a>
-                            <!-- YouTube -->
-                            <a href="#" class="social-link" aria-label="YouTube">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                </svg>
-                            </a>
-                            <!-- LinkedIn -->
-                            <a href="#" class="social-link" aria-label="LinkedIn">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
-                            </a>
+        <!-- Footer -->
+        <footer class="footer-wrapper">
+            <!-- 上層 Footer -->
+            <div class="footer-upper">
+                <div class="footer-container">
+                    <!-- 左側導航 -->
+                    <nav class="footer-nav">
+                        <div class="footer-nav-column">
+                            <a href="unknow.html" class="footer-nav-link">留學攻略</a>
+                            <a href="unknow.html" class="footer-nav-link">探索自己</a>
+                            <a href="school.html" class="footer-nav-link">學校介紹</a>
+                            <a href="product.html" class="footer-nav-link">學校申請</a>
                         </div>
-                    </div>
-                    <!-- 聯絡資訊 -->
-                    <div class="footer-contact">
-                        <div class="contact-item">
-                            <span>電話號碼: 123-456-7890</span>
+                        <div class="footer-nav-column">
+                            <a href="news.html" class="footer-nav-link">最新消息</a>
+                            <a href="/news/category/online-courses" class="footer-nav-link">線上課程</a>
+                            <a href="/news/category/job-fairs" class="footer-nav-link">就業展覽會</a>
+                            <a href="/news/category/senior-sharing" class="footer-nav-link">學長姐分享</a>
+                            <a href="/news/category/tourism" class="footer-nav-link">台灣旅遊景點</a>
+                            <a href="/news/category/offline-activities" class="footer-nav-link">線下活動</a>
                         </div>
-                        <div class="contact-item">
-                            <span>信箱：</span>
-                            <a href="mailto:example@gmail.com">example@gmail.com</a>
+                        <div class="footer-nav-column">
+                            <a href="about.html" class="footer-nav-link">關於我們</a>
+                            <a href="/about#faq" class="footer-nav-link">常見問題</a>
                         </div>
-                        <div class="contact-item">
-                            <span>地址：台北市信義區松仁路100號</span>
+                        <div class="footer-nav-column">
+                            <a href="service.html" class="footer-nav-link">會員登錄</a>
+                        </div>
+                    </nav>
+
+                    <!-- 右側品牌 -->
+                    <div class="footer-brand">
+                        <!-- 品牌名稱和社交圖標 -->
+                        <div class="brand-header">
+                            <h2 class="brand-name">Début Rêve</h2>
+                            <div class="social-links">
+                                <!-- X (Twitter) -->
+                                <a href="#" class="social-link" aria-label="X">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                    </svg>
+                                </a>
+                                <!-- Instagram -->
+                                <a href="#" class="social-link" aria-label="Instagram">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z" />
+                                    </svg>
+                                </a>
+                                <!-- YouTube -->
+                                <a href="#" class="social-link" aria-label="YouTube">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                    </svg>
+                                </a>
+                                <!-- LinkedIn -->
+                                <a href="#" class="social-link" aria-label="LinkedIn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 聯絡資訊 -->
+                        <div class="footer-contact">
+                            <div class="contact-item">
+                                <span>電話號碼: 123-456-7890</span>
+                            </div>
+                            <div class="contact-item">
+                                <span>信箱：</span>
+                                <a href="mailto:example@gmail.com">example@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>地址：台北市信義區松仁路100號</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 下層 Footer -->
-        <div class="footer-lower">
-            <div class="copyright">
-                © 2025 Début Rêve. 版權所有。
+            <!-- 下層 Footer -->
+            <div class="footer-lower">
+                <div class="copyright">
+                    © 2025 Début Rêve. 版權所有。
+                </div>
             </div>
-        </div>
-    </footer>
-    <!-- 自訂的js (一定放在最下面) -->
-    <script src="js/newFile.js"></script>
+        </footer>
+        <!-- 自訂的js (一定放在最下面) -->
+        <script src="js/newFile.js"></script>
 </body>
 
 </html>
-

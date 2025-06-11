@@ -778,3 +778,87 @@ function gotoDepartmentIntro() {
                 }, index * 150);
             }
                     );    });  
+
+
+                    //新增消息
+                      // 滑動卡片功能
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slider-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const sliderContainer = document.getElementById('sliderContainer');
+        let isTransitioning = false;
+        let autoPlayInterval;
+
+        function showSlide(index, noTransition = false) {
+            if (isTransitioning && !noTransition) return;
+            
+            if (noTransition) {
+                sliderContainer.style.transition = 'none';
+            } else {
+                sliderContainer.style.transition = 'transform 0.5s ease';
+                isTransitioning = true;
+            }
+            
+            const offset = -index * 100;
+            sliderContainer.style.transform = `translateX(${offset}%)`;
+            
+            // 更新導航點
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlideIndex);
+            });
+            
+            if (!noTransition) {
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 500);
+            }
+        }
+
+        function changeSlide(direction) {
+            if (isTransitioning) return;
+            
+            const nextIndex = currentSlideIndex + direction;
+            
+            if (nextIndex >= slides.length) {
+                // 到達最後一張，平滑過渡到第一張
+                currentSlideIndex = 0;
+                showSlide(currentSlideIndex);
+            } else if (nextIndex < 0) {
+                // 到達第一張，平滑過渡到最後一張
+                currentSlideIndex = slides.length - 1;
+                showSlide(currentSlideIndex);
+            } else {
+                currentSlideIndex = nextIndex;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        function currentSlide(index) {
+            if (isTransitioning) return;
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+            
+            // 重置自動播放
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000); // 稍微延長間隔時間
+        }
+
+        // 鼠標懸停時暫停自動播放
+        const sliderElement = document.querySelector('.slider-style');
+        sliderElement.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+
+        sliderElement.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+
+        // 初始化
+        showSlide(0, true);
+        startAutoPlay();

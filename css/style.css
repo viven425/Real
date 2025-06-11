@@ -4525,11 +4525,9 @@ body.menu-open .overlay {
   margin-bottom: 60px;
 }
 
-/* 第一區：雜誌風格 - 目前活動 */
+/* 調整第一區為單欄佈局 */
 .magazine-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  display: block;
   margin-bottom: 80px;
 }
 
@@ -4540,14 +4538,20 @@ body.menu-open .overlay {
   box-shadow: 0 15px 40px rgba(121, 46, 46, 0.1);
   transform: rotate(-1deg);
   transition: all 0.4s ease;
+  width: 100%;
 }
 
 .magazine-main:hover {
   transform: rotate(0deg) scale(1.02);
 }
 
+/* 移除sidebar相關樣式 */
+.magazine-sidebar, .magazine-article, .magazine-category {
+  display: none;
+}
+
 .magazine-cover {
-  background: linear-gradient(135deg, #792e2e, #a53e3e);
+  background: linear-gradient(135deg, #fdcb6e 0%, #e17055 50%, #74b9ff 100%);
   color: white;
   padding: 40px;
   text-align: center;
@@ -4556,19 +4560,89 @@ body.menu-open .overlay {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
-.magazine-cover::before {
-  content: "";
+/* 自定義圖片容器 */
+.custom-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
-  opacity: 0.3;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: float 6s ease-in-out infinite;
 }
 
+/* 圖片位置設定 - 你可以修改這些 */
+.image-1 {
+  top: 30px;
+  right: 50px;
+  width: 80px;
+  height: 80px;
+  background-image: url("your-image-1.jpg"); /* 替換成你的圖片 */
+  animation-delay: 0s;
+}
+
+.image-2 {
+  top: 80px;
+  left: 20px;
+  width: 100px;
+  height: 60px;
+  background-image: url("your-image-2.jpg"); /* 替換成你的圖片 */
+  animation-delay: 1s;
+}
+
+.image-3 {
+  bottom: 100px;
+  right: 80px;
+  width: 70px;
+  height: 70px;
+  background-image: url("your-image-3.jpg"); /* 替換成你的圖片 */
+  animation-delay: 2s;
+}
+
+.image-4 {
+  bottom: 50px;
+  left: 80px;
+  width: 90px;
+  height: 50px;
+  background-image: url("your-image-4.jpg"); /* 替換成你的圖片 */
+  animation-delay: 0.5s;
+}
+
+.image-5 {
+  top: 150px;
+  left: 120px;
+  width: 60px;
+  height: 60px;
+  background-image: url("your-image-5.jpg"); /* 替換成你的圖片 */
+  animation-delay: 1.5s;
+}
+
+/* 如果沒有圖片，顯示佔位符 */
+.custom-image:not([style*=background-image]) {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.custom-image:not([style*=background-image])::before {
+  content: "圖片";
+}
+
+/* 只保留圖片的浮動動畫 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
 .magazine-logo {
   font-size: 20px;
   font-weight: 700;
