@@ -4722,7 +4722,7 @@ body.menu-open .overlay {
   box-shadow: 0 20px 60px rgba(121, 46, 46, 0.1);
   border: 3px solid #1E1E1E;
   position: relative;
-  margin-bottom: 80px;
+  margin: 80px;
 }
 
 .newspaper-style::before {
@@ -4747,7 +4747,7 @@ body.menu-open .overlay {
 }
 
 .newspaper-title {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 8px;
   color: #1E1E1E;
@@ -4925,7 +4925,7 @@ body.menu-open .overlay {
 /* 第四區：立體卡片牆 - 學校項目 */
 .projects-section h2 {
   text-align: center;
-  font-size: 32px;
+  font-size: 23px;
   color: #1E1E1E;
   margin-bottom: 40px;
   font-weight: 700;
@@ -4959,7 +4959,7 @@ body.menu-open .overlay {
 }
 
 .wall-title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 12px;
   color: #1E1E1E;
@@ -4969,7 +4969,7 @@ body.menu-open .overlay {
   color: #4a5568;
   line-height: 1.6;
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .wall-link {
