@@ -1963,7 +1963,7 @@ body.menu-open .overlay {
   margin-bottom: 10px;
   word-wrap: break-word;
   width: 100%;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(239, 234, 234, 0.9803921569);
   /* 增加文字陰影 */
 }
 .letter1 .about1 .buttom1 {
@@ -3319,6 +3319,7 @@ body.menu-open .overlay {
   margin: 0 auto;
   /* 讓測驗容器適應圖片區域的尺寸 */
   min-height: 500px;
+  margin: 15px;
 }
 
 /* 原來的測驗區域樣式保持不變作為備用 */
@@ -4936,6 +4937,7 @@ body.menu-open .overlay {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
+  padding: 60px;
 }
 
 .wall-card {
@@ -5066,4 +5068,4 @@ body.menu-open .overlay {
     opacity: 1;
     transform: translateY(0);
   }
-}/*# sourceMappingURL=style.css.map */
+}
